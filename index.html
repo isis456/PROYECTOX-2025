@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leep Books - Librería Online</title>
+    <title>Leep Books - Tu Librería Online</title>
     <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/menu.css">
     <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
 </head>
 <body class="layout">
@@ -14,84 +15,170 @@
 </header>
 
 <main>
-    <!-- Header principal -->
-    <section class="header-app">
-        <h1 class="app-title">LEEP BOOKS</h1>
-        <p class="app-subtitle">Tu librería online de confianza</p>
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-contenido">
+            <h1 class="hero-titulo">Descubre Mundos Extraordinarios</h1>
+            <p class="hero-subtitulo">Más de 50,000 libros esperando por ti</p>
+            <div class="hero-buscador">
+                <input type="text" placeholder="¿Qué libro buscas hoy?" class="buscador-input">
+                <button class="buscador-boton">
+                    <img src="img/iconos/lupa.png" alt="Buscar" class="icono-buscar">
+                </button>
+            </div>
+            <div class="hero-estadisticas">
+                <div class="estadistica">
+                    <span class="numero">50K+</span>
+                    <span class="texto">Libros</span>
+                </div>
+                <div class="estadistica">
+                    <span class="numero">2K+</span>
+                    <span class="texto">Autores</span>
+                </div>
+                <div class="estadistica">
+                    <span class="numero">15+</span>
+                    <span class="texto">Categorías</span>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- Navegación vertical -->
-    <section class="app-container">
-        <nav class="nav-vertical">
-            <ul class="nav-list">
-                <li class="nav-item"><a href="index.html" class="nav-link active">INICIO</a></li>
-                <li class="nav-item"><a href="page/catalogo.html?categoria=TERROR" class="nav-link">TERROR</a></li>
-                <li class="nav-item"><a href="page/catalogo.html?categoria=ACCION" class="nav-link">ACCIÓN</a></li>
-                <li class="nav-item"><a href="page/catalogo.html?categoria=INFANTIL" class="nav-link">INFANTIL</a></li>
-                <li class="nav-item"><a href="page/catalogo.html?categoria=ROMANCE" class="nav-link">ROMANCE</a></li>
-                <li class="nav-item"><a href="page/catalogo.html?categoria=FANTASIA" class="nav-link">FANTASÍA</a></li>
-                <li class="nav-item"><a href="page/historial.html" class="nav-link">HISTORIAL</a></li>
-                <li class="nav-item"><a href="page/ajustes.html" class="nav-link">AJUSTES</a></li>
-            </ul>
-            
-            <!-- Botón SALIDA -->
-            <div class="nav-footer">
-                <a href="#" class="nav-link salida">SALIDA</a>
-            </div>
-        </nav>
-
-        <!-- Área de contenido principal -->
-        <section class="content-area">
-            <div class="bienvenida">
-                <h2>Bienvenido a Leep Books</h2>
-                <p>Descubre tu próxima aventura literaria</p>
-            </div>
-
-            <!-- Búsqueda rápida -->
-            <div class="busqueda-rapida">
-                <div class="buscador">
-                    <input type="text" id="buscador-libros" placeholder="Buscar libros, autores...">
-                    <button onclick="buscarLibros()">
-                        <img src="img/iconos/lupa.png" alt="Buscar" class="icono">
-                    </button>
+    <!-- CATEGORÍAS DESTACADAS -->
+    <section class="seccion categorias-destacadas">
+        <div class="contenedor">
+            <h2 class="seccion-titulo">Explora por Categoría</h2>
+            <div class="grid-categorias">
+                <div class="categoria-card" onclick="irACategoria('TERROR')">
+                    <div class="categoria-icono">👻</div>
+                    <h3>Terror</h3>
+                    <p>Historias que harán palpitar tu corazón</p>
+                    <span class="contador-libros">1,245 libros</span>
+                </div>
+                <div class="categoria-card" onclick="irACategoria('FANTASIA')">
+                    <div class="categoria-icono">🐉</div>
+                    <h3>Fantasía</h3>
+                    <p>Mundos mágicos y aventuras épicas</p>
+                    <span class="contador-libros">2,367 libros</span>
+                </div>
+                <div class="categoria-card" onclick="irACategoria('ROMANCE')">
+                    <div class="categoria-icono">💖</div>
+                    <h3>Romance</h3>
+                    <p>Historias de amor inolvidables</p>
+                    <span class="contador-libros">1,892 libros</span>
+                </div>
+                <div class="categoria-card" onclick="irACategoria('CIENCIA_FICCION')">
+                    <div class="categoria-icono">🚀</div>
+                    <h3>Ciencia Ficción</h3>
+                    <p>Futuros posibles y universos alternos</p>
+                    <span class="contador-libros">1,567 libros</span>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Libros destacados -->
-            <div class="libros-destacados">
-                <h3>Libros Destacados</h3>
-                <div class="grid-libros" id="libros-destacados">
-                    <!-- Los libros se cargan con JavaScript -->
+    <!-- LIBROS MÁS VENDIDOS -->
+    <section class="seccion libros-vendidos">
+        <div class="contenedor">
+            <div class="seccion-header">
+                <h2 class="seccion-titulo">Los Más Vendidos</h2>
+                <a href="page/catalogo.html" class="ver-todo">Ver todos →</a>
+            </div>
+            <div class="grid-libros" id="libros-vendidos">
+                <!-- Los libros se cargan con JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- OFERTAS ESPECIALES -->
+    <section class="seccion ofertas-especiales">
+        <div class="contenedor">
+            <h2 class="seccion-titulo">Ofertas de la Semana</h2>
+            <div class="banner-oferta">
+                <div class="oferta-contenido">
+                    <span class="oferta-etiqueta">-30%</span>
+                    <h3>Colección Best Sellers</h3>
+                    <p>Los libros más populares con descuento exclusivo</p>
+                    <button class="btn-oferta">Ver Ofertas</button>
+                </div>
+                <div class="oferta-imagen">
+                    <!-- Imagen decorativa -->
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Categorías rápidas -->
-            <div class="categorias-rapidas">
-                <h3>Explorar Categorías</h3>
-                <div class="grid-categorias">
-                    <div class="categoria-card" onclick="irACategoria('TERROR')">
-                        <h4>TERROR</h4>
-                        <p>Libros de miedo y suspenso</p>
+    <!-- AUTORES DESTACADOS -->
+    <section class="seccion autores-destacados">
+        <div class="contenedor">
+            <h2 class="seccion-titulo">Autores Destacados</h2>
+            <div class="grid-autores">
+                <div class="autor-card">
+                    <img src="img/autores/stephen-king.jpg" alt="Stephen King" class="autor-foto">
+                    <h3>Stephen King</h3>
+                    <p>Maestro del terror contemporáneo</p>
+                    <span class="libros-count">65 libros</span>
+                </div>
+                <div class="autor-card">
+                    <img src="img/autores/jk-rowling.jpg" alt="J.K. Rowling" class="autor-foto">
+                    <h3>J.K. Rowling</h3>
+                    <p>Creadora del mundo mágico de Harry Potter</p>
+                    <span class="libros-count">12 libros</span>
+                </div>
+                <div class="autor-card">
+                    <img src="img/autores/isabel-allende.jpg" alt="Isabel Allende" class="autor-foto">
+                    <h3>Isabel Allende</h3>
+                    <p>Reina del realismo mágico latinoamericano</p>
+                    <span class="libros-count">24 libros</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIOS -->
+    <section class="seccion testimonios">
+        <div class="contenedor">
+            <h2 class="seccion-titulo">Lo que dicen nuestros lectores</h2>
+            <div class="grid-testimonios">
+                <div class="testimonio-card">
+                    <div class="testimonio-texto">
+                        "La mejor librería online. Encuentro siempre lo que busco y los envíos son super rápidos."
                     </div>
-                    <div class="categoria-card" onclick="irACategoria('ACCION')">
-                        <h4>ACCIÓN</h4>
-                        <p>Aventuras y emociones fuertes</p>
+                    <div class="testimonio-autor">
+                        <img src="img/usuarios/usuario1.jpg" alt="María González">
+                        <div>
+                            <strong>María González</strong>
+                            <span>Lectora frecuente</span>
+                        </div>
                     </div>
-                    <div class="categoria-card" onclick="irACategoria('INFANTIL')">
-                        <h4>INFANTIL</h4>
-                        <p>Para los más pequeños</p>
+                </div>
+                <div class="testimonio-card">
+                    <div class="testimonio-texto">
+                        "Excelente selección de libros y precios muy competitivos. Mi sitio favorito para comprar."
                     </div>
-                    <div class="categoria-card" onclick="irACategoria('ROMANCE')">
-                        <h4>ROMANCE</h4>
-                        <p>Historias de amor</p>
-                    </div>
-                    <div class="categoria-card" onclick="irACategoria('FANTASIA')">
-                        <h4>FANTASÍA</h4>
-                        <p>Mundos imaginarios</p>
+                    <div class="testimonio-autor">
+                        <img src="img/usuarios/usuario2.jpg" alt="Carlos Ruiz">
+                        <div>
+                            <strong>Carlos Ruiz</strong>
+                            <span>Coleccionista</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="seccion newsletter">
+        <div class="contenedor">
+            <div class="newsletter-contenido">
+                <h2>No te pierdas las novedades</h2>
+                <p>Suscríbete y recibe ofertas exclusivas cada semana</p>
+                <form class="form-newsletter">
+                    <input type="email" placeholder="tu@email.com" required>
+                    <button type="submit">Suscribirme</button>
+                </form>
+            </div>
+        </div>
     </section>
 </main>
 
