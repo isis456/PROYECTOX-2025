@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leep Books - Tu Librería Online</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+</head>
+<body class="layout">
+
+<header>
+    <div id="menu-container"></div>
+</header>
+
+<main>
+    <section class="hero">
+        <h1>Bienvenido a Leep Books</h1>
+        <p>Descubre tu próxima aventura literaria</p>
+        <button onclick="irAlCatalogo()">Explorar Catálogo</button>
+    </section>
+
+    <section class="libros-destacados">
+        <h2>Libros Destacados</h2>
+        <div class="grid-libros" id="libros-destacados">
+            <!-- Los libros se cargarán con JavaScript -->
+        </div>
+    </section>
+
+    <section class="busqueda-rapida">
+        <h2>Encuentra tu libro ideal</h2>
+        <div class="buscador">
+            <input type="text" id="buscador-libros" placeholder="Buscar por título, autor o género...">
+            <button onclick="buscarLibros()">🔍 Buscar</button>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div id="footer-container"></div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
