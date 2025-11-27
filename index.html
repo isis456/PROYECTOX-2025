@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leep Books - Tu Librería Online</title>
+    <title>Leep Books - Librería Online</title>
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
 </head>
@@ -14,25 +14,84 @@
 </header>
 
 <main>
-    <section class="hero">
-        <h1>Bienvenido a Leep Books</h1>
-        <p>Descubre tu próxima aventura literaria</p>
-        <button onclick="irAlCatalogo()">Explorar Catálogo</button>
+    <!-- Header principal -->
+    <section class="header-app">
+        <h1 class="app-title">LEEP BOOKS</h1>
+        <p class="app-subtitle">Tu librería online de confianza</p>
     </section>
 
-    <section class="libros-destacados">
-        <h2>Libros Destacados</h2>
-        <div class="grid-libros" id="libros-destacados">
-            <!-- Los libros se cargarán con JavaScript -->
-        </div>
-    </section>
+    <!-- Navegación vertical -->
+    <section class="app-container">
+        <nav class="nav-vertical">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="index.html" class="nav-link active">INICIO</a></li>
+                <li class="nav-item"><a href="page/catalogo.html?categoria=TERROR" class="nav-link">TERROR</a></li>
+                <li class="nav-item"><a href="page/catalogo.html?categoria=ACCION" class="nav-link">ACCIÓN</a></li>
+                <li class="nav-item"><a href="page/catalogo.html?categoria=INFANTIL" class="nav-link">INFANTIL</a></li>
+                <li class="nav-item"><a href="page/catalogo.html?categoria=ROMANCE" class="nav-link">ROMANCE</a></li>
+                <li class="nav-item"><a href="page/catalogo.html?categoria=FANTASIA" class="nav-link">FANTASÍA</a></li>
+                <li class="nav-item"><a href="page/historial.html" class="nav-link">HISTORIAL</a></li>
+                <li class="nav-item"><a href="page/ajustes.html" class="nav-link">AJUSTES</a></li>
+            </ul>
+            
+            <!-- Botón SALIDA -->
+            <div class="nav-footer">
+                <a href="#" class="nav-link salida">SALIDA</a>
+            </div>
+        </nav>
 
-    <section class="busqueda-rapida">
-        <h2>Encuentra tu libro ideal</h2>
-        <div class="buscador">
-            <input type="text" id="buscador-libros" placeholder="Buscar por título, autor o género...">
-            <button onclick="buscarLibros()">🔍 Buscar</button>
-        </div>
+        <!-- Área de contenido principal -->
+        <section class="content-area">
+            <div class="bienvenida">
+                <h2>Bienvenido a Leep Books</h2>
+                <p>Descubre tu próxima aventura literaria</p>
+            </div>
+
+            <!-- Búsqueda rápida -->
+            <div class="busqueda-rapida">
+                <div class="buscador">
+                    <input type="text" id="buscador-libros" placeholder="Buscar libros, autores...">
+                    <button onclick="buscarLibros()">
+                        <img src="img/iconos/lupa.png" alt="Buscar" class="icono">
+                    </button>
+                </div>
+            </div>
+
+            <!-- Libros destacados -->
+            <div class="libros-destacados">
+                <h3>Libros Destacados</h3>
+                <div class="grid-libros" id="libros-destacados">
+                    <!-- Los libros se cargan con JavaScript -->
+                </div>
+            </div>
+
+            <!-- Categorías rápidas -->
+            <div class="categorias-rapidas">
+                <h3>Explorar Categorías</h3>
+                <div class="grid-categorias">
+                    <div class="categoria-card" onclick="irACategoria('TERROR')">
+                        <h4>TERROR</h4>
+                        <p>Libros de miedo y suspenso</p>
+                    </div>
+                    <div class="categoria-card" onclick="irACategoria('ACCION')">
+                        <h4>ACCIÓN</h4>
+                        <p>Aventuras y emociones fuertes</p>
+                    </div>
+                    <div class="categoria-card" onclick="irACategoria('INFANTIL')">
+                        <h4>INFANTIL</h4>
+                        <p>Para los más pequeños</p>
+                    </div>
+                    <div class="categoria-card" onclick="irACategoria('ROMANCE')">
+                        <h4>ROMANCE</h4>
+                        <p>Historias de amor</p>
+                    </div>
+                    <div class="categoria-card" onclick="irACategoria('FANTASIA')">
+                        <h4>FANTASÍA</h4>
+                        <p>Mundos imaginarios</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </section>
 </main>
 
@@ -43,3 +102,4 @@
 <script src="js/main.js"></script>
 </body>
 </html>
+    
