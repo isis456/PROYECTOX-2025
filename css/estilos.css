@@ -1,0 +1,206 @@
+/* ===========================
+   CONFIGURACIÓN GLOBAL
+=========================== */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body.layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #333;
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+}
+
+/* ===========================
+   HERO SECTION
+=========================== */
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: rgba(255, 255, 255, 0.9);
+    margin: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.hero h1 {
+    font-size: 3em;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 1.2em;
+    color: #7f8c8d;
+    margin-bottom: 30px;
+}
+
+.hero button {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.1em;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.hero button:hover {
+    transform: translateY(-3px);
+    background: #c0392b;
+}
+
+/* ===========================
+   GRID DE LIBROS
+=========================== */
+.libros-destacados {
+    padding: 40px 20px;
+}
+
+.libros-destacados h2 {
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+    font-size: 2em;
+}
+
+.grid-libros {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.libro-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.libro-card:hover {
+    transform: translateY(-5px);
+}
+
+.libro-card img {
+    width: 120px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.libro-card h3 {
+    color: #2c3e50;
+    margin: 10px 0;
+}
+
+.libro-card .autor {
+    color: #7f8c8d;
+    font-style: italic;
+}
+
+.libro-card .precio {
+    color: #27ae60;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+/* ===========================
+   BÚSQUEDA
+=========================== */
+.busqueda-rapida {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px 20px;
+    margin: 20px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.buscador {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    gap: 10px;
+}
+
+.buscador input {
+    flex: 1;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    font-size: 1em;
+}
+
+.buscador button {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+/* ===========================
+   FORMULARIOS (manteniendo tu estilo)
+=========================== */
+.contenedor {
+    max-width: 500px;
+    margin: auto;
+    padding: 25px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+input, textarea, button, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+}
+
+button {
+    margin-top: 20px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #45a049;
+}
+
+/* ===========================
+   FOOTER STICKY
+=========================== */
+.footer {
+    text-align: center;
+    padding: 20px;
+    background: #333;
+    color: white;
+    font-size: 16px;
+}
