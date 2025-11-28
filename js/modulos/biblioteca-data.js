@@ -1,6 +1,6 @@
 /* ===========================
-   GESTOR DE DATOS - BIBLIOTECA LEEP BOOKS
-   Maneja toda la información de libros y categorías
+   BIBLIOTECA-DATA.JS - LEEP BOOKS
+   Gestor completo de datos de libros
 =========================== */
 
 class GestorBiblioteca {
@@ -8,6 +8,8 @@ class GestorBiblioteca {
         this.libros = this.inicializarDatosLibros();
         this.categorias = this.inicializarCategorias();
         this.autores = this.inicializarAutores();
+        this.pedidos = this.cargarPedidosGuardados();
+        console.log('📚 GestorBiblioteca inicializado con', this.libros.length, 'libros');
     }
 
     /* ===========================
@@ -22,7 +24,8 @@ class GestorBiblioteca {
                 icono: "👻",
                 color: "#7b1fa2",
                 totalLibros: 1245,
-                destacada: true
+                destacada: true,
+                tags: ["suspenso", "miedo", "paranormal", "thriller"]
             },
             ACCION: {
                 id: "ACCION", 
@@ -31,7 +34,8 @@ class GestorBiblioteca {
                 icono: "💥",
                 color: "#d32f2f",
                 totalLibros: 867,
-                destacada: true
+                destacada: true,
+                tags: ["aventura", "suspenso", "thriller", "policial"]
             },
             INFANTIL: {
                 id: "INFANTIL",
@@ -40,7 +44,8 @@ class GestorBiblioteca {
                 icono: "🧸",
                 color: "#1976d2",
                 totalLibros: 1567,
-                destacada: false
+                destacada: false,
+                tags: ["niños", "educativo", "divertido", "aprendizaje"]
             },
             ROMANCE: {
                 id: "ROMANCE",
@@ -49,7 +54,8 @@ class GestorBiblioteca {
                 icono: "💖",
                 color: "#e91e63",
                 totalLibros: 1892,
-                destacada: true
+                destacada: true,
+                tags: ["amor", "pasión", "drama", "relaciones"]
             },
             FANTASIA: {
                 id: "FANTASIA",
@@ -58,7 +64,8 @@ class GestorBiblioteca {
                 icono: "🐉",
                 color: "#ff9800",
                 totalLibros: 2367,
-                destacada: true
+                destacada: true,
+                tags: ["magia", "aventura", "épico", "mitología"]
             },
             CIENCIA_FICCION: {
                 id: "CIENCIA_FICCION",
@@ -67,7 +74,8 @@ class GestorBiblioteca {
                 icono: "🚀",
                 color: "#0097a7",
                 totalLibros: 987,
-                destacada: false
+                destacada: false,
+                tags: ["futuro", "tecnología", "espacio", "distopía"]
             },
             BIOGRAFIAS: {
                 id: "BIOGRAFIAS",
@@ -76,7 +84,8 @@ class GestorBiblioteca {
                 icono: "📖",
                 color: "#5d4037",
                 totalLibros: 654,
-                destacada: false
+                destacada: false,
+                tags: ["real", "inspirador", "histórico", "personal"]
             },
             MISTERIO: {
                 id: "MISTERIO",
@@ -85,7 +94,18 @@ class GestorBiblioteca {
                 icono: "🕵️",
                 color: "#455a64",
                 totalLibros: 723,
-                destacada: false
+                destacada: false,
+                tags: ["investigación", "crímenes", "enigmas", "suspenso"]
+            },
+            AUTOAYUDA: {
+                id: "AUTOAYUDA",
+                nombre: "Autoayuda",
+                descripcion: "Desarrollo personal y superación",
+                icono: "💪",
+                color: "#388e3c",
+                totalLibros: 543,
+                destacada: false,
+                tags: ["desarrollo", "motivación", "crecimiento", "personal"]
             }
         };
     }
@@ -98,46 +118,77 @@ class GestorBiblioteca {
             "STEPHEN_KING": {
                 id: "STEPHEN_KING",
                 nombre: "Stephen King",
-                biografia: "Maestro del terror contemporáneo con más de 60 novelas publicadas.",
+                biografia: "Maestro del terror contemporáneo con más de 60 novelas publicadas. Conocido como el 'Rey del Terror', sus obras han vendido más de 350 millones de copias worldwide.",
                 nacionalidad: "Estadounidense",
                 fechaNacimiento: "1947-09-21",
+                lugarNacimiento: "Portland, Maine, Estados Unidos",
                 foto: "img/autores/stephen-king.jpg",
                 totalLibros: 65,
                 rating: 4.7,
-                destacado: true
+                destacado: true,
+                generos: ["Terror", "Suspenso", "Fantasía"],
+                premios: ["Premio Bram Stoker", "Medalla Nacional de las Artes"],
+                website: "https://stephenking.com"
             },
             "JK_ROWLING": {
                 id: "JK_ROWLING", 
                 nombre: "J.K. Rowling",
-                biografia: "Creadora del mundo mágico de Harry Potter, la serie de libros más vendida de la historia.",
+                biografia: "Creadora del mundo mágico de Harry Potter, la serie de libros más vendida de la historia. Sus obras han sido traducidas a 80 idiomas.",
                 nacionalidad: "Británica",
                 fechaNacimiento: "1965-07-31",
+                lugarNacimiento: "Yate, Gloucestershire, Inglaterra",
                 foto: "img/autores/jk-rowling.jpg",
                 totalLibros: 12,
                 rating: 4.9,
-                destacado: true
+                destacado: true,
+                generos: ["Fantasía", "Literatura infantil"],
+                premios: ["Orden del Imperio Británico", "Premio Hans Christian Andersen"],
+                website: "https://jkrowling.com"
             },
             "ISABEL_ALLENDE": {
                 id: "ISABEL_ALLENDE",
                 nombre: "Isabel Allende",
-                biografia: "Reina del realismo mágico latinoamericano, conocida por sus conmovedoras historias familiares.",
+                biografia: "Reina del realismo mágico latinoamericano, conocida por sus conmovedoras historias familiares. Es la escritora en español más leída del mundo.",
                 nacionalidad: "Chilena",
                 fechaNacimiento: "1942-08-02",
+                lugarNacimiento: "Lima, Perú",
                 foto: "img/autores/isabel-allende.jpg",
                 totalLibros: 24,
                 rating: 4.5,
-                destacado: true
+                destacado: true,
+                generos: ["Realismo mágico", "Ficción literaria"],
+                premios: ["Premio Nacional de Literatura de Chile", "Medalla Presidential de la Libertad"],
+                website: "https://isabelallende.com"
             },
             "GABRIEL_GARCIA_MARQUEZ": {
                 id: "GABRIEL_GARCIA_MARQUEZ",
                 nombre: "Gabriel García Márquez",
-                biografia: "Premio Nobel de Literatura y máximo exponente del realismo mágico.",
+                biografia: "Premio Nobel de Literatura y máximo exponente del realismo mágico. Su obra 'Cien años de soledad' es considerada una de las más importantes del siglo XX.",
                 nacionalidad: "Colombiano",
                 fechaNacimiento: "1927-03-06",
+                lugarNacimiento: "Aracataca, Colombia",
                 foto: "img/autores/gabriel-garcia-marquez.jpg",
                 totalLibros: 18,
                 rating: 4.8,
-                destacado: true
+                destacado: true,
+                generos: ["Realismo mágico", "Ficción literaria"],
+                premios: ["Premio Nobel de Literatura", "Premio Rómulo Gallegos"],
+                website: null
+            },
+            "JRR_TOLKIEN": {
+                id: "JRR_TOLKIEN",
+                nombre: "J.R.R. Tolkien",
+                biografia: "Filólogo y escritor británico, autor de 'El Señor de los Anillos' y 'El Hobbit'. Considerado el padre de la literatura fantástica moderna.",
+                nacionalidad: "Británico",
+                fechaNacimiento: "1892-01-03",
+                lugarNacimiento: "Bloemfontein, Estado Libre de Orange",
+                foto: "img/autores/tolkien.jpg",
+                totalLibros: 28,
+                rating: 4.8,
+                destacado: true,
+                generos: ["Fantasía", "Alta fantasía"],
+                premios: ["International Fantasy Award"],
+                website: null
             }
         };
     }
@@ -168,7 +219,11 @@ class GestorBiblioteca {
                 fechaPublicacion: "1986-09-15",
                 editorial: "Viking Press",
                 idioma: "Español",
-                formato: "Tapa blanda"
+                formato: "Tapa blanda",
+                dimensiones: "13.97 x 4.45 x 21.08 cm",
+                peso: "862g",
+                tags: ["payaso", "terror psicológico", "amistad", "trauma"],
+                relacionados: [2, 10]
             },
             {
                 id: 2,
@@ -186,7 +241,11 @@ class GestorBiblioteca {
                 fechaPublicacion: "1897-05-26",
                 editorial: "Archibald Constable and Company",
                 idioma: "Español",
-                formato: "Tapa dura"
+                formato: "Tapa dura",
+                dimensiones: "14.61 x 2.74 x 21.59 cm",
+                peso: "680g",
+                tags: ["vampiros", "clásico", "gótico", "época victoriana"],
+                relacionados: [1, 5]
             },
 
             // === ACCIÓN ===
@@ -206,7 +265,11 @@ class GestorBiblioteca {
                 fechaPublicacion: "1997-03-17",
                 editorial: "G.P. Putnam's Sons",
                 idioma: "Español",
-                formato: "Tapa blanda"
+                formato: "Tapa blanda",
+                dimensiones: "12.7 x 2.03 x 19.69 cm",
+                peso: "318g",
+                tags: ["thriller", "conspiración", "misterio", "acción"],
+                relacionados: [8, 11]
             },
 
             // === INFANTIL ===
@@ -227,7 +290,11 @@ class GestorBiblioteca {
                 fechaPublicacion: "1943-04-06",
                 editorial: "Reynal & Hitchcock",
                 idioma: "Español",
-                formato: "Tapa dura ilustrada"
+                formato: "Tapa dura ilustrada",
+                dimensiones: "15.24 x 1.27 x 22.86 cm",
+                peso: "340g",
+                tags: ["filosofía", "amistad", "aventura", "infantil"],
+                relacionados: [6, 9]
             },
 
             // === ROMANCE ===
@@ -249,7 +316,11 @@ class GestorBiblioteca {
                 fechaPublicacion: "1813-01-28",
                 editorial: "T. Egerton",
                 idioma: "Español",
-                formato: "Tapa blanda"
+                formato: "Tapa blanda",
+                dimensiones: "12.9 x 2.4 x 19.8 cm",
+                peso: "295g",
+                tags: ["clásico", "amor", "sociedad", "prejuicios"],
+                relacionados: [2, 7]
             },
 
             // === FANTASÍA ===
@@ -271,12 +342,17 @@ class GestorBiblioteca {
                 fechaPublicacion: "1997-06-26",
                 editorial: "Bloomsbury",
                 idioma: "Español",
-                formato: "Tapa dura"
+                formato: "Tapa dura",
+                dimensiones: "14.61 x 2.79 x 22.23 cm",
+                peso: "499g",
+                tags: ["magia", "escuela", "amistad", "aventura"],
+                relacionados: [7, 10]
             },
             {
                 id: 7,
                 titulo: "El Señor de los Anillos: La Comunidad del Anillo",
                 autor: "J.R.R. Tolkien",
+                autorId: "JRR_TOLKIEN",
                 precio: 26.90,
                 imagen: "img/libros/fantasia-senoranillos.jpg",
                 categoria: "FANTASIA",
@@ -290,7 +366,11 @@ class GestorBiblioteca {
                 fechaPublicacion: "1954-07-29",
                 editorial: "George Allen & Unwin",
                 idioma: "Español",
-                formato: "Tapa blanda"
+                formato: "Tapa blanda",
+                dimensiones: "10.8 x 3.8 x 17.8 cm",
+                peso: "322g",
+                tags: ["fantasía épica", "aventura", "amistad", "guerra"],
+                relacionados: [6, 8]
             },
 
             // === CIENCIA FICCIÓN ===
@@ -310,10 +390,14 @@ class GestorBiblioteca {
                 fechaPublicacion: "1965-08-01",
                 editorial: "Chilton Books",
                 idioma: "Español",
-                formato: "Tapa blanda"
+                formato: "Tapa blanda",
+                dimensiones: "10.67 x 2.79 x 17.15 cm",
+                peso: "272g",
+                tags: ["ciencia ficción", "política", "ecología", "mesías"],
+                relacionados: [3, 7]
             },
 
-            // === MÁS LIBROS DESTACADOS ===
+            // === REALISMO MÁGICO ===
             {
                 id: 9,
                 titulo: "Cien Años de Soledad",
@@ -332,7 +416,11 @@ class GestorBiblioteca {
                 fechaPublicacion: "1967-05-30",
                 editorial: "Editorial Sudamericana",
                 idioma: "Español",
-                formato: "Tapa blanda"
+                formato: "Tapa blanda",
+                dimensiones: "13.21 x 2.79 x 20.19 cm",
+                peso: "408g",
+                tags: ["realismo mágico", "familia", "América Latina", "saga familiar"],
+                relacionados: [10, 11]
             },
             {
                 id: 10,
@@ -354,7 +442,53 @@ class GestorBiblioteca {
                 fechaPublicacion: "1982-01-01",
                 editorial: "Plaza & Janés",
                 idioma: "Español",
-                formato: "Tapa blanda"
+                formato: "Tapa blanda",
+                dimensiones: "12.7 x 3.18 x 19.69 cm",
+                peso: "385g",
+                tags: ["realismo mágico", "familia", "política", "amor"],
+                relacionados: [9, 1]
+            },
+
+            // === MÁS LIBROS PARA COMPLETAR CATEGORÍAS ===
+            {
+                id: 11,
+                titulo: "El Código Da Vinci",
+                autor: "Dan Brown",
+                precio: 18.90,
+                imagen: "img/libros/misterio-codigo-davinci.jpg",
+                categoria: "MISTERIO",
+                descripcion: "Un thriller que mezcla suspense, arte y religión en una búsqueda por descubrir un secreto milenario.",
+                paginas: 454,
+                isbn: "978-8401338042",
+                rating: 4.2,
+                reseñas: 1890,
+                stock: 21,
+                fechaPublicacion: "2003-03-18",
+                editorial: "Doubleday",
+                idioma: "Español",
+                formato: "Tapa blanda",
+                tags: ["misterio", "conspiración", "religión", "arte"],
+                relacionados: [3, 8]
+            },
+            {
+                id: 12,
+                titulo: "Los 7 Hábitos de la Gente Altamente Efectiva",
+                autor: "Stephen R. Covey",
+                precio: 16.90,
+                imagen: "img/libros/autoayuda-7habitos.jpg",
+                categoria: "AUTOAYUDA",
+                descripcion: "Un clásico de desarrollo personal que presenta siete principios para alcanzar la efectividad personal e interpersonal.",
+                paginas: 381,
+                isbn: "978-8401338043",
+                rating: 4.4,
+                reseñas: 2340,
+                stock: 28,
+                fechaPublicacion: "1989-08-15",
+                editorial: "Free Press",
+                idioma: "Español",
+                formato: "Tapa blanda",
+                tags: ["desarrollo personal", "liderazgo", "productividad", "hábitos"],
+                relacionados: [9, 10]
             }
         ];
     }
@@ -402,7 +536,7 @@ class GestorBiblioteca {
                 if (libro) {
                     resolve(libro);
                 } else {
-                    reject(new Error("Libro no encontrado"));
+                    reject(new Error(`Libro con ID ${id} no encontrado`));
                 }
             }, 200);
         });
@@ -417,7 +551,8 @@ class GestorBiblioteca {
                     libro.titulo.toLowerCase().includes(terminoLower) ||
                     libro.autor.toLowerCase().includes(terminoLower) ||
                     libro.categoria.toLowerCase().includes(terminoLower) ||
-                    (libro.descripcion && libro.descripcion.toLowerCase().includes(terminoLower))
+                    (libro.descripcion && libro.descripcion.toLowerCase().includes(terminoLower)) ||
+                    (libro.tags && libro.tags.some(tag => tag.toLowerCase().includes(terminoLower)))
                 );
                 resolve(resultados);
             }, 300);
@@ -431,6 +566,23 @@ class GestorBiblioteca {
                 const ofertas = this.libros.filter(libro => libro.descuento);
                 resolve(ofertas);
             }, 200);
+        });
+    }
+
+    // Obtener libros relacionados
+    obtenerLibrosRelacionados(libroId) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                const libro = this.libros.find(l => l.id === libroId);
+                if (libro && libro.relacionados) {
+                    const relacionados = this.libros.filter(l => 
+                        libro.relacionados.includes(l.id)
+                    );
+                    resolve(relacionados);
+                } else {
+                    resolve([]);
+                }
+            }, 150);
         });
     }
 
@@ -465,7 +617,7 @@ class GestorBiblioteca {
                 if (categoria) {
                     resolve(categoria);
                 } else {
-                    reject(new Error("Categoría no encontrada"));
+                    reject(new Error(`Categoría ${categoriaId} no encontrada`));
                 }
             }, 100);
         });
@@ -502,7 +654,7 @@ class GestorBiblioteca {
                 if (autor) {
                     resolve(autor);
                 } else {
-                    reject(new Error("Autor no encontrado"));
+                    reject(new Error(`Autor ${autorId} no encontrado`));
                 }
             }, 100);
         });
@@ -520,6 +672,18 @@ class GestorBiblioteca {
         });
     }
 
+    // Obtener autores por categoría
+    obtenerAutoresPorCategoria(categoria) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                const librosCategoria = this.libros.filter(libro => libro.categoria === categoria);
+                const autoresIds = [...new Set(librosCategoria.map(libro => libro.autorId).filter(Boolean))];
+                const autores = autoresIds.map(autorId => this.autores[autorId]).filter(Boolean);
+                resolve(autores);
+            }, 200);
+        });
+    }
+
     /* ===========================
        MÉTODOS DE GESTIÓN
     =========================== */
@@ -530,11 +694,14 @@ class GestorBiblioteca {
             setTimeout(() => {
                 const libro = this.libros.find(l => l.id === idLibro);
                 if (libro) {
+                    const stockAnterior = libro.stock;
                     libro.stock = nuevaCantidad;
                     resolve({ 
                         success: true, 
                         libro: libro.titulo, 
-                        stock: nuevaCantidad 
+                        stockAnterior,
+                        stockNuevo: nuevaCantidad,
+                        mensaje: `Stock actualizado de ${stockAnterior} a ${nuevaCantidad}`
                     });
                 } else {
                     resolve({ 
@@ -557,7 +724,8 @@ class GestorBiblioteca {
                     fechaAgregado: new Date().toISOString(),
                     stock: libroData.stock || 10,
                     rating: libroData.rating || 4.0,
-                    reseñas: libroData.reseñas || 0
+                    reseñas: libroData.reseñas || 0,
+                    destacado: libroData.destacado || false
                 };
                 this.libros.push(nuevoLibro);
                 resolve({ 
@@ -566,6 +734,71 @@ class GestorBiblioteca {
                     libro: nuevoLibro 
                 });
             }, 400);
+        });
+    }
+
+    // Registrar venta
+    registrarVenta(libroId, cantidad = 1) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                const libro = this.libros.find(l => l.id === libroId);
+                if (libro && libro.stock >= cantidad) {
+                    libro.stock -= cantidad;
+                    libro.reseñas += 1; // Simular aumento en popularidad
+                    
+                    // Guardar en historial de pedidos
+                    this.guardarPedido({
+                        id: Date.now(),
+                        libroId: libro.id,
+                        titulo: libro.titulo,
+                        cantidad: cantidad,
+                        precio: libro.precio,
+                        fecha: new Date().toISOString(),
+                        total: libro.precio * cantidad
+                    });
+                    
+                    resolve({
+                        success: true,
+                        mensaje: `Venta registrada: ${cantidad} x ${libro.titulo}`,
+                        stockRestante: libro.stock
+                    });
+                } else {
+                    resolve({
+                        success: false,
+                        error: "Stock insuficiente o libro no encontrado"
+                    });
+                }
+            }, 300);
+        });
+    }
+
+    /* ===========================
+       MÉTODOS DE PEDIDOS
+    =========================== */
+    cargarPedidosGuardados() {
+        try {
+            const pedidosGuardados = localStorage.getItem('leepBooks_pedidos');
+            return pedidosGuardados ? JSON.parse(pedidosGuardados) : [];
+        } catch (error) {
+            console.error('Error cargando pedidos:', error);
+            return [];
+        }
+    }
+
+    guardarPedido(pedido) {
+        this.pedidos.push(pedido);
+        try {
+            localStorage.setItem('leepBooks_pedidos', JSON.stringify(this.pedidos));
+        } catch (error) {
+            console.error('Error guardando pedido:', error);
+        }
+    }
+
+    obtenerHistorialPedidos() {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve([...this.pedidos].reverse()); // Más recientes primero
+            }, 200);
         });
     }
 
@@ -584,7 +817,9 @@ class GestorBiblioteca {
                     librosDestacados: this.libros.filter(l => l.destacado).length,
                     stockTotal: this.libros.reduce((sum, libro) => sum + libro.stock, 0),
                     precioPromedio: (this.libros.reduce((sum, libro) => sum + libro.precio, 0) / this.libros.length).toFixed(2),
-                    ratingPromedio: (this.libros.reduce((sum, libro) => sum + libro.rating, 0) / this.libros.length).toFixed(1)
+                    ratingPromedio: (this.libros.reduce((sum, libro) => sum + libro.rating, 0) / this.libros.length).toFixed(1),
+                    totalPedidos: this.pedidos.length,
+                    ingresosTotales: this.pedidos.reduce((sum, pedido) => sum + pedido.total, 0).toFixed(2)
                 };
                 resolve(stats);
             }, 300);
@@ -611,14 +846,38 @@ class GestorBiblioteca {
             }, 150);
         });
     }
-}
 
-// Crear instancia global
-const bibliotecaData = new GestorBiblioteca();
+    obtenerEstadisticasCategorias() {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                const statsCategorias = Object.keys(this.categorias).map(categoriaId => {
+                    const librosCategoria = this.libros.filter(l => l.categoria === categoriaId);
+                    return {
+                        categoria: this.categorias[categoriaId].nombre,
+                        totalLibros: librosCategoria.length,
+                        stockTotal: librosCategoria.reduce((sum, libro) => sum + libro.stock, 0),
+                        precioPromedio: (librosCategoria.reduce((sum, libro) => sum + libro.precio, 0) / librosCategoria.length || 0).toFixed(2),
+                        ratingPromedio: (librosCategoria.reduce((sum, libro) => sum + libro.rating, 0) / librosCategoria.length || 0).toFixed(1)
+                    };
+                });
+                resolve(statsCategorias);
+            }, 250);
+        });
+    }
 
-// Exportar para usar en otros archivos
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = bibliotecaData;
-} else {
-    window.bibliotecaData = bibliotecaData;
-}
+    /* ===========================
+       MÉTODOS DE BÚSQUEDA AVANZADA
+    =========================== */
+
+    buscarAvanzado(filtros) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                let resultados = [...this.libros];
+
+                // Aplicar filtros
+                if (filtros.categoria) {
+                    resultados = resultados.filter(libro => libro.categoria === filtros.categoria.toUpperCase());
+                }
+
+                if (filtros.precioMin) {
+                    resultados = resultados.filter(libro => libro.precio >= parseFloat(filtros.precioMin

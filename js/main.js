@@ -1,179 +1,205 @@
 /* ===========================
-   CARGAR MENÚ Y FOOTER
+   HOME.JS - Funcionalidades específicas del index
 =========================== */
-async function cargarMenu() {
-    const contenedor = document.getElementById("menu-container");
-    if (!contenedor) return;
 
-    const estaEnPage = window.location.pathname.includes("/page/");
-    const rutaMenu = estaEnPage ? "../menu.html" : "menu.html";
-
-    try {
-        const respuesta = await fetch(rutaMenu);
-        contenedor.innerHTML = await respuesta.text();
-    } catch (error) {
-        console.error("Error cargando menú:", error);
-    }
-}
-
-async function cargarFooter() {
-    const contenedor = document.getElementById("footer-container");
-    if (!contenedor) return;
-
-    const estaEnPage = window.location.pathname.includes("/page/");
-    const rutaFooter = estaEnPage ? "../footer.html" : "footer.html";
-
-    try {
-        const respuesta = await fetch(rutaFooter);
-        contenedor.innerHTML = await respuesta.text();
-    } catch (error) {
-        console.error("Error cargando footer:", error);
-    }
-}
-
-cargarMenu();
-cargarFooter();
-
-/* ===========================
-   DATOS DE LIBROS POR CATEGORÍA
-=========================== */
-const librosPorCategoria = {
-    TERROR: [
-        { id: 1, titulo: "It", autor: "Stephen King", precio: 22.90, imagen: "img/libros/terror1.jpg", categoria: "TERROR" },
-        { id: 2, titulo: "Drácula", autor: "Bram Stoker", precio: 18.50, imagen: "img/libros/terror2.jpg", categoria: "TERROR" }
-    ],
-    ACCION: [
-        { id: 3, titulo: "Jack Reacher", autor: "Lee Child", precio: 20.90, imagen: "img/libros/accion1.jpg", categoria: "ACCION" },
-        { id: 4, titulo: "Jason Bourne", autor: "Robert Ludlum", precio: 19.90, imagen: "img/libros/accion2.jpg", categoria: "ACCION" }
-    ],
-    INFANTIL: [
-        { id: 5, titulo: "El Principito", autor: "Antoine de Saint-Exupéry", precio: 15.50, imagen: "img/libros/infantil1.jpg", categoria: "INFANTIL" },
-        { id: 6, titulo: "Donde viven los monstruos", autor: "Maurice Sendak", precio: 16.90, imagen: "img/libros/infantil2.jpg", categoria: "INFANTIL" }
-    ],
-    ROMANCE: [
-        { id: 7, titulo: "Orgullo y Prejuicio", autor: "Jane Austen", precio: 17.90, imagen: "img/libros/romance1.jpg", categoria: "ROMANCE" },
-        { id: 8, titulo: "Cumbres Borrascosas", autor: "Emily Brontë", precio: 18.50, imagen: "img/libros/romance2.jpg", categoria: "ROMANCE" }
-    ],
-    FANTASIA: [
-        { id: 9, titulo: "Harry Potter", autor: "J.K. Rowling", precio: 24.90, imagen: "img/libros/fantasia1.jpg", categoria: "FANTASIA" },
-        { id: 10, titulo: "El Señor de los Anillos", autor: "J.R.R. Tolkien", precio: 26.90, imagen: "img/libros/fantasia2.jpg", categoria: "FANTASIA" }
-    ]
-};
-
-/* ===========================
-   CARGAR LIBROS DESTACADOS
-=========================== */
-function cargarLibrosDestacados() {
-    const contenedor = document.getElementById('libros-destacados');
-    if (!contenedor) return;
-
-    // Combinar libros de diferentes categorías
-    const librosDestacados = [];
-    for (const categoria in librosPorCategoria) {
-        librosDestacados.push(...librosPorCategoria[categoria].slice(0, 2));
-    }
-
-    contenedor.innerHTML = librosDestacados.map(libro => `
-        <div class="libro-card">
-            <img src="${libro.imagen}" alt="${libro.titulo}" onerror="this.src='https://via.placeholder.com/120x180/d7ccc8/5d4037?text=Libro'">
-            <h4>${libro.titulo}</h4>
-            <p class="autor">${libro.autor}</p>
-            <p class="precio">$${libro.precio}</p>
-            <button class="btn-comprar" onclick="comprarLibro(${libro.id})">COMPRAR</button>
-        </div>
-    `).join('');
-}
-
-/* ===========================
-   FUNCIONES DE COMPRA
-=========================== */
-function comprarLibro(idLibro) {
-    let libroEncontrado = null;
-    for (const categoria in librosPorCategoria) {
-        const libro = librosPorCategoria[categoria].find(l => l.id === idLibro);
-        if (libro) {
-            libroEncontrado = libro;
-            break;
+class HomeManager {
+    constructor() {
+        this.librosDestacados = [];
+        this.categoriasDestacadas = [];
+        this.autoresDestacados = [];
+        
+        // Inicializar cuando el DOM esté listo
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => this.inicializar());
+        } else {
+            this.inicializar();
         }
     }
-    
-    if (libroEncontrado) {
-        alert(`¡Libro añadido al carrito!\n\n"${libroEncontrado.titulo}"\nAutor: ${libroEncontrado.autor}\nPrecio: $${libroEncontrado.precio}`);
-    }
-}
 
-/* ===========================
-   BÚSQUEDA Y NAVEGACIÓN
-=========================== */
-function buscarLibros() {
-    const termino = document.getElementById('buscador-libros').value.toLowerCase();
-    if (termino.trim() === '') {
-        alert('Por favor, ingresa un término de búsqueda');
-        return;
+    async inicializar() {
+        console.log('Inicializando HomeManager...');
+        
+        // Solo ejecutar en la página principal
+        if (!this.esPaginaPrincipal()) return;
+        
+        await this.cargarDatosIniciales();
+        this.renderizarContenido();
+        this.configurarEventListenersEspecificos();
     }
-    
-    const resultados = [];
-    for (const categoria in librosPorCategoria) {
-        const librosCategoria = librosPorCategoria[categoria].filter(libro => 
-            libro.titulo.toLowerCase().includes(termino) ||
-            libro.autor.toLowerCase().includes(termino)
-        );
-        resultados.push(...librosCategoria);
-    }
-    
-    if (resultados.length > 0) {
-        alert(`Encontramos ${resultados.length} libros para "${termino}"`);
-        // Aquí podrías mostrar los resultados en una nueva página
-    } else {
-        alert(`No encontramos libros para "${termino}"`);
-    }
-}
 
-function irACategoria(categoria) {
-    window.location.href = `page/catalogo.html?categoria=${categoria}`;
-}
+    esPaginaPrincipal() {
+        return window.location.pathname.endsWith('index.html') || 
+               window.location.pathname === '/' || 
+               window.location.pathname.endsWith('/');
+    }
 
-/* ===========================
-   CONFIGURACIÓN DE NAVEGACIÓN
-=========================== */
-function configurarNavegacion() {
-    // Configurar botón de salida
-    const salida = document.querySelector('.nav-link.salida');
-    if (salida) {
-        salida.addEventListener('click', function(e) {
-            e.preventDefault();
-            if (confirm('¿Estás seguro de que quieres salir?')) {
-                alert('¡Hasta pronto!');
-                // Aquí puedes redirigir al login o cerrar sesión
+    async cargarDatosIniciales() {
+        try {
+            if (window.bibliotecaData) {
+                const [libros, categorias, autores] = await Promise.all([
+                    bibliotecaData.obtenerLibrosDestacados(),
+                    bibliotecaData.obtenerCategoriasDestacadas(),
+                    bibliotecaData.obtenerAutoresDestacados()
+                ]);
+                
+                this.librosDestacados = libros;
+                this.categoriasDestacadas = categorias;
+                this.autoresDestacados = autores;
+                
+                console.log('Datos cargados:', {
+                    libros: libros.length,
+                    categorias: categorias.length,
+                    autores: autores.length
+                });
+            } else {
+                console.warn('bibliotecaData no disponible');
             }
-        });
+        } catch (error) {
+            console.error('Error cargando datos iniciales:', error);
+        }
+    }
+
+    renderizarContenido() {
+        this.renderizarCategorias();
+        this.renderizarLibrosDestacados();
+        this.renderizarAutoresDestacados();
+    }
+
+    renderizarCategorias() {
+        const contenedor = document.getElementById('categorias-destacadas');
+        if (!contenedor) return;
+
+        if (this.categoriasDestacadas.length === 0) {
+            contenedor.innerHTML = '<p class="texto-centro">No hay categorías disponibles</p>';
+            return;
+        }
+
+        const categoriasHTML = this.categoriasDestacadas.map(categoria => `
+            <div class="categoria-card" onclick="irACategoria('${categoria.id}')">
+                <div class="categoria-icono">${categoria.icono}</div>
+                <h3>${categoria.nombre}</h3>
+                <p>${categoria.descripcion}</p>
+                <span class="categoria-contador">${categoria.totalLibros} libros</span>
+            </div>
+        `).join('');
+
+        contenedor.innerHTML = categoriasHTML;
+    }
+
+    renderizarLibrosDestacados() {
+        const contenedor = document.getElementById('libros-vendidos');
+        if (!contenedor) return;
+
+        if (this.librosDestacados.length === 0) {
+            contenedor.innerHTML = '<p class="texto-centro">No hay libros destacados disponibles</p>';
+            return;
+        }
+
+        const librosHTML = this.librosDestacados.map(libro => `
+            <div class="libro-card">
+                ${libro.descuento ? `<span class="libro-descuento">-${libro.descuento}%</span>` : ''}
+                <img src="${libro.imagen}" alt="${libro.titulo}" class="libro-imagen" 
+                     onerror="this.src='https://via.placeholder.com/140x200/d7ccc8/5d4037?text=Libro'">
+                <h4 class="libro-titulo">${libro.titulo}</h4>
+                <p class="libro-autor">${libro.autor}</p>
+                <div class="libro-precio">
+                    ${libro.precioOriginal ? `<span class="libro-precio-original">$${libro.precioOriginal}</span>` : ''}
+                    $${libro.precio}
+                </div>
+                <div class="libro-acciones">
+                    <button class="btn-primario btn-comprar-global" data-libro-id="${libro.id}">Comprar</button>
+                    <button class="btn-outline" onclick="toggleFavoritoLibro(${libro.id})">❤️</button>
+                </div>
+            </div>
+        `).join('');
+
+        contenedor.innerHTML = librosHTML;
+    }
+
+    renderizarAutoresDestacados() {
+        const contenedor = document.getElementById('autores-destacados');
+        if (!contenedor) return;
+
+        if (this.autoresDestacados.length === 0) {
+            contenedor.innerHTML = '<p class="texto-centro">No hay autores destacados disponibles</p>';
+            return;
+        }
+
+        const autoresHTML = this.autoresDestacados.map(autor => `
+            <div class="autor-card" onclick="verAutor('${autor.id}')">
+                <img src="${autor.foto}" alt="${autor.nombre}" class="autor-foto"
+                     onerror="this.src='https://via.placeholder.com/100x100/d7ccc8/5d4037?text=Autor'">
+                <h3 class="autor-nombre">${autor.nombre}</h3>
+                <p class="autor-biografia">${autor.biografia.substring(0, 100)}...</p>
+                <span class="autor-contador">${autor.totalLibros} libros</span>
+            </div>
+        `).join('');
+
+        contenedor.innerHTML = autoresHTML;
+    }
+
+    configurarEventListenersEspecificos() {
+        // Búsqueda en el hero
+        const buscadorHero = document.getElementById('buscador-hero');
+        if (buscadorHero) {
+            buscadorHero.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    buscarDesdeHero();
+                }
+            });
+        }
+
+        // Newsletter específico del home
+        const newsletterHome = document.querySelector('.newsletter-home .newsletter-form');
+        if (newsletterHome) {
+            newsletterHome.addEventListener('submit', (e) => {
+                e.preventDefault();
+                this.manejarNewsletterHome(e.target);
+            });
+        }
+    }
+
+    async manejarNewsletterHome(formulario) {
+        const emailInput = formulario.querySelector('input[type="email"]');
+        const email = emailInput.value.trim();
+        
+        if (!validarEmail(email)) {
+            mostrarNotificacion('Por favor, ingresa un email válido', 'advertencia');
+            emailInput.focus();
+            return;
+        }
+        
+        try {
+            // Simular envío específico para home
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            mostrarNotificacion('¡Bienvenido a Leep Books! Recibirás nuestras mejores ofertas.', 'exito');
+            formulario.reset();
+            
+        } catch (error) {
+            console.error('Error en suscripción home:', error);
+            mostrarNotificacion('Error al procesar la suscripción', 'error');
+        }
     }
 }
 
-// Cargar todo cuando la página esté lista
-document.addEventListener('DOMContentLoaded', function() {
-    cargarLibrosDestacados();
-    configurarNavegacion();
-});
-
-/* ===========================
-   FUNCIONES DE FORMULARIOS
-=========================== */
-function guardarLibro(event) {
-    event.preventDefault();
-    const titulo = document.getElementById("titulo").value;
-    const autor = document.getElementById("autor").value;
-    const precio = document.getElementById("precio").value;
-    const genero = document.getElementById("genero").value;
-
-    alert(`Libro guardado exitosamente:\n\nTítulo: ${titulo}\nAutor: ${autor}\nPrecio: $${precio}\nGénero: ${genero}`);
+// Funciones globales específicas del home
+function verAutor(autorId) {
+    window.location.href = `page/autores.html?autor=${encodeURIComponent(autorId)}`;
 }
 
-function enviarMensaje(event) {
+function suscribirNewsletter(event) {
     event.preventDefault();
-    const nombre = document.getElementById("nombreC").value;
-    const correo = document.getElementById("correoC").value;
-    const mensaje = document.getElementById("mensajeC").value;
-
-    alert(`Mensaje enviado:\n\nNombre: ${nombre}\nCorreo: ${correo}\nMensaje: ${mensaje}`);
+    const formulario = event.target;
+    const email = formulario.querySelector('input[type="email"]').value;
+    
+    if (validarEmail(email)) {
+        mostrarNotificacion('¡Gracias por suscribirte!', 'exito');
+        formulario.reset();
+    } else {
+        mostrarNotificacion('Por favor, ingresa un email válido', 'advertencia');
+    }
 }
+
+// Inicializar HomeManager cuando se cargue el script
+const homeManager = new HomeManager();

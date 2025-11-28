@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="titulo-pagina">Detalle del Libro - Leep Books</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon">
+</head>
+<body class="layout">
+
+    <header>
+        <div id="menu-container"></div>
+    </header>
+
+    <main class="contenido-principal">
+        <!-- Detalle del Libro -->
+        <section class="detalle-libro">
+            <div class="contenedor">
+                <nav class="breadcrumb">
+                    <a href="../index.html">Inicio</a>
+                    <span class="breadcrumb-separador">/</span>
+                    <a href="catalogo.html">Catálogo</a>
+                    <span class="breadcrumb-separador">/</span>
+                    <span class="breadcrumb-activo" id="breadcrumb-activo">Libro</span>
+                </nav>
+
+                <div class="detalle-contenido">
+                    <!-- Imagen y Acciones -->
+                    <div class="detalle-imagenes">
+                        <div class="imagen-principal">
+                            <img id="imagen-libro" src="" alt="Portada del libro">
+                        </div>
+                        <div class="acciones-rapidas">
+                            <button class="btn-accion" onclick="toggleFavoritoLibroActual()" id="btn-favorito">
+                                <img src="../img/iconos/corazon.png" alt="Favorito">
+                                <span>Agregar a favoritos</span>
+                            </button>
+                            <button class="btn-accion" onclick="compartirLibro()">
+                                <img src="../img/iconos/compartir.png" alt="Compartir">
+                                <span>Compartir</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Información del Libro -->
+                    <div class="detalle-info">
+                        <div class="info-header">
+                            <h1 id="titulo-libro">Título del Libro</h1>
+                            <div class="info-rating">
+                                <div class="estrellas" id="estrellas-libro">
+                                    <!-- Estrellas dinámicas -->
+                                </div>
+                                <span class="rating-texto" id="texto-rating">(0 reseñas)</span>
+                            </div>
+                        </div>
+
+                        <div class="info-autor">
+                            por <span id="autor-libro" class="autor-nombre">Autor</span>
+                        </div>
+
+                        <div class="info-precio">
+                            <span class="precio-actual" id="precio-actual">$0.00</span>
+                            <span class="precio-original" id="precio-original" style="display: none;">$0.00</span>
+                            <span class="descuento-badge" id="descuento-badge" style="display: none;">-0%</span>
+                        </div>
+
+                        <div class="info-stock">
+                            <span class="stock-disponible" id="stock-disponible">Disponible</span>
+                            <span class="stock-cantidad" id="stock-cantidad">En stock</span>
+                        </div>
+
+                        <div class="info-descripcion">
+                            <h3>Descripción</h3>
+                            <p id="descripcion-libro">Descripción del libro...</p>
+                        </div>
+
+                        <div class="info-detalles">
+                            <div class="detalle-item">
+                                <strong>ISBN:</strong>
+                                <span id="isbn-libro">-</span>
+                            </div>
+                            <div class="detalle-item">
+                                <strong>Editorial:</strong>
+                                <span id="editorial-libro">-</span>
+                            </div>
+                            <div class="detalle-item">
+                                <strong>Páginas:</strong>
+                                <span id="paginas-libro">-</span>
+                            </div>
+                            <div class="detalle-item">
+                                <strong>Formato:</strong>
+                                <span id="formato-libro">-</span>
+                            </div>
+                            <div class="detalle-item">
+                                <strong>Idioma:</strong>
+                                <span id="idioma-libro">-</span>
+                            </div>
+                        </div>
+
+                        <!-- Acciones de Compra -->
+                        <div class="acciones-compra">
+                            <div class="selector-cantidad">
+                                <button class="btn-cantidad" onclick="disminuirCantidad()">-</button>
+                                <span class="cantidad" id="cantidad-libro">1</span>
+                                <button class="btn-cantidad" onclick="aumentarCantidad()">+</button>
+                            </div>
+                            <button class="btn-primario btn-agregar-carrito" onclick="agregarAlCarritoDesdeDetalle()">
+                                <img src="../img/iconos/carrito.png" alt="Carrito">
+                                Agregar al Carrito
+                            </button>
+                            <button class="btn-secundario btn-comprar-ahora" onclick="comprarAhora()">
+                                Comprar Ahora
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabs de Información -->
+                <div class="detalle-tabs">
+                    <div class="tabs-header">
+                        <button class="tab-btn activo" data-tab="descripcion">Descripción</button>
+                        <button class="tab-btn" data-tab="detalles">Detalles</button>
+                        <button class="tab-btn" data-tab="reseñas">Reseñas</button>
+                        <button class="tab-btn" data-tab="envio">Envío</button>
+                    </div>
+
+                    <div class="tabs-content">
+                        <div class="tab-pane activo" id="tab-descripcion">
+                            <div id="descripcion-completa">
+                                <!-- Descripción completa -->
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab-detalles">
+                            <div class="detalles-completos" id="detalles-completos">
+                                <!-- Detalles completos -->
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab-reseñas">
+                            <div class="reseñas-contenido">
+                                <div class="reseñas-header">
+                                    <div class="reseñas-promedio">
+                                        <div class="promedio-numero" id="rating-promedio">0.0</div>
+                                        <div class="promedio-estrellas" id="estrellas-promedio"></div>
+                                        <div class="promedio-total" id="total-reseñas">0 reseñas</div>
+                                    </div>
+                                    <button class="btn-primario" onclick="mostrarFormularioReseña()">Escribir Reseña</button>
+                                </div>
+                                <div class="reseñas-lista" id="lista-reseñas">
+                                    <!-- Reseñas dinámicas -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab-envio">
+                            <div class="envio-info">
+                                <h3>Información de Envío</h3>
+                                <div class="envio-opciones">
+                                    <div class="envio-opcion">
+                                        <strong>Envío Estándar</strong>
+                                        <p>3-5 días hábiles - $50 MXN</p>
+                                    </div>
+                                    <div class="envio-opcion">
+                                        <strong>Envío Express</strong>
+                                        <p>1-2 días hábiles - $100 MXN</p>
+                                    </div>
+                                    <div class="envio-opcion">
+                                        <strong>Envío Gratis</strong>
+                                        <p>Compras mayores a $500 MXN - 3-5 días hábiles</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Libros Relacionados -->
+                <section class="libros-relacionados">
+                    <h2>Libros Relacionados</h2>
+                    <div class="grid-libros" id="libros-relacionados">
+                        <!-- Libros relacionados dinámicos -->
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div id="footer-container"></div>
+    </footer>
+
+    <!-- Modal Reseña -->
+    <div class="modal" id="modal-reseña">
+        <div class="modal-contenido">
+            <button class="modal-cerrar" onclick="cerrarModalReseña()">×</button>
+            <h3>Escribir Reseña</h3>
+            <form id="form-reseña" class="form-reseña">
+                <div class="form-grupo">
+                    <label>Calificación</label>
+                    <div class="rating-selector">
+                        <span class="estrella-reseña" data-rating="1">★</span>
+                        <span class="estrella-reseña" data-rating="2">★</span>
+                        <span class="estrella-reseña" data-rating="3">★</span>
+                        <span class="estrella-reseña" data-rating="4">★</span>
+                        <span class="estrella-reseña" data-rating="5">★</span>
+                    </div>
+                </div>
+                <div class="form-grupo">
+                    <label for="titulo-reseña">Título de la reseña</label>
+                    <input type="text" id="titulo-reseña" required>
+                </div>
+                <div class="form-grupo">
+                    <label for="comentario-reseña">Comentario</label>
+                    <textarea id="comentario-reseña" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn-primario">Publicar Reseña</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/modulos/detalle-libro.js"></script>
+</body>
+</html>

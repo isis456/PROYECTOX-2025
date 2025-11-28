@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autores - Leep Books</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon">
+</head>
+<body class="layout">
+
+    <header>
+        <div id="menu-container"></div>
+    </header>
+
+    <main class="contenido-principal">
+        <!-- Header -->
+        <section class="autores-header">
+            <div class="contenedor">
+                <h1>Nuestros Autores</h1>
+                <p>Descubre a los escritores detrás de las mejores historias</p>
+                <nav class="breadcrumb">
+                    <a href="../index.html">Inicio</a>
+                    <span class="breadcrumb-separador">/</span>
+                    <span class="breadcrumb-activo">Autores</span>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Búsqueda y Filtros -->
+        <section class="autores-filtros">
+            <div class="contenedor">
+                <div class="filtros-autores">
+                    <div class="buscador-autores">
+                        <input type="text" id="buscador-autores" placeholder="Buscar autores...">
+                        <button onclick="buscarAutores()">
+                            <img src="../img/iconos/lupa.png" alt="Buscar">
+                        </button>
+                    </div>
+                    <select id="filtro-genero" class="filtro-select">
+                        <option value="">Todos los géneros</option>
+                        <option value="TERROR">Terror</option>
+                        <option value="FANTASIA">Fantasía</option>
+                        <option value="ROMANCE">Romance</option>
+                        <option value="CIENCIA_FICCION">Ciencia Ficción</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- Autores Destacados -->
+        <section class="autores-destacados">
+            <div class="contenedor">
+                <h2>Autores Destacados</h2>
+                <div class="grid-autores-destacados" id="autores-destacados">
+                    <!-- Autores destacados dinámicos -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Todos los Autores -->
+        <section class="todos-autores">
+            <div class="contenedor">
+                <div class="autores-header-section">
+                    <h2>Todos los Autores</h2>
+                    <div class="autores-orden">
+                        <select id="orden-autores" class="filtro-select">
+                            <option value="nombre">Ordenar por nombre</option>
+                            <option value="popularidad">Más populares</option>
+                            <option value="libros">Más libros</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid-autores" id="lista-autores">
+                    <!-- Lista completa de autores -->
+                </div>
+
+                <!-- Paginación -->
+                <div class="autores-paginacion" id="paginacion-autores">
+                    <!-- Paginación dinámica -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Estadísticas -->
+        <section class="autores-estadisticas">
+            <div class="contenedor">
+                <div class="estadisticas-grid">
+                    <div class="estadistica-autor">
+                        <span class="numero" id="total-autores">0</span>
+                        <span class="texto">Autores en nuestra plataforma</span>
+                    </div>
+                    <div class="estadistica-autor">
+                        <span class="numero" id="total-libros-autores">0</span>
+                        <span class="texto">Libros publicados</span>
+                    </div>
+                    <div class="estadistica-autor">
+                        <span class="numero" id="paises-autores">0</span>
+                        <span class="texto">Países representados</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div id="footer-container"></div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/modulos/autores.js"></script>
+</body>
+</html>

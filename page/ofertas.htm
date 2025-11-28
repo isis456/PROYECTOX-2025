@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ofertas Especiales - Leep Books</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon">
+</head>
+<body class="layout">
+
+    <header>
+        <div id="menu-container"></div>
+    </header>
+
+    <main class="contenido-principal">
+        <!-- Header -->
+        <section class="ofertas-header">
+            <div class="contenedor">
+                <div class="ofertas-titulo">
+                    <h1>Ofertas Especiales</h1>
+                    <p>Descuentos exclusivos en los mejores libros</p>
+                </div>
+                <nav class="breadcrumb">
+                    <a href="../index.html">Inicio</a>
+                    <span class="breadcrumb-separador">/</span>
+                    <span class="breadcrumb-activo">Ofertas</span>
+                </nav>
+
+                <!-- Contador de Ofertas -->
+                <div class="ofertas-contador">
+                    <div class="contador-item">
+                        <span class="contador-numero" id="total-ofertas">0</span>
+                        <span class="contador-texto">Libros en oferta</span>
+                    </div>
+                    <div class="contador-item">
+                        <span class="contador-numero" id="descuento-promedio">0%</span>
+                        <span class="contador-texto">Descuento promedio</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Banner Oferta Destacada -->
+        <section class="oferta-destacada">
+            <div class="contenedor">
+                <div class="banner-oferta-grande">
+                    <div class="oferta-contenido">
+                        <span class="oferta-super">OFERTA ESPECIAL</span>
+                        <h2>Hasta 50% de descuento</h2>
+                        <p>En los libros más vendidos de la temporada</p>
+                        <div class="oferta-tiempo">
+                            <div class="tiempo-item">
+                                <span class="tiempo-numero" id="dias">00</span>
+                                <span class="tiempo-texto">Días</span>
+                            </div>
+                            <div class="tiempo-item">
+                                <span class="tiempo-numero" id="horas">00</span>
+                                <span class="tiempo-texto">Horas</span>
+                            </div>
+                            <div class="tiempo-item">
+                                <span class="tiempo-numero" id="minutos">00</span>
+                                <span class="tiempo-texto">Minutos</span>
+                            </div>
+                        </div>
+                        <button class="btn-primario" onclick="irAOfertas()">Ver Ofertas</button>
+                    </div>
+                    <div class="oferta-imagen-grande">
+                        <div class="libros-oferta-illustracion">📚🔥</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ofertas por Categoría -->
+        <section class="ofertas-categorias">
+            <div class="contenedor">
+                <h2>Ofertas por Categoría</h2>
+                <div class="categorias-ofertas" id="categorias-ofertas">
+                    <!-- Categorías con ofertas -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Todas las Ofertas -->
+        <section class="todas-ofertas">
+            <div class="contenedor">
+                <div class="ofertas-header-section">
+                    <h2>Todas las Ofertas</h2>
+                    <div class="ofertas-filtros">
+                        <select id="filtro-descuento" class="filtro-select">
+                            <option value="">Todos los descuentos</option>
+                            <option value="10-20">10% - 20%</option>
+                            <option value="20-30">20% - 30%</option>
+                            <option value="30-50">30% - 50%</option>
+                            <option value="50+">Más del 50%</option>
+                        </select>
+                        <select id="filtro-categoria-ofertas" class="filtro-select">
+                            <option value="">Todas las categorías</option>
+                            <!-- Opciones dinámicas -->
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid-libros-ofertas" id="grid-ofertas">
+                    <!-- Libros en oferta -->
+                </div>
+
+                <!-- Paginación -->
+                <div class="ofertas-paginacion" id="paginacion-ofertas">
+                    <!-- Paginación dinámica -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Ofertas -->
+        <section class="newsletter-ofertas">
+            <div class="contenedor">
+                <div class="newsletter-especial">
+                    <div class="newsletter-icono">💌</div>
+                    <h3>No te pierdas ninguna oferta</h3>
+                    <p>Suscríbete y recibe las mejores ofertas directamente en tu email</p>
+                    <form class="newsletter-form-ofertas">
+                        <input type="email" placeholder="tu@email.com" required>
+                        <button type="submit" class="btn-primario">Suscribirme</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div id="footer-container"></div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/modulos/ofertas.js"></script>
+</body>
+</html>

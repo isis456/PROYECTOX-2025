@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Libros - Leep Books</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon">
+</head>
+<body class="layout">
+
+    <!-- Menú -->
+    <header>
+        <div id="menu-container"></div>
+    </header>
+
+    <main class="contenido-principal">
+        <!-- Header del Catálogo -->
+        <section class="catalogo-header">
+            <div class="contenedor">
+                <div class="catalogo-titulo">
+                    <h1>Catálogo de Libros</h1>
+                    <p>Descubre nuestra amplia colección literaria</p>
+                </div>
+                
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="../index.html">Inicio</a>
+                    <span class="breadcrumb-separador">/</span>
+                    <span class="breadcrumb-activo">Catálogo</span>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Filtros y Búsqueda -->
+        <section class="catalogo-filtros">
+            <div class="contenedor">
+                <div class="filtros-contenedor">
+                    <!-- Búsqueda -->
+                    <div class="filtro-grupo">
+                        <div class="buscador-catalogo">
+                            <input type="text" id="buscador-catalogo" placeholder="Buscar libros, autores...">
+                            <button onclick="ejecutarBusquedaCatalogo()">
+                                <img src="../img/iconos/lupa.png" alt="Buscar" class="icono-buscar">
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Filtros Rápidos -->
+                    <div class="filtro-grupo">
+                        <div class="filtros-rapidos">
+                            <button class="filtro-rapido activo" data-categoria="TODOS">Todos</button>
+                            <button class="filtro-rapido" data-categoria="DESTACADOS">Destacados</button>
+                            <button class="filtro-rapido" data-categoria="OFERTAS">En Oferta</button>
+                            <button class="filtro-rapido" data-categoria="NOVEDADES">Novedades</button>
+                        </div>
+                    </div>
+
+                    <!-- Filtros Avanzados -->
+                    <div class="filtro-grupo">
+                        <div class="filtros-avanzados">
+                            <select id="filtro-categoria" class="filtro-select">
+                                <option value="">Todas las categorías</option>
+                                <option value="TERROR">Terror</option>
+                                <option value="FANTASIA">Fantasía</option>
+                                <option value="ROMANCE">Romance</option>
+                                <option value="ACCION">Acción</option>
+                                <option value="INFANTIL">Infantil</option>
+                                <option value="CIENCIA_FICCION">Ciencia Ficción</option>
+                                <option value="MISTERIO">Misterio</option>
+                                <option value="AUTOAYUDA">Autoayuda</option>
+                            </select>
+
+                            <select id="filtro-precio" class="filtro-select">
+                                <option value="">Todos los precios</option>
+                                <option value="0-15">Menos de $15</option>
+                                <option value="15-25">$15 - $25</option>
+                                <option value="25-50">$25 - $50</option>
+                                <option value="50-100">$50 - $100</option>
+                            </select>
+
+                            <select id="filtro-orden" class="filtro-select">
+                                <option value="relevancia">Ordenar por</option>
+                                <option value="precio-asc">Precio: Menor a Mayor</option>
+                                <option value="precio-desc">Precio: Mayor a Menor</option>
+                                <option value="rating">Mejor Valorados</option>
+                                <option value="novedades">Más Recientes</option>
+                                <option value="titulo">Título A-Z</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info Filtros Aplicados -->
+                <div class="filtros-info" id="filtros-info" style="display: none;">
+                    <span id="texto-filtros"></span>
+                    <button onclick="limpiarFiltros()" class="btn-limpiar">Limpiar filtros</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resultados -->
+        <section class="catalogo-resultados">
+            <div class="contenedor">
+                <!-- Contador de resultados -->
+                <div class="resultados-info">
+                    <div class="resultados-contador">
+                        <span id="contador-resultados">0</span> libros encontrados
+                    </div>
+                    <div class="resultados-vista">
+                        <button class="btn-vista activo" data-vista="grid">
+                            <img src="../img/iconos/grid.png" alt="Vista grid">
+                        </button>
+                        <button class="btn-vista" data-vista="lista">
+                            <img src="../img/iconos/lista.png" alt="Vista lista">
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Grid de Libros -->
+                <div class="catalogo-grid" id="catalogo-grid">
+                    <div class="cargando-libros">
+                        <div class="spinner"></div>
+                        <p>Cargando catálogo...</p>
+                    </div>
+                </div>
+
+                <!-- Paginación -->
+                <div class="catalogo-paginacion" id="paginacion" style="display: none;">
+                    <button class="btn-paginacion" id="btn-anterior" disabled>
+                        <img src="../img/iconos/flecha-izquierda.png" alt="Anterior">
+                        Anterior
+                    </button>
+                    
+                    <div class="paginacion-numeros" id="numeros-paginacion"></div>
+                    
+                    <button class="btn-paginacion" id="btn-siguiente">
+                        Siguiente
+                        <img src="../img/iconos/flecha-derecha.png" alt="Siguiente">
+                    </button>
+                </div>
+
+                <!-- Sin resultados -->
+                <div class="sin-resultados" id="sin-resultados" style="display: none;">
+                    <div class="sin-resultados-icono">📚</div>
+                    <h3>No se encontraron libros</h3>
+                    <p>Intenta con otros términos de búsqueda o ajusta los filtros</p>
+                    <button onclick="limpiarFiltros()" class="btn-primario">Ver todos los libros</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categorías Destacadas -->
+        <section class="catalogo-categorias">
+            <div class="contenedor">
+                <h2>Explora por Categoría</h2>
+                <div class="categorias-grid">
+                    <div class="categoria-card" onclick="filtrarPorCategoria('TERROR')">
+                        <div class="categoria-icono">👻</div>
+                        <h3>Terror</h3>
+                        <p>1245 libros</p>
+                    </div>
+                    <div class="categoria-card" onclick="filtrarPorCategoria('FANTASIA')">
+                        <div class="categoria-icono">🐉</div>
+                        <h3>Fantasía</h3>
+                        <p>2367 libros</p>
+                    </div>
+                    <div class="categoria-card" onclick="filtrarPorCategoria('ROMANCE')">
+                        <div class="categoria-icono">💖</div>
+                        <h3>Romance</h3>
+                        <p>1892 libros</p>
+                    </div>
+                    <div class="categoria-card" onclick="filtrarPorCategoria('ACCION')">
+                        <div class="categoria-icono">💥</div>
+                        <h3>Acción</h3>
+                        <p>867 libros</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div id="footer-container"></div>
+    </footer>
+
+    <!-- Modal Quick View -->
+    <div class="modal" id="modal-quickview">
+        <div class="modal-contenido">
+            <button class="modal-cerrar" onclick="cerrarModal()">×</button>
+            <div class="modal-body" id="modal-quickview-body">
+                <!-- Contenido dinámico -->
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/modulos/biblioteca-data.js"></script>
+    <script src="../js/modulos/filtros.js"></script>
+</body>
+</html>

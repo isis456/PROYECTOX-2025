@@ -9,157 +9,171 @@
 </head>
 <body class="layout">
 
-    <!-- Menú Vertical -->
-    <nav class="menu-vertical">
-        <!-- Cabecera del Menú -->
-        <div class="menu-header">
-            <div class="menu-logo">
-                <div class="logo-icono">📚</div>
-                <div class="logo-texto">
-                    <h1>LEEP BOOKS</h1>
-                    <p>Tu librería online</p>
-                </div>
-            </div>
-        </div>
+    <!-- Menú Dinámico -->
+    <header>
+        <div id="menu-container"></div>
+    </header>
 
-        <!-- Navegación Principal -->
-        <div class="menu-nav">
-            <div class="menu-seccion">
-                <h3 class="menu-seccion-titulo">NAVEGACIÓN</h3>
-                <ul class="menu-lista">
-                    <li class="menu-item">
-                        <a href="index.html" class="menu-link activo">
-                            <span class="menu-icono">🏠</span>
-                            <span class="menu-texto">INICIO</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="menu-seccion">
-                <h3 class="menu-seccion-titulo">CATEGORÍAS</h3>
-                <ul class="menu-lista">
-                    <li class="menu-item">
-                        <a href="catalogo.html?categoria=terror" class="menu-link">
-                            <span class="menu-icono">👻</span>
-                            <span class="menu-texto">TERROR</span>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="catalogo.html?categoria=accion" class="menu-link">
-                            <span class="menu-icono">💥</span>
-                            <span class="menu-texto">ACCIÓN</span>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="catalogo.html?categoria=infantil" class="menu-link">
-                            <span class="menu-icono">🧸</span>
-                            <span class="menu-texto">INFANTIL</span>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="catalogo.html?categoria=romance" class="menu-link">
-                            <span class="menu-icono">💖</span>
-                            <span class="menu-texto">ROMANCE</span>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="catalogo.html?categoria=fantasia" class="menu-link">
-                            <span class="menu-icono">🐉</span>
-                            <span class="menu-texto">FANTASÍA</span>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="historial.html" class="menu-link">
-                            <span class="menu-icono">📊</span>
-                            <span class="menu-texto">HISTORIAL</span>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="ajustes.html" class="menu-link">
-                            <span class="menu-icono">⚙️</span>
-                            <span class="menu-texto">AJUSTES</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Pie del Menú -->
-        <div class="menu-footer">
-            <div class="menu-seccion">
-                <ul class="menu-lista">
-                    <li class="menu-item">
-                        <a href="#" class="menu-link salida">
-                            <span class="menu-icono">🚪</span>
-                            <span class="menu-texto">SALIDA</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Contenido Principal -->
     <main class="contenido-principal">
         <!-- Hero Section -->
-        <section class="hero-destacado">
-            <div class="hero-contenido">
-                <div class="hero-texto">
-                    <h2 class="hero-titulo">Descubre mundos extraordinarios</h2>
-                    <p class="hero-descripcion">
-                        a través de más de 50,000 libros cuidadosamente seleccionados.
-                    </p>
-                    <div class="hero-version">
-                        <span class="version-tag">v1.0</span>
+        <section class="hero">
+            <div class="contenedor">
+                <div class="hero-contenido">
+                    <div class="hero-texto">
+                        <h1 class="hero-titulo">Descubre Mundos Extraordinarios</h1>
+                        <p class="hero-subtitulo">Más de 50,000 libros cuidadosamente seleccionados</p>
+                        
+                        <!-- Búsqueda Hero -->
+                        <div class="hero-buscador">
+                            <input type="text" id="buscador-hero" placeholder="Buscar libros, autores, categorías...">
+                            <button onclick="buscarDesdeHero()">
+                                <img src="img/iconos/lupa.png" alt="Buscar" class="icono-buscar">
+                            </button>
+                        </div>
+
+                        <!-- Estadísticas -->
+                        <div class="hero-estadisticas">
+                            <div class="estadistica">
+                                <span class="numero">50K+</span>
+                                <span class="texto">Libros</span>
+                            </div>
+                            <div class="estadistica">
+                                <span class="numero">2K+</span>
+                                <span class="texto">Autores</span>
+                            </div>
+                            <div class="estadistica">
+                                <span class="numero">15+</span>
+                                <span class="texto">Categorías</span>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="hero-imagen">
-                    <div class="libro-illustracion">📖</div>
+                    
+                    <div class="hero-imagen">
+                        <div class="libro-illustracion">📚</div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Newsletter Section -->
-        <section class="newsletter-section">
-            <div class="newsletter-contenido">
-                <div class="newsletter-texto">
-                    <h3>No te pierdas las novedades</h3>
-                    <p>Suscríbete y recibe ofertas exclusivas cada semana</p>
+        <!-- Categorías Destacadas -->
+        <section class="seccion categorias-destacadas">
+            <div class="contenedor">
+                <div class="seccion-header">
+                    <h2 class="seccion-titulo">Explora por Categoría</h2>
+                    <a href="page/categorias.html" class="btn-link">Ver todas →</a>
                 </div>
-                <form class="newsletter-formulario">
-                    <div class="input-group">
-                        <input type="email" placeholder="tu@email.com" class="newsletter-input">
-                        <button type="submit" class="newsletter-boton">Suscribirme</button>
-                    </div>
-                </form>
+                
+                <div class="grid-categorias" id="categorias-destacadas">
+                    <!-- Cargado dinámicamente -->
+                </div>
             </div>
         </section>
 
-        <!-- Estadísticas -->
-        <section class="estadisticas-section">
-            <div class="estadisticas-grid">
-                <div class="estadistica-item">
-                    <span class="estadistica-numero">50,000+</span>
-                    <span class="estadistica-texto">Libros Disponibles</span>
+        <!-- Libros Más Vendidos -->
+        <section class="seccion libros-vendidos">
+            <div class="contenedor">
+                <div class="seccion-header">
+                    <h2 class="seccion-titulo">Los Más Vendidos</h2>
+                    <a href="page/catalogo.html" class="btn-link">Ver catálogo completo →</a>
                 </div>
-                <div class="estadistica-item">
-                    <span class="estadistica-numero">1,000+</span>
-                    <span class="estadistica-texto">Autores</span>
+                
+                <div class="grid-libros" id="libros-vendidos">
+                    <!-- Cargado dinámicamente -->
                 </div>
-                <div class="estadistica-item">
-                    <span class="estadistica-numero">15+</span>
-                    <span class="estadistica-texto">Categorías</span>
+            </div>
+        </section>
+
+        <!-- Banner Oferta -->
+        <section class="seccion oferta-banner">
+            <div class="contenedor">
+                <div class="banner-contenido">
+                    <div class="banner-texto">
+                        <span class="oferta-badge">Hasta 50% OFF</span>
+                        <h3>Ofertas Especiales de Temporada</h3>
+                        <p>Descubre increíbles descuentos en libros bestsellers</p>
+                        <a href="page/ofertas.html" class="btn-primario">Ver Ofertas</a>
+                    </div>
+                    <div class="banner-imagen">
+                        <div class="oferta-illustracion">🔥</div>
+                    </div>
                 </div>
-                <div class="estadistica-item">
-                    <span class="estadistica-numero">24/7</span>
-                    <span class="estadistica-texto">Disponible</span>
+            </div>
+        </section>
+
+        <!-- Autores Destacados -->
+        <section class="seccion autores-destacados">
+            <div class="contenedor">
+                <div class="seccion-header">
+                    <h2 class="seccion-titulo">Autores Destacados</h2>
+                    <a href="page/autores.html" class="btn-link">Ver todos los autores →</a>
+                </div>
+                
+                <div class="grid-autores" id="autores-destacados">
+                    <!-- Cargado dinámicamente -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonios -->
+        <section class="seccion testimonios">
+            <div class="contenedor">
+                <h2 class="seccion-titulo">Lo que dicen nuestros lectores</h2>
+                
+                <div class="grid-testimonios">
+                    <div class="testimonio-card">
+                        <div class="testimonio-texto">
+                            "La mejor librería online. Encuentro siempre lo que busco y los envíos son super rápidos. ¡Totalmente recomendada!"
+                        </div>
+                        <div class="testimonio-autor">
+                            <div class="autor-avatar">M</div>
+                            <div class="autor-info">
+                                <strong>María González</strong>
+                                <span>Lectora frecuente</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonio-card">
+                        <div class="testimonio-texto">
+                            "Excelente selección de libros y precios muy competitivos. Mi sitio favorito para comprar libros desde hace años."
+                        </div>
+                        <div class="testimonio-autor">
+                            <div class="autor-avatar">C</div>
+                            <div class="autor-info">
+                                <strong>Carlos Ruiz</strong>
+                                <span>Coleccionista</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="seccion newsletter-home">
+            <div class="contenedor">
+                <div class="newsletter-contenido">
+                    <div class="newsletter-texto">
+                        <h3>No te pierdas las novedades</h3>
+                        <p>Suscríbete y recibe ofertas exclusivas cada semana</p>
+                    </div>
+                    <form class="newsletter-form" onsubmit="suscribirNewsletter(event)">
+                        <input type="email" placeholder="tu@email.com" required>
+                        <button type="submit" class="btn-secundario">Suscribirme</button>
+                    </form>
                 </div>
             </div>
         </section>
     </main>
 
+    <!-- Footer Dinámico -->
+    <footer>
+        <div id="footer-container"></div>
+    </footer>
+
+    <!-- Scripts -->
     <script src="js/main.js"></script>
+    <script src="js/modulos/biblioteca-data.js"></script>
+    <script src="js/modulos/home.js"></script>
 </body>
 </html>
-    
