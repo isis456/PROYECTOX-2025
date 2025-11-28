@@ -1,8 +1,114 @@
-<nav class="menu">
-    <ul>
-        <li><a href="../index.html">Inicio</a></li>
-        <li><a href="../page/agregarLibro.html">Agregar Libro</a></li>
-        <li><a href="../page/carrito.html">Carrito</a></li>
-        <li><a href="../page/contactanos.html">Contacto</a></li>
-    </ul>
+<!-- Botón móvil -->
+<button class="menu-movil-boton">☰</button>
+<div class="menu-overlay"></div>
+
+<!-- Menú vertical -->
+<nav class="menu-vertical">
+    <!-- Cabecera con logo -->
+    <div class="menu-header">
+        <a href="index.html" class="menu-logo">
+            <div class="menu-logo-img">LB</div>
+            <div>
+                <h1 class="menu-logo-texto">LEEP BOOKS</h1>
+                <p class="menu-subtitulo">Tu librería online</p>
+            </div>
+        </a>
+    </div>
+
+    <!-- Navegación principal -->
+    <div class="menu-nav">
+        <ul class="menu-lista">
+            <!-- Grupo principal -->
+            <li class="menu-item">
+                <a href="index.html" class="menu-link activo">
+                    <img src="img/iconos/inicio.png" alt="Inicio" class="menu-icono">
+                    <span class="menu-texto">INICIO</span>
+                </a>
+            </li>
+
+            <!-- Grupo de categorías -->
+            <div class="menu-grupo">
+                <h3 class="menu-grupo-titulo">Categorías</h3>
+            </div>
+            
+            <li class="menu-item">
+                <a href="page/catalogo.html?categoria=terror" class="menu-link">
+                    <img src="img/iconos/terror.png" alt="Terror" class="menu-icono">
+                    <span class="menu-texto">TERROR</span>
+                    <span class="menu-notificacion">3</span>
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="page/catalogo.html?categoria=accion" class="menu-link">
+                    <img src="img/iconos/accion.png" alt="Acción" class="menu-icono">
+                    <span class="menu-texto">ACCIÓN</span>
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="page/catalogo.html?categoria=infantil" class="menu-link">
+                    <img src="img/iconos/infantil.png" alt="Infantil" class="menu-icono">
+                    <span class="menu-texto">INFANTIL</span>
+                    <span class="menu-badge nuevo">Nuevo</span>
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="page/catalogo.html?categoria=romance" class="menu-link">
+                    <img src="img/iconos/romance.png" alt="Romance" class="menu-icono">
+                    <span class="menu-texto">ROMANCE</span>
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="page/catalogo.html?categoria=fantasia" class="menu-link">
+                    <img src="img/iconos/fantasia.png" alt="Fantasía" class="menu-icono">
+                    <span class="menu-texto">FANTASÍA</span>
+                    <span class="menu-badge popular">Popular</span>
+                </a>
+            </li>
+
+            <div class="menu-separador"></div>
+
+            <!-- Grupo de utilidades -->
+            <li class="menu-item">
+                <a href="page/historial.html" class="menu-link">
+                    <img src="img/iconos/historial.png" alt="Historial" class="menu-icono">
+                    <span class="menu-texto">HISTORIAL</span>
+                </a>
+            </li>
+            
+            <li class="menu-item has-submenu">
+                <a href="#" class="menu-link">
+                    <img src="img/iconos/ajustes.png" alt="Ajustes" class="menu-icono">
+                    <span class="menu-texto">AJUSTES</span>
+                    <span class="menu-flecha">▼</span>
+                </a>
+                <ul class="menu-submenu">
+                    <li class="menu-subitem">
+                        <a href="page/perfil.html" class="menu-sublink">Mi Perfil</a>
+                    </li>
+                    <li class="menu-subitem">
+                        <a href="page/privacidad.html" class="menu-sublink">Privacidad</a>
+                    </li>
+                    <li class="menu-subitem">
+                        <a href="page/notificaciones.html" class="menu-sublink">Notificaciones</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Pie del menú -->
+    <div class="menu-footer">
+        <ul class="menu-lista">
+            <li class="menu-item">
+                <a href="#" class="menu-link salida">
+                    <img src="img/iconos/salida.png" alt="Salir" class="menu-icono">
+                    <span class="menu-texto">SALIDA</span>
+                </a>
+            </li>
+        </ul>
+    </div>
 </nav>

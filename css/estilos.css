@@ -1,527 +1,438 @@
 /* ===========================
-   HERO SECTION MEJORADA
+   ESTILOS MEJORADOS - LEEP BOOKS
+   Diseño limpio y bien espaciado
 =========================== */
-.hero {
-    background: linear-gradient(135deg, #d7ccc8 0%, #bcaaa4 100%);
-    padding: 80px 20px;
+
+/* Variables de colores actualizadas */
+:root {
+    --color-primario: #8d6e63;
+    --color-primario-oscuro: #6d4c41;
+    --color-primario-claro: #d7ccc8;
+    --color-secundario: #ffd54f;
+    --color-fondo: #f5f5f0;
+    --color-texto: #5d4037;
+    --color-texto-claro: #8d6e63;
+}
+
+/* Layout principal mejorado */
+.layout {
+    display: flex;
+    min-height: 100vh;
+    background: var(--color-fondo);
+}
+
+/* ===========================
+   MENÚ VERTICAL MEJORADO
+=========================== */
+.menu-vertical {
+    width: 300px;
+    background: linear-gradient(180deg, #ffffff 0%, #f8f8f8 100%);
+    border-right: 1px solid var(--color-primario-claro);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+}
+
+.menu-header {
+    padding: 2rem 1.5rem 1rem;
+    border-bottom: 1px solid var(--color-primario-claro);
+}
+
+.menu-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.logo-icono {
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, var(--color-primario), var(--color-primario-oscuro));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.logo-texto h1 {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--color-primario-oscuro);
+    margin: 0;
+    line-height: 1.2;
+}
+
+.logo-texto p {
+    font-size: 0.85rem;
+    color: var(--color-texto-claro);
+    margin: 0;
+    opacity: 0.8;
+}
+
+.menu-nav {
+    flex: 1;
+    padding: 1.5rem 0;
+    overflow-y: auto;
+}
+
+.menu-seccion {
+    margin-bottom: 2rem;
+}
+
+.menu-seccion-titulo {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-texto-claro);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 1.5rem 0.75rem;
+    opacity: 0.7;
+}
+
+.menu-lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-item {
+    margin: 0.25rem 0;
+}
+
+.menu-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1.5rem;
+    color: var(--color-texto);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+}
+
+.menu-link:hover {
+    background: rgba(141, 110, 99, 0.05);
+    color: var(--color-primario-oscuro);
+    border-left-color: var(--color-primario-claro);
+}
+
+.menu-link.activo {
+    background: rgba(141, 110, 99, 0.1);
+    color: var(--color-primario-oscuro);
+    border-left-color: var(--color-primario);
+    font-weight: 500;
+}
+
+.menu-link.salida {
+    color: #e53935;
+    background: rgba(229, 57, 53, 0.05);
+}
+
+.menu-link.salida:hover {
+    background: rgba(229, 57, 53, 0.1);
+}
+
+.menu-icono {
+    font-size: 1.1rem;
+    width: 20px;
     text-align: center;
+}
+
+.menu-texto {
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.menu-footer {
+    margin-top: auto;
+    padding: 1rem 0;
+    border-top: 1px solid var(--color-primario-claro);
+}
+
+/* ===========================
+   CONTENIDO PRINCIPAL
+=========================== */
+.contenido-principal {
+    flex: 1;
+    margin-left: 300px;
+    padding: 0;
+}
+
+/* Hero Section Mejorada */
+.hero-destacado {
+    background: linear-gradient(135deg, var(--color-primario-claro) 0%, #ffffff 50%, var(--color-fondo) 100%);
+    padding: 4rem 2rem;
     position: relative;
     overflow: hidden;
 }
 
-.hero::before {
+.hero-destacado::before {
     content: '';
     position: absolute;
     top: 0;
-    left: 0;
     right: 0;
-    bottom: 0;
-    background: url('img/patron-libros.png') repeat;
-    opacity: 0.1;
+    width: 50%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%238d6e63" opacity="0.03"><path d="M20,20 Q40,5 60,20 T100,20 L100,80 Q80,95 60,80 T20,80 Z"/></svg>') repeat;
 }
 
 .hero-contenido {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: center;
     position: relative;
     z-index: 2;
-    max-width: 800px;
-    margin: 0 auto;
+}
+
+.hero-texto {
+    max-width: 600px;
 }
 
 .hero-titulo {
-    font-size: 3.5em;
-    color: #3e2723;
-    margin: 0 0 20px 0;
+    font-size: 3rem;
     font-weight: bold;
-    line-height: 1.2;
+    color: var(--color-primario-oscuro);
+    margin: 0 0 1rem 0;
+    line-height: 1.1;
+    background: linear-gradient(135deg, var(--color-primario-oscuro), var(--color-primario));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
-.hero-subtitulo {
-    font-size: 1.3em;
-    color: #5d4037;
-    margin: 0 0 40px 0;
-    opacity: 0.9;
-}
-
-.hero-buscador {
-    display: flex;
-    max-width: 500px;
-    margin: 0 auto 50px auto;
-    background: white;
-    border-radius: 50px;
-    padding: 5px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-}
-
-.buscador-input {
-    flex: 1;
-    border: none;
-    padding: 15px 25px;
-    border-radius: 50px;
-    font-size: 1em;
-    outline: none;
-}
-
-.buscador-boton {
-    background: #8d6e63;
-    border: none;
-    padding: 15px 25px;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.buscador-boton:hover {
-    background: #6d4c41;
-}
-
-.icono-buscar {
-    width: 20px;
-    height: 20px;
-}
-
-.hero-estadisticas {
-    display: flex;
-    justify-content: center;
-    gap: 50px;
-}
-
-.estadistica {
-    text-align: center;
-}
-
-.numero {
-    display: block;
-    font-size: 2em;
-    font-weight: bold;
-    color: #5d4037;
-}
-
-.texto {
-    font-size: 0.9em;
-    color: #8d6e63;
-}
-
-/* ===========================
-   SECCIONES GENERALES
-=========================== */
-.seccion {
-    padding: 80px 20px;
-}
-
-.contenedor {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.seccion-titulo {
-    text-align: center;
-    font-size: 2.5em;
-    color: #3e2723;
-    margin: 0 0 50px 0;
-    position: relative;
-}
-
-.seccion-titulo::after {
-    content: '';
-    display: block;
-    width: 80px;
-    height: 3px;
-    background: #8d6e63;
-    margin: 15px auto;
-}
-
-.seccion-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 40px;
-}
-
-.ver-todo {
-    color: #8d6e63;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s;
-}
-
-.ver-todo:hover {
-    color: #5d4037;
-}
-
-/* ===========================
-   CATEGORÍAS DESTACADAS
-=========================== */
-.categorias-destacadas {
-    background: #fafafa;
-}
-
-.grid-categorias {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-}
-
-.categoria-card {
-    background: white;
-    padding: 40px 30px;
-    text-align: center;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-    transition: transform 0.3s, box-shadow 0.3s;
-    cursor: pointer;
-    border: 1px solid #e0e0e0;
-}
-
-.categoria-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-}
-
-.categoria-icono {
-    font-size: 3em;
-    margin-bottom: 20px;
-}
-
-.categoria-card h3 {
-    color: #3e2723;
-    margin: 0 0 15px 0;
-    font-size: 1.4em;
-}
-
-.categoria-card p {
-    color: #666;
-    margin: 0 0 15px 0;
-    line-height: 1.5;
-}
-
-.contador-libros {
-    color: #8d6e63;
-    font-size: 0.9em;
-    font-weight: bold;
-}
-
-/* ===========================
-   LIBROS MÁS VENDIDOS
-=========================== */
-.libros-vendidos {
-    background: white;
-}
-
-.grid-libros {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-}
-
-.libro-card {
-    background: #fafafa;
-    border-radius: 10px;
-    padding: 25px;
-    text-align: center;
-    transition: all 0.3s;
-    border: 1px solid #e0e0e0;
-}
-
-.libro-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-}
-
-.libro-card img {
-    width: 140px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    border: 2px solid #d7ccc8;
-}
-
-.libro-card h4 {
-    color: #3e2723;
-    margin: 0 0 10px 0;
-    font-size: 1.2em;
-    line-height: 1.3;
-}
-
-.libro-card .autor {
-    color: #8d6e63;
-    font-style: italic;
-    margin: 0 0 15px 0;
-}
-
-.libro-card .precio {
-    color: #388e3c;
-    font-size: 1.3em;
-    font-weight: bold;
-    margin: 0 0 15px 0;
-}
-
-.precio-original {
-    color: #999;
-    text-decoration: line-through;
-    margin-right: 10px;
-}
-
-.btn-comprar {
-    background: #8d6e63;
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 0.9em;
-    transition: background 0.3s;
-    width: 100%;
-}
-
-.btn-comprar:hover {
-    background: #6d4c41;
-}
-
-/* ===========================
-   OFERTAS ESPECIALES
-=========================== */
-.ofertas-especiales {
-    background: linear-gradient(135deg, #f5f5f0, #e8e0dc);
-}
-
-.banner-oferta {
-    background: white;
-    border-radius: 15px;
-    padding: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-.oferta-contenido {
-    flex: 1;
-}
-
-.oferta-etiqueta {
-    background: #e53935;
-    color: white;
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-weight: bold;
-    font-size: 0.9em;
-}
-
-.oferta-contenido h3 {
-    color: #3e2723;
-    font-size: 2em;
-    margin: 20px 0 15px 0;
-}
-
-.oferta-contenido p {
-    color: #666;
-    font-size: 1.1em;
-    margin: 0 0 25px 0;
-}
-
-.btn-oferta {
-    background: #8d6e63;
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 1em;
-    transition: background 0.3s;
-}
-
-.btn-oferta:hover {
-    background: #6d4c41;
-}
-
-.oferta-imagen {
-    width: 200px;
-    height: 150px;
-    background: #d7ccc8;
-    border-radius: 10px;
-    margin-left: 40px;
-}
-
-/* ===========================
-   AUTORES DESTACADOS
-=========================== */
-.autores-destacados {
-    background: #fafafa;
-}
-
-.grid-autores {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-}
-
-.autor-card {
-    background: white;
-    padding: 30px;
-    text-align: center;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-    transition: transform 0.3s;
-}
-
-.autor-card:hover {
-    transform: translateY(-5px);
-}
-
-.autor-foto {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 20px;
-    border: 3px solid #d7ccc8;
-}
-
-.autor-card h3 {
-    color: #3e2723;
-    margin: 0 0 10px 0;
-}
-
-.autor-card p {
-    color: #666;
-    margin: 0 0 15px 0;
-    font-style: italic;
-}
-
-.libros-count {
-    color: #8d6e63;
-    font-weight: bold;
-}
-
-/* ===========================
-   TESTIMONIOS
-=========================== */
-.testimonios {
-    background: white;
-}
-
-.grid-testimonios {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 30px;
-}
-
-.testimonio-card {
-    background: #fafafa;
-    padding: 30px;
-    border-radius: 15px;
-    border-left: 4px solid #8d6e63;
-}
-
-.testimonio-texto {
-    font-size: 1.1em;
+.hero-descripcion {
+    font-size: 1.3rem;
+    color: var(--color-texto);
+    margin: 0 0 2rem 0;
     line-height: 1.6;
-    color: #333;
-    margin-bottom: 20px;
-    font-style: italic;
-}
-
-.testimonio-autor {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.testimonio-autor img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.testimonio-autor strong {
-    display: block;
-    color: #3e2723;
-}
-
-.testimonio-autor span {
-    color: #666;
-    font-size: 0.9em;
-}
-
-/* ===========================
-   NEWSLETTER
-=========================== */
-.newsletter {
-    background: linear-gradient(135deg, #8d6e63, #6d4c41);
-    color: white;
-    text-align: center;
-}
-
-.newsletter-contenido h2 {
-    font-size: 2.5em;
-    margin: 0 0 15px 0;
-}
-
-.newsletter-contenido p {
-    font-size: 1.2em;
-    margin: 0 0 30px 0;
     opacity: 0.9;
 }
 
-.form-newsletter {
+.hero-version {
+    margin-top: 2rem;
+}
+
+.version-tag {
+    background: var(--color-primario);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.hero-imagen {
     display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.libro-illustracion {
+    font-size: 8rem;
+    opacity: 0.8;
+    transform: rotate(-5deg);
+    transition: transform 0.3s ease;
+}
+
+.libro-illustracion:hover {
+    transform: rotate(0deg) scale(1.1);
+}
+
+/* Newsletter Section Mejorada */
+.newsletter-section {
+    background: linear-gradient(135deg, var(--color-primario), var(--color-primario-oscuro));
+    color: white;
+    padding: 3rem 2rem;
+    margin: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(141, 110, 99, 0.3);
+}
+
+.newsletter-contenido {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.newsletter-texto h3 {
+    font-size: 2rem;
+    margin: 0 0 0.5rem 0;
+    font-weight: bold;
+}
+
+.newsletter-texto p {
+    font-size: 1.1rem;
+    margin: 0 0 2rem 0;
+    opacity: 0.9;
+}
+
+.newsletter-formulario {
     max-width: 400px;
     margin: 0 auto;
-    gap: 10px;
 }
 
-.form-newsletter input {
+.input-group {
+    display: flex;
+    gap: 0.5rem;
+    background: white;
+    border-radius: 50px;
+    padding: 0.5rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.newsletter-input {
     flex: 1;
-    padding: 15px 20px;
     border: none;
-    border-radius: 25px;
-    font-size: 1em;
+    padding: 1rem 1.5rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    outline: none;
+    background: transparent;
 }
 
-.form-newsletter button {
-    background: #3e2723;
-    color: white;
+.newsletter-boton {
+    background: var(--color-secundario);
+    color: var(--color-texto-oscuro);
     border: none;
-    padding: 15px 25px;
-    border-radius: 25px;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-weight: bold;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: all 0.3s ease;
+    white-space: nowrap;
 }
 
-.form-newsletter button:hover {
-    background: #2c1b1a;
+.newsletter-boton:hover {
+    background: #ffca28;
+    transform: translateY(-2px);
+}
+
+/* Estadísticas Section */
+.estadisticas-section {
+    padding: 3rem 2rem;
+    background: var(--color-fondo);
+}
+
+.estadisticas-grid {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+.estadistica-item {
+    text-align: center;
+    padding: 2rem 1rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+}
+
+.estadistica-item:hover {
+    transform: translateY(-5px);
+}
+
+.estadistica-numero {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--color-primario);
+    margin-bottom: 0.5rem;
+}
+
+.estadistica-texto {
+    font-size: 1rem;
+    color: var(--color-texto-claro);
+    font-weight: 500;
 }
 
 /* ===========================
-   RESPONSIVE
+   RESPONSIVE DESIGN
 =========================== */
 @media (max-width: 768px) {
+    .layout {
+        flex-direction: column;
+    }
+    
+    .menu-vertical {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    
+    .contenido-principal {
+        margin-left: 0;
+    }
+    
+    .hero-contenido {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+    }
+    
     .hero-titulo {
-        font-size: 2.5em;
+        font-size: 2.5rem;
     }
     
-    .hero-estadisticas {
-        gap: 30px;
+    .libro-illustracion {
+        font-size: 5rem;
     }
     
-    .seccion-header {
+    .input-group {
         flex-direction: column;
-        gap: 20px;
-        text-align: center;
+        border-radius: 15px;
     }
     
-    .banner-oferta {
-        flex-direction: column;
-        text-align: center;
+    .newsletter-input,
+    .newsletter-boton {
+        border-radius: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-destacado {
+        padding: 2rem 1rem;
     }
     
-    .oferta-imagen {
-        margin: 30px 0 0 0;
+    .hero-titulo {
+        font-size: 2rem;
     }
     
-    .form-newsletter {
-        flex-direction: column;
+    .hero-descripcion {
+        font-size: 1.1rem;
     }
+    
+    .newsletter-section {
+        margin: 1rem;
+        padding: 2rem 1rem;
+    }
+    
+    .estadisticas-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Scrollbar personalizado para el menú */
+.menu-nav::-webkit-scrollbar {
+    width: 4px;
+}
+
+.menu-nav::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.menu-nav::-webkit-scrollbar-thumb {
+    background: var(--color-primario-claro);
+    border-radius: 2px;
+}
+
+.menu-nav::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primario);
 }

@@ -1,0 +1,624 @@
+/* ===========================
+   GESTOR DE DATOS - BIBLIOTECA LEEP BOOKS
+   Maneja toda la información de libros y categorías
+=========================== */
+
+class GestorBiblioteca {
+    constructor() {
+        this.libros = this.inicializarDatosLibros();
+        this.categorias = this.inicializarCategorias();
+        this.autores = this.inicializarAutores();
+    }
+
+    /* ===========================
+       INICIALIZACIÓN DE CATEGORÍAS
+    =========================== */
+    inicializarCategorias() {
+        return {
+            TERROR: {
+                id: "TERROR",
+                nombre: "Terror",
+                descripcion: "Libros de miedo y suspenso que harán palpitar tu corazón",
+                icono: "👻",
+                color: "#7b1fa2",
+                totalLibros: 1245,
+                destacada: true
+            },
+            ACCION: {
+                id: "ACCION", 
+                nombre: "Acción",
+                descripcion: "Aventuras trepidantes y emociones fuertes",
+                icono: "💥",
+                color: "#d32f2f",
+                totalLibros: 867,
+                destacada: true
+            },
+            INFANTIL: {
+                id: "INFANTIL",
+                nombre: "Infantil",
+                descripcion: "Divertidas historias para los más pequeños",
+                icono: "🧸",
+                color: "#1976d2",
+                totalLibros: 1567,
+                destacada: false
+            },
+            ROMANCE: {
+                id: "ROMANCE",
+                nombre: "Romance",
+                descripcion: "Historias de amor inolvidables y apasionadas",
+                icono: "💖",
+                color: "#e91e63",
+                totalLibros: 1892,
+                destacada: true
+            },
+            FANTASIA: {
+                id: "FANTASIA",
+                nombre: "Fantasía", 
+                descripcion: "Mundos mágicos y aventuras épicas",
+                icono: "🐉",
+                color: "#ff9800",
+                totalLibros: 2367,
+                destacada: true
+            },
+            CIENCIA_FICCION: {
+                id: "CIENCIA_FICCION",
+                nombre: "Ciencia Ficción",
+                descripcion: "Futuros posibles y universos alternativos",
+                icono: "🚀",
+                color: "#0097a7",
+                totalLibros: 987,
+                destacada: false
+            },
+            BIOGRAFIAS: {
+                id: "BIOGRAFIAS",
+                nombre: "Biografías",
+                descripcion: "Vidas reales llenas de inspiración",
+                icono: "📖",
+                color: "#5d4037",
+                totalLibros: 654,
+                destacada: false
+            },
+            MISTERIO: {
+                id: "MISTERIO",
+                nombre: "Misterio",
+                descripcion: "Enigmas por resolver y casos intrigantes",
+                icono: "🕵️",
+                color: "#455a64",
+                totalLibros: 723,
+                destacada: false
+            }
+        };
+    }
+
+    /* ===========================
+       INICIALIZACIÓN DE AUTORES
+    =========================== */
+    inicializarAutores() {
+        return {
+            "STEPHEN_KING": {
+                id: "STEPHEN_KING",
+                nombre: "Stephen King",
+                biografia: "Maestro del terror contemporáneo con más de 60 novelas publicadas.",
+                nacionalidad: "Estadounidense",
+                fechaNacimiento: "1947-09-21",
+                foto: "img/autores/stephen-king.jpg",
+                totalLibros: 65,
+                rating: 4.7,
+                destacado: true
+            },
+            "JK_ROWLING": {
+                id: "JK_ROWLING", 
+                nombre: "J.K. Rowling",
+                biografia: "Creadora del mundo mágico de Harry Potter, la serie de libros más vendida de la historia.",
+                nacionalidad: "Británica",
+                fechaNacimiento: "1965-07-31",
+                foto: "img/autores/jk-rowling.jpg",
+                totalLibros: 12,
+                rating: 4.9,
+                destacado: true
+            },
+            "ISABEL_ALLENDE": {
+                id: "ISABEL_ALLENDE",
+                nombre: "Isabel Allende",
+                biografia: "Reina del realismo mágico latinoamericano, conocida por sus conmovedoras historias familiares.",
+                nacionalidad: "Chilena",
+                fechaNacimiento: "1942-08-02",
+                foto: "img/autores/isabel-allende.jpg",
+                totalLibros: 24,
+                rating: 4.5,
+                destacado: true
+            },
+            "GABRIEL_GARCIA_MARQUEZ": {
+                id: "GABRIEL_GARCIA_MARQUEZ",
+                nombre: "Gabriel García Márquez",
+                biografia: "Premio Nobel de Literatura y máximo exponente del realismo mágico.",
+                nacionalidad: "Colombiano",
+                fechaNacimiento: "1927-03-06",
+                foto: "img/autores/gabriel-garcia-marquez.jpg",
+                totalLibros: 18,
+                rating: 4.8,
+                destacado: true
+            }
+        };
+    }
+
+    /* ===========================
+       INICIALIZACIÓN DE LIBROS
+    =========================== */
+    inicializarDatosLibros() {
+        return [
+            // === TERROR ===
+            {
+                id: 1,
+                titulo: "It",
+                autor: "Stephen King",
+                autorId: "STEPHEN_KING",
+                precio: 22.90,
+                precioOriginal: 28.90,
+                descuento: 20,
+                imagen: "img/libros/terror-it.jpg",
+                categoria: "TERROR",
+                descripcion: "En el pueblo de Derry, un malévolo payaso llamado Pennywise aterroriza a un grupo de niños que deben enfrentar sus peores miedos. Veintisiete años después, el monstruo regresa y los ahora adultos deben cumplir su promesa de eliminarlo para siempre.",
+                paginas: 1138,
+                isbn: "978-1501142970",
+                rating: 4.5,
+                reseñas: 1250,
+                stock: 15,
+                destacado: true,
+                fechaPublicacion: "1986-09-15",
+                editorial: "Viking Press",
+                idioma: "Español",
+                formato: "Tapa blanda"
+            },
+            {
+                id: 2,
+                titulo: "Drácula",
+                autor: "Bram Stoker",
+                precio: 18.50,
+                imagen: "img/libros/terror-dracula.jpg",
+                categoria: "TERROR",
+                descripcion: "El clásico de vampiros que definió el género. La historia del conde Drácula y su llegada a Inglaterra, contada a través de cartas y diarios de los personajes.",
+                paginas: 418,
+                isbn: "978-0486411095",
+                rating: 4.3,
+                reseñas: 890,
+                stock: 8,
+                fechaPublicacion: "1897-05-26",
+                editorial: "Archibald Constable and Company",
+                idioma: "Español",
+                formato: "Tapa dura"
+            },
+
+            // === ACCIÓN ===
+            {
+                id: 3,
+                titulo: "Jack Reacher: Punto de Impacto",
+                autor: "Lee Child",
+                precio: 20.90,
+                imagen: "img/libros/accion-reacher.jpg",
+                categoria: "ACCION",
+                descripcion: "Jack Reacher, un ex militar policía, llega a una pequeña ciudad donde se ve envuelto en una conspiración mortal que involucra asesinatos y corrupción.",
+                paginas: 352,
+                isbn: "978-8401338040",
+                rating: 4.2,
+                reseñas: 567,
+                stock: 12,
+                fechaPublicacion: "1997-03-17",
+                editorial: "G.P. Putnam's Sons",
+                idioma: "Español",
+                formato: "Tapa blanda"
+            },
+
+            // === INFANTIL ===
+            {
+                id: 4,
+                titulo: "El Principito",
+                autor: "Antoine de Saint-Exupéry",
+                precio: 15.50,
+                imagen: "img/libros/infantil-principito.jpg",
+                categoria: "INFANTIL",
+                descripcion: "Un cuento poético que sigue las aventuras de un pequeño príncipe que viaja por el universo aprendiendo sobre el amor, la amistad y la esencia de la vida.",
+                paginas: 96,
+                isbn: "978-0156012195",
+                rating: 4.8,
+                reseñas: 2300,
+                stock: 25,
+                destacado: true,
+                fechaPublicacion: "1943-04-06",
+                editorial: "Reynal & Hitchcock",
+                idioma: "Español",
+                formato: "Tapa dura ilustrada"
+            },
+
+            // === ROMANCE ===
+            {
+                id: 5,
+                titulo: "Orgullo y Prejuicio",
+                autor: "Jane Austen",
+                precio: 17.90,
+                precioOriginal: 21.90,
+                descuento: 18,
+                imagen: "img/libros/romance-orgullo.jpg",
+                categoria: "ROMANCE",
+                descripcion: "La historia de Elizabeth Bennet y el señor Darcy, dos personas de diferentes clases sociales que deben superar sus prejuicios para encontrar el amor verdadero.",
+                paginas: 432,
+                isbn: "978-0141439518",
+                rating: 4.6,
+                reseñas: 1780,
+                stock: 18,
+                fechaPublicacion: "1813-01-28",
+                editorial: "T. Egerton",
+                idioma: "Español",
+                formato: "Tapa blanda"
+            },
+
+            // === FANTASÍA ===
+            {
+                id: 6,
+                titulo: "Harry Potter y la Piedra Filosofal",
+                autor: "J.K. Rowling",
+                autorId: "JK_ROWLING",
+                precio: 24.90,
+                imagen: "img/libros/fantasia-harrypotter.jpg",
+                categoria: "FANTASIA",
+                descripcion: "Harry Potter descubre que es un mago y comienza su educación en el Colegio Hogwarts de Magia y Hechicería, donde hará amigos y enfrentará misterios peligrosos.",
+                paginas: 320,
+                isbn: "978-8478884452",
+                rating: 4.9,
+                reseñas: 4500,
+                stock: 30,
+                destacado: true,
+                fechaPublicacion: "1997-06-26",
+                editorial: "Bloomsbury",
+                idioma: "Español",
+                formato: "Tapa dura"
+            },
+            {
+                id: 7,
+                titulo: "El Señor de los Anillos: La Comunidad del Anillo",
+                autor: "J.R.R. Tolkien",
+                precio: 26.90,
+                imagen: "img/libros/fantasia-senoranillos.jpg",
+                categoria: "FANTASIA",
+                descripcion: "Frodo Bolsón emprende un peligroso viaje para destruir el Anillo Único y evitar que caiga en manos del Señor Oscuro Sauron.",
+                paginas: 480,
+                isbn: "978-8445000660",
+                rating: 4.7,
+                reseñas: 3200,
+                stock: 22,
+                destacado: true,
+                fechaPublicacion: "1954-07-29",
+                editorial: "George Allen & Unwin",
+                idioma: "Español",
+                formato: "Tapa blanda"
+            },
+
+            // === CIENCIA FICCIÓN ===
+            {
+                id: 8,
+                titulo: "Dune",
+                autor: "Frank Herbert",
+                precio: 23.50,
+                imagen: "img/libros/ciencia-dune.jpg",
+                categoria: "CIENCIA_FICCION",
+                descripcion: "En el planeta desértico Arrakis, el joven Paul Atreides se convierte en el mesías de los fremen y lidera una revolución por el control de la especia melange.",
+                paginas: 412,
+                isbn: "978-0441172719",
+                rating: 4.4,
+                reseñas: 1560,
+                stock: 14,
+                fechaPublicacion: "1965-08-01",
+                editorial: "Chilton Books",
+                idioma: "Español",
+                formato: "Tapa blanda"
+            },
+
+            // === MÁS LIBROS DESTACADOS ===
+            {
+                id: 9,
+                titulo: "Cien Años de Soledad",
+                autor: "Gabriel García Márquez",
+                autorId: "GABRIEL_GARCIA_MARQUEZ",
+                precio: 21.90,
+                imagen: "img/libros/realismo-cien-anos.jpg",
+                categoria: "REALISMO_MAGICO",
+                descripcion: "La saga de la familia Buendía en el pueblo ficticio de Macondo, un relato mágico que abarca siete generaciones.",
+                paginas: 471,
+                isbn: "978-0307474728",
+                rating: 4.7,
+                reseñas: 2890,
+                stock: 20,
+                destacado: true,
+                fechaPublicacion: "1967-05-30",
+                editorial: "Editorial Sudamericana",
+                idioma: "Español",
+                formato: "Tapa blanda"
+            },
+            {
+                id: 10,
+                titulo: "La Casa de los Espíritus",
+                autor: "Isabel Allende",
+                autorId: "ISABEL_ALLENDE",
+                precio: 19.90,
+                precioOriginal: 24.90,
+                descuento: 20,
+                imagen: "img/libros/realismo-casa-espiritus.jpg",
+                categoria: "REALISMO_MAGICO",
+                descripcion: "La historia de la familia Trueba a lo largo de cuatro generaciones, marcada por el amor, la política y lo sobrenatural.",
+                paginas: 481,
+                isbn: "978-8401338041",
+                rating: 4.5,
+                reseñas: 1670,
+                stock: 16,
+                destacado: true,
+                fechaPublicacion: "1982-01-01",
+                editorial: "Plaza & Janés",
+                idioma: "Español",
+                formato: "Tapa blanda"
+            }
+        ];
+    }
+
+    /* ===========================
+       MÉTODOS PRINCIPALES - LIBROS
+    =========================== */
+
+    // Obtener todos los libros
+    obtenerTodosLosLibros() {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve([...this.libros]);
+            }, 300);
+        });
+    }
+
+    // Obtener libros por categoría
+    obtenerLibrosPorCategoria(categoria) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                const librosFiltrados = this.libros.filter(libro => 
+                    libro.categoria === categoria.toUpperCase()
+                );
+                resolve(librosFiltrados);
+            }, 200);
+        });
+    }
+
+    // Obtener libros destacados
+    obtenerLibrosDestacados() {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                const destacados = this.libros.filter(libro => libro.destacado);
+                resolve(destacados);
+            }, 250);
+        });
+    }
+
+    // Obtener un libro por ID
+    obtenerLibroPorId(id) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                const libro = this.libros.find(l => l.id === parseInt(id));
+                if (libro) {
+                    resolve(libro);
+                } else {
+                    reject(new Error("Libro no encontrado"));
+                }
+            }, 200);
+        });
+    }
+
+    // Buscar libros por término
+    buscarLibros(termino) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                const terminoLower = termino.toLowerCase();
+                const resultados = this.libros.filter(libro =>
+                    libro.titulo.toLowerCase().includes(terminoLower) ||
+                    libro.autor.toLowerCase().includes(terminoLower) ||
+                    libro.categoria.toLowerCase().includes(terminoLower) ||
+                    (libro.descripcion && libro.descripcion.toLowerCase().includes(terminoLower))
+                );
+                resolve(resultados);
+            }, 300);
+        });
+    }
+
+    // Obtener libros en oferta
+    obtenerLibrosEnOferta() {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                const ofertas = this.libros.filter(libro => libro.descuento);
+                resolve(ofertas);
+            }, 200);
+        });
+    }
+
+    /* ===========================
+       MÉTODOS - CATEGORÍAS
+    =========================== */
+
+    // Obtener todas las categorías
+    obtenerTodasLasCategorias() {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve({...this.categorias});
+            }, 100);
+        });
+    }
+
+    // Obtener categorías destacadas
+    obtenerCategoriasDestacadas() {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                const destacadas = Object.values(this.categorias).filter(cat => cat.destacada);
+                resolve(destacadas);
+            }, 150);
+        });
+    }
+
+    // Obtener información de una categoría
+    obtenerCategoriaPorId(categoriaId) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                const categoria = this.categorias[categoriaId.toUpperCase()];
+                if (categoria) {
+                    resolve(categoria);
+                } else {
+                    reject(new Error("Categoría no encontrada"));
+                }
+            }, 100);
+        });
+    }
+
+    /* ===========================
+       MÉTODOS - AUTORES
+    =========================== */
+
+    // Obtener todos los autores
+    obtenerTodosLosAutores() {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve({...this.autores});
+            }, 200);
+        });
+    }
+
+    // Obtener autores destacados
+    obtenerAutoresDestacados() {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                const destacados = Object.values(this.autores).filter(autor => autor.destacado);
+                resolve(destacados);
+            }, 150);
+        });
+    }
+
+    // Obtener autor por ID
+    obtenerAutorPorId(autorId) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                const autor = this.autores[autorId.toUpperCase()];
+                if (autor) {
+                    resolve(autor);
+                } else {
+                    reject(new Error("Autor no encontrado"));
+                }
+            }, 100);
+        });
+    }
+
+    // Obtener libros por autor
+    obtenerLibrosPorAutor(autorNombre) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                const librosAutor = this.libros.filter(libro =>
+                    libro.autor.toLowerCase().includes(autorNombre.toLowerCase())
+                );
+                resolve(librosAutor);
+            }, 250);
+        });
+    }
+
+    /* ===========================
+       MÉTODOS DE GESTIÓN
+    =========================== */
+
+    // Actualizar stock
+    actualizarStock(idLibro, nuevaCantidad) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                const libro = this.libros.find(l => l.id === idLibro);
+                if (libro) {
+                    libro.stock = nuevaCantidad;
+                    resolve({ 
+                        success: true, 
+                        libro: libro.titulo, 
+                        stock: nuevaCantidad 
+                    });
+                } else {
+                    resolve({ 
+                        success: false, 
+                        error: "Libro no encontrado" 
+                    });
+                }
+            }, 200);
+        });
+    }
+
+    // Agregar nuevo libro
+    agregarNuevoLibro(libroData) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                const nuevoId = Math.max(...this.libros.map(l => l.id)) + 1;
+                const nuevoLibro = {
+                    id: nuevoId,
+                    ...libroData,
+                    fechaAgregado: new Date().toISOString(),
+                    stock: libroData.stock || 10,
+                    rating: libroData.rating || 4.0,
+                    reseñas: libroData.reseñas || 0
+                };
+                this.libros.push(nuevoLibro);
+                resolve({ 
+                    success: true, 
+                    mensaje: "Libro agregado exitosamente",
+                    libro: nuevoLibro 
+                });
+            }, 400);
+        });
+    }
+
+    /* ===========================
+       MÉTODOS DE ESTADÍSTICAS
+    =========================== */
+
+    obtenerEstadisticasGenerales() {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                const stats = {
+                    totalLibros: this.libros.length,
+                    totalCategorias: Object.keys(this.categorias).length,
+                    totalAutores: new Set(this.libros.map(l => l.autor)).size,
+                    librosEnOferta: this.libros.filter(l => l.descuento).length,
+                    librosDestacados: this.libros.filter(l => l.destacado).length,
+                    stockTotal: this.libros.reduce((sum, libro) => sum + libro.stock, 0),
+                    precioPromedio: (this.libros.reduce((sum, libro) => sum + libro.precio, 0) / this.libros.length).toFixed(2),
+                    ratingPromedio: (this.libros.reduce((sum, libro) => sum + libro.rating, 0) / this.libros.length).toFixed(1)
+                };
+                resolve(stats);
+            }, 300);
+        });
+    }
+
+    obtenerLibrosMasVendidos() {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                const masVendidos = [...this.libros]
+                    .sort((a, b) => b.reseñas - a.reseñas)
+                    .slice(0, 5);
+                resolve(masVendidos);
+            }, 200);
+        });
+    }
+
+    obtenerNovedades() {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                // Simular libros nuevos (los últimos 3 agregados)
+                const novedades = this.libros.slice(-3).reverse();
+                resolve(novedades);
+            }, 150);
+        });
+    }
+}
+
+// Crear instancia global
+const bibliotecaData = new GestorBiblioteca();
+
+// Exportar para usar en otros archivos
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = bibliotecaData;
+} else {
+    window.bibliotecaData = bibliotecaData;
+}
