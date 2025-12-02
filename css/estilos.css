@@ -1,67 +1,17 @@
-/* ===========================
-   ESTILOS CSS - LEEP BOOKS
-   Estructura completa y optimizada
-=========================== */
+/*
+ * LEEP BOOKS - ESTILOS PRINCIPALES (Globales, Index, Catálogo, Carrito, Footer)
+ * Paleta de Colores:
+ * Fondo Principal: #f8f5ee (Beige Claro)
+ * Títulos/Textos Oscuros: #4a3f35 (Marrón Oscuro)
+ * Botones/Resalte: #7b5e4a (Marrón Medio Cálido)
+ * Resalte Sutil/Divisor: #e0d8c7 (Taupe Claro)
+ * Precio: #a83232 (Rojo Suave)
+ */
 
 /* ===========================
-   1. VARIABLES Y RESET
-=========================== */
-:root {
-    /* Colores principales - Tema Beige/Marrón */
-    --color-primario: #8d6e63;
-    --color-primario-oscuro: #6d4c41;
-    --color-primario-claro: #d7ccc8;
-    --color-secundario: #ffd54f;
-    --color-secundario-oscuro: #ffca28;
-    
-    /* Colores neutros */
-    --color-fondo: #f5f5f0;
-    --color-fondo-claro: #fafafa;
-    --color-fondo-oscuro: #3e2723;
-    --color-texto: #5d4037;
-    --color-texto-claro: #8d6e63;
-    --color-texto-oscuro: #3e2723;
-    --color-borde: #d7ccc8;
-    
-    /* Colores de estado */
-    --color-exito: #388e3c;
-    --color-error: #e53935;
-    --color-advertencia: #ff9800;
-    --color-info: #2196f3;
-    
-    /* Tipografía */
-    --fuente-principal: 'Arial', sans-serif;
-    --fuente-secundaria: 'Georgia', serif;
-    
-    /* Espaciados */
-    --espacio-xs: 0.5rem;
-    --espacio-sm: 1rem;
-    --espacio-md: 1.5rem;
-    --espacio-lg: 2rem;
-    --espacio-xl: 3rem;
-    --espacio-xxl: 4rem;
-    
-    /* Bordes */
-    --border-radius-sm: 5px;
-    --border-radius-md: 10px;
-    --border-radius-lg: 15px;
-    --border-radius-xl: 25px;
-    
-    /* Sombras */
-    --sombra-suave: 0 2px 10px rgba(0,0,0,0.1);
-    --sombra-media: 0 5px 20px rgba(0,0,0,0.15);
-    --sombra-fuerte: 0 10px 30px rgba(0,0,0,0.2);
-    
-    /* Transiciones */
-    --transicion-rapida: 0.2s ease;
-    --transicion-normal: 0.3s ease;
-    --transicion-lenta: 0.5s ease;
-}
-
-/* Reset */
-* {
-    margin: 0;
-    padding: 0;
+   CONFIGURACIÓN GLOBAL Y RESET
+   =========================== */
+*, *::before, *::after {
     box-sizing: border-box;
 }
 
@@ -71,818 +21,389 @@ html, body {
     padding: 0;
 }
 
-body {
-    font-family: var(--fuente-principal);
-    background: var(--color-fondo);
-    color: var(--color-texto);
-    line-height: 1.6;
+body.layout {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    background: #f8f5ee; 
+    color: #333;
 }
 
-/* ===========================
-   2. LAYOUT PRINCIPAL
-=========================== */
-.layout {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-.contenido-principal {
+main {
     flex: 1;
+    padding: 0; /* Quitamos padding aquí, se maneja en las secciones */
 }
 
+/* Contenedor central (usado en Carrito, y como contenido central en Index) */
 .contenedor {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 var(--espacio-md);
-}
-
-.contenedor-pequeno {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 var(--espacio-md);
+    padding: 30px;
+    background: white; 
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03); 
 }
 
 /* ===========================
-   3. COMPONENTES GENERALES
-=========================== */
-
-/* Botones */
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--espacio-xs);
-    padding: 12px 24px;
-    border: none;
-    border-radius: var(--border-radius-xl);
-    font-family: inherit;
-    font-size: 1em;
-    font-weight: 500;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all var(--transicion-normal);
-    position: relative;
-    overflow: hidden;
+   TIPOGRAFÍA Y BOTONES
+   =========================== */
+h1 {
+    font-size: 3em;
+    color: #4a3f35;
+    font-weight: 700;
+    margin-bottom: 20px;
 }
-
-.btn-primario {
-    background: var(--color-primario);
-    color: white;
-}
-
-.btn-primario:hover {
-    background: var(--color-primario-oscuro);
-    transform: translateY(-2px);
-    box-shadow: var(--sombra-media);
-}
-
-.btn-secundario {
-    background: var(--color-secundario);
-    color: var(--color-texto-oscuro);
-}
-
-.btn-secundario:hover {
-    background: var(--color-secundario-oscuro);
-    transform: translateY(-2px);
-}
-
-.btn-outline {
-    background: transparent;
-    color: var(--color-primario);
-    border: 2px solid var(--color-primario);
-}
-
-.btn-outline:hover {
-    background: var(--color-primario);
-    color: white;
-}
-
-.btn-link {
-    color: var(--color-primario);
-    text-decoration: none;
+h2 {
+    font-size: 2em;
+    color: #5a4b39;
     font-weight: 600;
-    transition: color var(--transicion-normal);
+    margin-bottom: 20px;
 }
 
-.btn-link:hover {
-    color: var(--color-primario-oscuro);
+/* Estilo para todos los botones de acción principal */
+button, .boton-comprar, .boton-catalogo {
+    padding: 10px 25px;
+    background: #7b5e4a; 
+    color: white;
+    border: none;
+    border-radius: 5px; 
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.3s, transform 0.1s;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-/* Tarjetas */
-.tarjeta {
-    background: white;
-    border-radius: var(--border-radius-lg);
-    padding: var(--espacio-lg);
-    box-shadow: var(--sombra-suave);
-    border: 1px solid var(--color-borde);
-    transition: all var(--transicion-normal);
+button:hover, .boton-comprar:hover, .boton-catalogo:hover {
+    background: #4a3f35;
+    transform: translateY(-2px); 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.tarjeta:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--sombra-media);
-}
 
 /* ===========================
-   4. HERO SECTION
-=========================== */
-.hero {
-    background: linear-gradient(135deg, var(--color-primario-claro) 0%, var(--color-fondo) 100%);
-    padding: var(--espacio-xxl) 0;
-    position: relative;
-    overflow: hidden;
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 50%;
-    height: 100%;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%238d6e63" opacity="0.03"><path d="M20,20 Q40,5 60,20 T100,20 L100,80 Q80,95 60,80 T20,80 Z"/></svg>') repeat;
+   INDEX (PÁGINA PRINCIPAL)
+   =========================== */
+.hero-section {
+    background-color: #f0ebe1; 
+    padding: 100px 20px; 
+    text-align: center;
+    margin-bottom: 40px;
 }
 
 .hero-contenido {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: var(--espacio-xl);
-    align-items: center;
-    position: relative;
-    z-index: 2;
+    max-width: 900px;
+    margin: 0 auto;
+    background: white; 
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-.hero-texto {
-    max-width: 600px;
-}
-
-.hero-titulo {
+.hero-contenido h1 {
     font-size: 3.5em;
-    font-weight: bold;
-    color: var(--color-texto-oscuro);
-    margin: 0 0 var(--espacio-md) 0;
-    line-height: 1.1;
-    background: linear-gradient(135deg, var(--color-primario-oscuro), var(--color-primario));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    margin-top: 0;
 }
 
-.hero-subtitulo {
-    font-size: 1.3em;
-    color: var(--color-texto);
-    margin: 0 0 var(--espacio-xl) 0;
-    opacity: 0.9;
-}
-
-.hero-buscador {
-    display: flex;
-    max-width: 500px;
-    background: white;
-    border-radius: var(--border-radius-xl);
-    padding: 8px;
-    box-shadow: var(--sombra-media);
-    margin-bottom: var(--espacio-xl);
-}
-
-.hero-buscador input {
-    flex: 1;
-    border: none;
-    padding: 15px 20px;
-    border-radius: var(--border-radius-lg);
-    font-size: 1em;
-    outline: none;
-}
-
-.hero-buscador button {
-    background: var(--color-primario);
-    border: none;
-    padding: 15px 25px;
-    border-radius: var(--border-radius-lg);
-    cursor: pointer;
-    transition: background var(--transicion-normal);
-}
-
-.hero-buscador button:hover {
-    background: var(--color-primario-oscuro);
-}
-
-.icono-buscar {
-    width: 20px;
-    height: 20px;
-}
-
-.hero-estadisticas {
-    display: flex;
-    gap: var(--espacio-xl);
-}
-
-.estadistica {
-    text-align: center;
-}
-
-.estadistica .numero {
-    display: block;
-    font-size: 2em;
-    font-weight: bold;
-    color: var(--color-texto-oscuro);
-    margin-bottom: var(--espacio-xs);
-}
-
-.estadistica .texto {
-    font-size: 0.9em;
-    color: var(--color-texto-claro);
-}
-
-.hero-imagen {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.libro-illustracion {
-    font-size: 8rem;
-    opacity: 0.8;
-    transform: rotate(-5deg);
-    transition: transform var(--transicion-normal);
-}
-
-.libro-illustracion:hover {
-    transform: rotate(0deg) scale(1.1);
-}
-
-/* ===========================
-   5. SECCIONES GENERALES
-=========================== */
-.seccion {
-    padding: var(--espacio-xxl) 0;
-}
-
-.seccion-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: var(--espacio-lg);
-}
-
-.seccion-titulo {
-    font-size: 2.5em;
-    color: var(--color-texto-oscuro);
-    margin: 0;
-    position: relative;
-}
-
-.seccion-titulo::after {
-    content: '';
-    display: block;
-    width: 80px;
-    height: 3px;
-    background: var(--color-primario);
-    margin: var(--espacio-sm) 0 0 0;
-}
-
-/* ===========================
-   6. CATEGORÍAS
-=========================== */
-.categorias-destacadas {
-    background: var(--color-fondo-claro);
-}
-
-.grid-categorias {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--espacio-lg);
-}
-
-.categoria-card {
-    background: white;
-    padding: var(--espacio-xl) var(--espacio-lg);
-    text-align: center;
-    border-radius: var(--border-radius-lg);
-    box-shadow: var(--sombra-suave);
-    transition: all var(--transicion-normal);
-    cursor: pointer;
-    border: 1px solid var(--color-borde);
-}
-
-.categoria-card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--sombra-fuerte);
-    border-color: var(--color-primario);
-}
-
-.categoria-icono {
-    font-size: 3em;
-    margin-bottom: var(--espacio-md);
-}
-
-.categoria-card h3 {
-    color: var(--color-texto-oscuro);
-    margin: 0 0 var(--espacio-sm) 0;
-    font-size: 1.4em;
-}
-
-.categoria-card p {
-    color: var(--color-texto-claro);
-    margin: 0 0 var(--espacio-sm) 0;
-    line-height: 1.5;
-}
-
-.categoria-contador {
-    color: var(--color-primario);
-    font-size: 0.9em;
-    font-weight: bold;
-}
-
-/* ===========================
-   7. LIBROS
-=========================== */
-.grid-libros {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--espacio-lg);
-}
-
-.libro-card {
-    background: white;
-    border-radius: var(--border-radius-lg);
-    padding: var(--espacio-lg);
-    text-align: center;
-    transition: all var(--transicion-normal);
-    border: 1px solid var(--color-borde);
-    position: relative;
-}
-
-.libro-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--sombra-media);
-}
-
-.libro-imagen {
-    width: 140px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: var(--border-radius-md);
-    margin-bottom: var(--espacio-md);
-    border: 2px solid var(--color-primario-claro);
-}
-
-.libro-titulo {
-    color: var(--color-texto-oscuro);
-    margin: 0 0 var(--espacio-xs) 0;
+.hero-contenido p {
     font-size: 1.2em;
+    color: #5a4b39;
+    margin: 20px auto 40px;
+    line-height: 1.6;
+}
+
+.boton-catalogo {
+    font-size: 1.2em;
+    padding: 15px 40px;
+    border-radius: 30px;
+    background: #a8947f; /* Tono más suave en el Index */
+}
+.boton-catalogo:hover {
+    background: #7b5e4a;
+}
+
+/* Tarjetas de Categorías en el Index */
+.destacados-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    margin: 30px 0;
+    padding-bottom: 30px;
+}
+
+.destacado-item {
+    background: #ffffff;
+    border: 1px solid #e0d8c7;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.destacado-item:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.destacado-item img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+.destacado-item h3 {
+    margin: 0 0 5px;
+    color: #4a3f35;
+    font-size: 1.2em;
+}
+
+.destacado-item p {
+    font-size: 0.9em;
+    color: #6c757d;
+    margin: 0;
+}
+
+
+/* ===========================
+   CATÁLOGO (LAYOUT, MENÚ LATERAL Y TARJETAS)
+   =========================== */
+.catalogo-layout {
+    display: flex;
+    max-width: 1400px; /* Contenedor más amplio */
+    margin: 0 auto;
+    gap: 50px; /* Mayor espaciado entre sidebar y productos */
+    padding: 40px 20px; 
+}
+
+/* MENÚ LATERAL (Estilo Elegante y Funcional) */
+.menu-lateral {
+    width: 280px; /* Ligeramente más ancho */
+    padding: 20px 0; 
+    background: #ffffff;
+    border-radius: 15px; /* Bordes más redondeados */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); /* Sombra muy sutil */
+    flex-shrink: 0; 
+    height: fit-content; 
+    border: 1px solid #e0d8c7; /* Borde sutil del color beige */
+}
+
+.menu-lateral h2 {
+    padding: 0 30px 10px;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #7b5e4a; /* Línea de color de marca */
+    font-size: 1.6em;
+    color: #4a3f35;
+}
+
+.menu-lateral ul {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-lateral a {
+    display: flex;
+    align-items: center;
+    padding: 15px 30px; /* Mayor padding para un mejor tacto */
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: all 0.3s;
+    font-size: 1.1em;
+}
+
+/* Estado activo/hover (Cambio de color de fondo completo) */
+.menu-lateral a:hover,
+.menu-lateral a.active {
+    background: #e0d8c7; /* Tono Taupe claro para resaltar */
+    color: #4a3f35;
+    font-weight: 600;
+}
+
+/* TARJETAS DE LIBROS (Visuales, Flotantes y con Énfasis en Precio) */
+.productos {
+    flex-grow: 1;
+}
+
+.productos h2 {
+    border-bottom: 2px solid #e0d8c7; /* Título de la sección de libros */
+    padding-bottom: 10px;
+}
+
+.grid-catalogo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Min-width un poco mayor */
+    gap: 35px;
+    margin-top: 30px;
+}
+
+.tarjeta-libro {
+    background: #fff;
+    border: none; 
+    border-radius: 12px;
+    padding: 0; 
+    text-align: center;
+    /* Sombra fuerte para dar sensación de 'flotar' */
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1); 
+    overflow: hidden; 
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex; 
+    flex-direction: column; /* Apila el contenido verticalmente */
+}
+
+.tarjeta-libro:hover {
+    transform: translateY(-10px); /* Efecto de elevación más dramático */
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+}
+
+.tarjeta-libro img.portada {
+    width: 100%;
+    height: 320px; /* Imagen más alta para impacto visual */
+    object-fit: cover;
+    display: block;
+}
+
+.tarjeta-libro .info {
+    padding: 15px 20px 0; 
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+}
+
+.tarjeta-libro h3 {
+    margin: 10px 0 5px;
+    font-size: 1.3em;
+    color: #4a3f35;
     line-height: 1.3;
 }
 
-.libro-autor {
-    color: var(--color-texto-claro);
-    font-style: italic;
-    margin: 0 0 var(--espacio-sm) 0;
+.tarjeta-libro .autor {
+    color: #8c8c8c;
+    font-size: 0.95em;
+    margin-bottom: 10px;
 }
 
-.libro-precio {
-    color: var(--color-exito);
-    font-size: 1.3em;
-    font-weight: bold;
-    margin: 0 0 var(--espacio-sm) 0;
+.tarjeta-libro .precio {
+    font-size: 1.8em; 
+    font-weight: 800;
+    color: #a83232; 
+    margin: 10px auto 20px;
+    padding: 5px;
+    background: #fdf2f2; /* Fondo de color para destacar el precio */
+    border-radius: 4px;
+    align-self: center; /* Asegura que el precio esté centrado horizontalmente */
 }
 
-.libro-precio-original {
-    color: var(--color-texto-claro);
-    text-decoration: line-through;
-    margin-right: var(--espacio-xs);
+/* Botón de la tarjeta pegado al fondo */
+.tarjeta-libro button {
+    width: 100%; 
+    padding: 12px;
+    font-size: 1em;
+    border-radius: 0; /* Botón sin bordes redondeados al final */
+    background: #5a4b39; 
+    margin-top: auto; /* Empuja el botón al fondo de la tarjeta */
+}
+.tarjeta-libro button:hover {
+    transform: none; /* Eliminamos el efecto de levantamiento en el botón para que se sienta firme */
 }
 
-.libro-descuento {
-    background: var(--color-error);
-    color: white;
-    padding: 4px 8px;
-    border-radius: var(--border-radius-sm);
-    font-size: 0.8em;
-    font-weight: bold;
-    position: absolute;
-    top: var(--espacio-md);
-    right: var(--espacio-md);
-}
-
-.libro-acciones {
-    display: flex;
-    gap: var(--espacio-xs);
-    margin-top: var(--espacio-md);
-}
 
 /* ===========================
-   8. AUTORES
-=========================== */
-.grid-autores {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--espacio-lg);
-}
-
-.autor-card {
-    background: white;
-    padding: var(--espacio-lg);
+   CARRITO DE COMPRAS
+   =========================== */
+.carrito-vacio-mensaje {
     text-align: center;
-    border-radius: var(--border-radius-lg);
-    box-shadow: var(--sombra-suave);
-    transition: transform var(--transicion-normal);
-}
-
-.autor-card:hover {
-    transform: translateY(-5px);
-}
-
-.autor-foto {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: var(--espacio-md);
-    border: 3px solid var(--color-primario-claro);
-}
-
-.autor-nombre {
-    color: var(--color-texto-oscuro);
-    margin: 0 0 var(--espacio-xs) 0;
-}
-
-.autor-biografia {
-    color: var(--color-texto-claro);
-    margin: 0 0 var(--espacio-sm) 0;
-    font-style: italic;
-}
-
-.autor-contador {
-    color: var(--color-primario);
-    font-weight: bold;
-}
-
-/* ===========================
-   9. BANNER OFERTA
-=========================== */
-.oferta-banner {
-    background: linear-gradient(135deg, var(--color-primario), var(--color-primario-oscuro));
-    color: white;
-}
-
-.banner-contenido {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: var(--espacio-xl);
-    align-items: center;
-}
-
-.banner-texto {
-    max-width: 500px;
-}
-
-.oferta-badge {
-    background: var(--color-secundario);
-    color: var(--color-texto-oscuro);
-    padding: 8px 16px;
-    border-radius: var(--border-radius-xl);
-    font-weight: bold;
-    font-size: 0.9em;
-    display: inline-block;
-    margin-bottom: var(--espacio-md);
-}
-
-.banner-texto h3 {
-    font-size: 2.5em;
-    margin: 0 0 var(--espacio-sm) 0;
-    line-height: 1.1;
-}
-
-.banner-texto p {
+    padding: 50px 0;
     font-size: 1.2em;
-    margin: 0 0 var(--espacio-lg) 0;
-    opacity: 0.9;
+    color: #8c8c8c;
+    border: 1px dashed #e0d8c7;
+    border-radius: 5px;
+    margin-bottom: 30px;
 }
 
-.banner-imagen {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.tabla-carrito {
+    width: 100%;
+    border-collapse: separate; /* Usamos separate para bordes redondeados en la tabla */
+    border-spacing: 0;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
-.oferta-illustracion {
-    font-size: 6rem;
-    opacity: 0.8;
+.tabla-carrito th, .tabla-carrito td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0;
 }
 
-/* ===========================
-   10. TESTIMONIOS
-=========================== */
-.testimonios {
-    background: var(--color-fondo-claro);
+.tabla-carrito th {
+    background-color: #e0d8c7; /* Color Taupe claro para encabezados */
+    color: #4a3f35;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9em;
 }
 
-.grid-testimonios {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: var(--espacio-lg);
+.tabla-carrito tr:last-child td {
+    border-bottom: none;
 }
 
-.testimonio-card {
-    background: white;
-    padding: var(--espacio-lg);
-    border-radius: var(--border-radius-lg);
-    border-left: 4px solid var(--color-primario);
-    box-shadow: var(--sombra-suave);
-}
-
-.testimonio-texto {
-    font-size: 1.1em;
-    line-height: 1.6;
-    color: var(--color-texto);
-    margin-bottom: var(--espacio-md);
-    font-style: italic;
-}
-
-.testimonio-autor {
-    display: flex;
-    align-items: center;
-    gap: var(--espacio-sm);
-}
-
-.autor-avatar {
+.tabla-carrito img.carrito-portada {
     width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: var(--color-primario);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 1.2em;
+    height: 75px;
+    object-fit: cover;
+    border-radius: 3px;
+    vertical-align: middle;
+    margin-right: 15px;
 }
 
-.autor-info strong {
-    display: block;
-    color: var(--color-texto-oscuro);
+/* Sección de Resumen (Total) */
+#resumen-carrito {
+    border: 2px solid #e0d8c7; /* Borde más prominente */
+    background: #fdfdfd;
+    padding: 25px;
+    border-radius: 8px;
+    max-width: 400px;
+    margin-left: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
-.autor-info span {
-    color: var(--color-texto-claro);
-    font-size: 0.9em;
-}
-
-/* ===========================
-   11. NEWSLETTER
-=========================== */
-.newsletter-home {
-    background: linear-gradient(135deg, var(--color-primario-oscuro), var(--color-fondo-oscuro));
-    color: white;
-}
-
-.newsletter-contenido {
+.total-linea {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    gap: var(--espacio-xl);
+    margin-bottom: 12px;
 }
 
-.newsletter-texto h3 {
-    font-size: 2em;
-    margin: 0 0 var(--espacio-xs) 0;
-}
-
-.newsletter-texto p {
-    font-size: 1.2em;
+.total-linea h3 {
     margin: 0;
-    opacity: 0.9;
+    font-size: 1.3em;
+    color: #4a3f35;
 }
 
-.newsletter-form {
-    display: flex;
-    gap: var(--espacio-xs);
-    background: white;
-    border-radius: var(--border-radius-xl);
-    padding: 8px;
+#total-valor {
+    color: #a83232; 
+    font-weight: bold;
+    font-size: 1.5em;
 }
 
-.newsletter-form input {
-    flex: 1;
-    border: none;
-    padding: 12px 20px;
-    border-radius: var(--border-radius-lg);
+#resumen-carrito .boton-comprar {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
     font-size: 1em;
-    outline: none;
-    min-width: 250px;
 }
 
 /* ===========================
-   12. MENÚ DINÁMICO (Placeholder)
-=========================== */
-#menu-container {
-    background: var(--color-primario-oscuro);
-    color: white;
-    padding: var(--espacio-sm) 0;
-}
-
-/* ===========================
-   13. FOOTER DINÁMICO (Placeholder)
-=========================== */
-#footer-container {
-    background: var(--color-fondo-oscuro);
-    color: white;
-    margin-top: auto;
-}
-
-/* ===========================
-   14. UTILIDADES
-=========================== */
-.texto-centro { text-align: center; }
-.texto-izquierda { text-align: left; }
-.texto-derecha { text-align: right; }
-
-.mt-0 { margin-top: 0; }
-.mt-1 { margin-top: var(--espacio-xs); }
-.mt-2 { margin-top: var(--espacio-sm); }
-.mt-3 { margin-top: var(--espacio-md); }
-.mt-4 { margin-top: var(--espacio-lg); }
-.mt-5 { margin-top: var(--espacio-xl); }
-
-.mb-0 { margin-bottom: 0; }
-.mb-1 { margin-bottom: var(--espacio-xs); }
-.mb-2 { margin-bottom: var(--espacio-sm); }
-.mb-3 { margin-bottom: var(--espacio-md); }
-.mb-4 { margin-bottom: var(--espacio-lg); }
-.mb-5 { margin-bottom: var(--espacio-xl); }
-
-.oculto { display: none !important; }
-.visible { display: block !important; }
-
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-}
-
-/* ===========================
-   15. ANIMACIONES
-=========================== */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes slideInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.animar-fadeIn {
-    animation: fadeIn 0.5s ease;
-}
-
-.animar-slideInUp {
-    animation: slideInUp 0.6s ease;
-}
-
-/* ===========================
-   16. RESPONSIVE DESIGN
-=========================== */
-@media (max-width: 1024px) {
-    .hero-contenido {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: var(--espacio-lg);
-    }
-    
-    .hero-titulo {
-        font-size: 2.8em;
-    }
-    
-    .banner-contenido {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-    
-    .newsletter-contenido {
-        flex-direction: column;
-        text-align: center;
-    }
-}
-
-@media (max-width: 768px) {
-    :root {
-        --espacio-xxl: 3rem;
-        --espacio-xl: 2rem;
-    }
-
-    .hero-titulo {
-        font-size: 2.2em;
-    }
-    
-    .seccion-titulo {
-        font-size: 2em;
-    }
-    
-    .seccion-header {
-        flex-direction: column;
-        gap: var(--espacio-md);
-        text-align: center;
-    }
-    
-    .hero-estadisticas {
-        gap: var(--espacio-lg);
-    }
-    
-    .grid-categorias,
-    .grid-libros,
-    .grid-autores {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    }
-    
-    .newsletter-form {
-        flex-direction: column;
-    }
-    
-    .newsletter-form input {
-        min-width: auto;
-    }
-}
-
-@media (max-width: 480px) {
-    .contenedor {
-        padding: 0 var(--espacio-sm);
-    }
-    
-    .hero-titulo {
-        font-size: 1.8em;
-    }
-    
-    .hero-subtitulo {
-        font-size: 1.1em;
-    }
-    
-    .seccion {
-        padding: var(--espacio-xl) 0;
-    }
-    
-    .grid-categorias,
-    .grid-libros,
-    .grid-autores,
-    .grid-testimonios {
-        grid-template-columns: 1fr;
-    }
-    
-    .hero-buscador {
-        flex-direction: column;
-    }
-    
-    .hero-buscador input,
-    .hero-buscador button {
-        border-radius: var(--border-radius-md);
-    }
-}
-
-/* ===========================
-   17. ESTADOS ESPECIALES
-=========================== */
-.cargando {
-    opacity: 0.6;
-    pointer-events: none;
-}
-
-.deshabilitado {
-    opacity: 0.5;
-    pointer-events: none;
-}
-
-/* Scrollbar personalizado */
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: var(--color-fondo-claro);
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--color-primario-claro);
-    border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--color-primario);
+   FOOTER
+   =========================== */
+.footer {
+    text-align: center;
+    padding: 20px;
+    background: #4a3f35; 
+    color: #e0d8c7; 
+    font-size: 14px;
+    margin-top: auto; /* Para asegurar que el footer se pega al final */
 }

@@ -3,177 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leep Books - Tu Librería Online</title>
+    <title>Leep Books - Inicio</title>
     <link rel="stylesheet" href="css/estilos.css">
-    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/menu.css"> 
+    <link rel="shortcut icon" href="img/iconos/favicon.png" type="image/x-icon">
 </head>
 <body class="layout">
-
-    <!-- Menú Dinámico -->
     <header>
         <div id="menu-container"></div>
     </header>
-
-    <main class="contenido-principal">
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="contenedor">
-                <div class="hero-contenido">
-                    <div class="hero-texto">
-                        <h1 class="hero-titulo">Descubre Mundos Extraordinarios</h1>
-                        <p class="hero-subtitulo">Más de 50,000 libros cuidadosamente seleccionados</p>
-                        
-                        <!-- Búsqueda Hero -->
-                        <div class="hero-buscador">
-                            <input type="text" id="buscador-hero" placeholder="Buscar libros, autores, categorías...">
-                            <button onclick="buscarDesdeHero()">
-                                <img src="img/iconos/lupa.png" alt="Buscar" class="icono-buscar">
-                            </button>
-                        </div>
-
-                        <!-- Estadísticas -->
-                        <div class="hero-estadisticas">
-                            <div class="estadistica">
-                                <span class="numero">50K+</span>
-                                <span class="texto">Libros</span>
-                            </div>
-                            <div class="estadistica">
-                                <span class="numero">2K+</span>
-                                <span class="texto">Autores</span>
-                            </div>
-                            <div class="estadistica">
-                                <span class="numero">15+</span>
-                                <span class="texto">Categorías</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="hero-imagen">
-                        <div class="libro-illustracion">📚</div>
-                    </div>
+    
+    <main>
+        <section class="hero-section">
+            <div class="contenedor hero-contenido">
+                <h1>Bienvenido al Mundo de Leep Books</h1>
+                <p>Descubre tu próxima gran aventura. Te ofrecemos una curada colección de libros de Terror, Acción, Fantasía y Romance con un diseño moderno y cálido.</p>
+                <a href="page/catalogo.html" class="boton-catalogo">Explorar Catálogo Ahora</a>
+            </div>
+        </section>
+        
+        <section class="contenedor">
+            <h2>Nuestras Categorías Destacadas</h2>
+            <div class="destacados-grid">
+                <div class="destacado-item terror">
+                    <img src="img/iconos/icono_terror.png" alt="Icono Terror">
+                    <h3>Terror</h3>
+                    <p>Historias que te mantendrán despierto.</p>
+                </div>
+                <div class="destacado-item accion">
+                    <img src="img/iconos/icono_accion.png" alt="Icono Acción">
+                    <h3>Acción</h3>
+                    <p>Emociones fuertes en cada página.</p>
+                </div>
+                <div class="destacado-item fantasia">
+                    <img src="img/iconos/icono_fantasia.png" alt="Icono Fantasía">
+                    <h3>Fantasía</h3>
+                    <p>Viaja a reinos inexplorados.</p>
+                </div>
+                <div class="destacado-item romance">
+                    <img src="img/iconos/icono_romance.png" alt="Icono Romance">
+                    <h3>Romance</h3>
+                    <p>Encuentra tu historia perfecta.</p>
                 </div>
             </div>
         </section>
-
-        <!-- Categorías Destacadas -->
-        <section class="seccion categorias-destacadas">
-            <div class="contenedor">
-                <div class="seccion-header">
-                    <h2 class="seccion-titulo">Explora por Categoría</h2>
-                    <a href="page/categorias.html" class="btn-link">Ver todas →</a>
-                </div>
-                
-                <div class="grid-categorias" id="categorias-destacadas">
-                    <!-- Cargado dinámicamente -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Libros Más Vendidos -->
-        <section class="seccion libros-vendidos">
-            <div class="contenedor">
-                <div class="seccion-header">
-                    <h2 class="seccion-titulo">Los Más Vendidos</h2>
-                    <a href="page/catalogo.html" class="btn-link">Ver catálogo completo →</a>
-                </div>
-                
-                <div class="grid-libros" id="libros-vendidos">
-                    <!-- Cargado dinámicamente -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Banner Oferta -->
-        <section class="seccion oferta-banner">
-            <div class="contenedor">
-                <div class="banner-contenido">
-                    <div class="banner-texto">
-                        <span class="oferta-badge">Hasta 50% OFF</span>
-                        <h3>Ofertas Especiales de Temporada</h3>
-                        <p>Descubre increíbles descuentos en libros bestsellers</p>
-                        <a href="page/ofertas.html" class="btn-primario">Ver Ofertas</a>
-                    </div>
-                    <div class="banner-imagen">
-                        <div class="oferta-illustracion">🔥</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Autores Destacados -->
-        <section class="seccion autores-destacados">
-            <div class="contenedor">
-                <div class="seccion-header">
-                    <h2 class="seccion-titulo">Autores Destacados</h2>
-                    <a href="page/autores.html" class="btn-link">Ver todos los autores →</a>
-                </div>
-                
-                <div class="grid-autores" id="autores-destacados">
-                    <!-- Cargado dinámicamente -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Testimonios -->
-        <section class="seccion testimonios">
-            <div class="contenedor">
-                <h2 class="seccion-titulo">Lo que dicen nuestros lectores</h2>
-                
-                <div class="grid-testimonios">
-                    <div class="testimonio-card">
-                        <div class="testimonio-texto">
-                            "La mejor librería online. Encuentro siempre lo que busco y los envíos son super rápidos. ¡Totalmente recomendada!"
-                        </div>
-                        <div class="testimonio-autor">
-                            <div class="autor-avatar">M</div>
-                            <div class="autor-info">
-                                <strong>María González</strong>
-                                <span>Lectora frecuente</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonio-card">
-                        <div class="testimonio-texto">
-                            "Excelente selección de libros y precios muy competitivos. Mi sitio favorito para comprar libros desde hace años."
-                        </div>
-                        <div class="testimonio-autor">
-                            <div class="autor-avatar">C</div>
-                            <div class="autor-info">
-                                <strong>Carlos Ruiz</strong>
-                                <span>Coleccionista</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Newsletter -->
-        <section class="seccion newsletter-home">
-            <div class="contenedor">
-                <div class="newsletter-contenido">
-                    <div class="newsletter-texto">
-                        <h3>No te pierdas las novedades</h3>
-                        <p>Suscríbete y recibe ofertas exclusivas cada semana</p>
-                    </div>
-                    <form class="newsletter-form" onsubmit="suscribirNewsletter(event)">
-                        <input type="email" placeholder="tu@email.com" required>
-                        <button type="submit" class="btn-secundario">Suscribirme</button>
-                    </form>
-                </div>
-            </div>
-        </section>
+        
     </main>
-
-    <!-- Footer Dinámico -->
+    
     <footer>
         <div id="footer-container"></div>
     </footer>
-
-    <!-- Scripts -->
+    
     <script src="js/main.js"></script>
-    <script src="js/modulos/biblioteca-data.js"></script>
-    <script src="js/modulos/home.js"></script>
 </body>
 </html>

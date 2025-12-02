@@ -1,205 +1,235 @@
-/* ===========================
-   HOME.JS - Funcionalidades específicas del index
-=========================== */
+/*
+ * LEEP BOOKS - LÓGICA PRINCIPAL (main.js)
+ * Maneja: Carga Modular, Datos, Catálogo, Filtrado y Carrito.
+ */
 
-class HomeManager {
-    constructor() {
-        this.librosDestacados = [];
-        this.categoriasDestacadas = [];
-        this.autoresDestacados = [];
-        
-        // Inicializar cuando el DOM esté listo
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => this.inicializar());
-        } else {
-            this.inicializar();
-        }
+// ===========================
+// DATOS INICIALES (12 Libros)
+// ===========================
+
+const libros = [
+  // TERROR (3)
+  { id: 1, titulo: "Pesadillas en la Oscuridad", autor: "H. Lovecraft", precio: 22.00, categoria: "terror", imagen: "../img/portadas/terror1.png" },
+  { id: 2, titulo: "La Sombra del Miedo", autor: "S. King", precio: 28.50, categoria: "terror", imagen: "../img/portadas/terror2.png" },
+  { id: 3, titulo: "El Ritual Prohibido", autor: "E. Allan Poe", precio: 19.00, categoria: "terror", imagen: "../img/portadas/terror3.png" },
+  // ACCIÓN (3)
+  { id: 4, titulo: "Misión: Rescate", autor: "J. Clancy", precio: 24.00, categoria: "accion", imagen: "../img/portadas/accion1.png" },
+  { id: 5, titulo: "Fuego Cruzado", autor: "L. Child", precio: 31.00, categoria: "accion", imagen: "../img/portadas/accion2.png" },
+  { id: 6, titulo: "Código Omega", autor: "R. Ludlum", precio: 26.50, categoria: "accion", imagen: "../img/portadas/accion3.png" },
+  // FANTASÍA (3)
+  { id: 7, titulo: "El Reino de Cristal", autor: "J.R.R. Tolkien", precio: 35.00, categoria: "fantasia", imagen: "../img/portadas/fantasia1.png" },
+  { id: 8, titulo: "Magia y Leyendas", autor: "G. Martin", precio: 38.00, categoria: "fantasia", imagen: "../img/portadas/fantasia2.png" },
+  { id: 9, titulo: "Los Dragones Dormidos", autor: "U. Le Guin", precio: 30.00, categoria: "fantasia", imagen: "../img/portadas/fantasia3.png" },
+  // ROMANCE (3)
+  { id: 10, titulo: "Bajo el Cielo de París", autor: "J. Austen", precio: 18.00, categoria: "romance", imagen: "../img/portadas/romance1.png" },
+  { id: 11, titulo: "Un Amor de Verano", autor: "N. Sparks", precio: 21.00, categoria: "romance", imagen: "../img/portadas/romance2.png" },
+  { id: 12, titulo: "Eternamente Tuya", autor: "C. Bronte", precio: 23.50, categoria: "romance", imagen: "../img/portadas/romance3.png" }
+];
+
+// Carrito inicializado (se podría usar localStorage para persistencia)
+let carrito = [];
+
+// ===========================
+// MODULARIZACIÓN (Menú y Footer)
+// ===========================
+
+/** Carga un componente HTML (menu.html o footer.html) en un contenedor. */
+async function cargarComponente(id, nombreArchivo) {
+    const contenedor = document.getElementById(id);
+    if (!contenedor) return;
+
+    // Determina la ruta correcta basándose en si la página actual está en /page/
+    const estaEnPage = window.location.pathname.includes("/page/");
+    const ruta = estaEnPage ? `../${nombreArchivo}.html` : `${nombreArchivo}.html`;
+
+    try {
+        const respuesta = await fetch(ruta);
+        contenedor.innerHTML = await respuesta.text();
+    } catch (error) {
+        console.error(`Error cargando ${nombreArchivo}:`, error);
+    }
+}
+
+// Funciones de utilidad para cargar componentes
+function cargarMenu() { return cargarComponente("menu-container", "menu"); }
+function cargarFooter() { return cargarComponente("footer-container", "footer"); }
+
+// ===================================
+// LÓGICA DEL CATÁLOGO (CATALOGO.HTML)
+// ===================================
+
+/** Genera y muestra las tarjetas de libros en el catálogo, con opción de filtro. */
+function mostrarCatalogo(filtroCategoria = 'todos') {
+    const contenedor = document.getElementById("catalogo-libros");
+    if (!contenedor) return; // Solo se ejecuta en catalogo.html
+
+    let librosFiltrados = libros;
+    if (filtroCategoria !== 'todos') {
+        librosFiltrados = libros.filter(libro => libro.categoria === filtroCategoria);
     }
 
-    async inicializar() {
-        console.log('Inicializando HomeManager...');
-        
-        // Solo ejecutar en la página principal
-        if (!this.esPaginaPrincipal()) return;
-        
-        await this.cargarDatosIniciales();
-        this.renderizarContenido();
-        this.configurarEventListenersEspecificos();
-    }
+    let htmlCatalogo = '';
 
-    esPaginaPrincipal() {
-        return window.location.pathname.endsWith('index.html') || 
-               window.location.pathname === '/' || 
-               window.location.pathname.endsWith('/');
-    }
+    librosFiltrados.forEach(libro => {
+        // Estructura HTML que coincide con los estilos mejorados de tarjeta-libro
+        htmlCatalogo += `
+          <div class="tarjeta-libro">
+            <img src="${libro.imagen}" alt="Portada de ${libro.titulo}" class="portada">
+            <div class="info">
+              <h3>${libro.titulo}</h3>
+              <p class="autor">${libro.autor}</p>
+              <p class="precio">$${libro.precio.toFixed(2)}</p>
+              <button onclick="agregarAlCarrito(${libro.id})">
+                Agregar a Carrito
+              </button>
+            </div>
+          </div>
+        `;
+    });
 
-    async cargarDatosIniciales() {
-        try {
-            if (window.bibliotecaData) {
-                const [libros, categorias, autores] = await Promise.all([
-                    bibliotecaData.obtenerLibrosDestacados(),
-                    bibliotecaData.obtenerCategoriasDestacadas(),
-                    bibliotecaData.obtenerAutoresDestacados()
-                ]);
+    contenedor.innerHTML = htmlCatalogo;
+}
+
+/** Configura los Event Listeners para el menú lateral y el filtrado. */
+function configurarFiltroCatalogo() {
+    const menuLateral = document.querySelector('.menu-lateral');
+    if (menuLateral) {
+        menuLateral.addEventListener('click', (event) => {
+            const enlace = event.target.closest('a');
+            if (!enlace) return;
+
+            const categoria = enlace.getAttribute('data-categoria');
+            
+            // Filtra solo si es una categoría válida (no 'ajustes' ni 'salir')
+            if (categoria && categoria !== 'ajustes' && categoria !== 'salir') {
+                event.preventDefault();
                 
-                this.librosDestacados = libros;
-                this.categoriasDestacadas = categorias;
-                this.autoresDestacados = autores;
-                
-                console.log('Datos cargados:', {
-                    libros: libros.length,
-                    categorias: categorias.length,
-                    autores: autores.length
+                // 1. Elimina 'active' de todos los enlaces
+                document.querySelectorAll('.menu-lateral a').forEach(a => {
+                    a.classList.remove('active');
                 });
-            } else {
-                console.warn('bibliotecaData no disponible');
+                
+                // 2. Agrega 'active' solo al enlace clickeado
+                enlace.classList.add('active');
+                
+                // 3. Muestra el catálogo filtrado
+                mostrarCatalogo(categoria);
             }
-        } catch (error) {
-            console.error('Error cargando datos iniciales:', error);
-        }
-    }
-
-    renderizarContenido() {
-        this.renderizarCategorias();
-        this.renderizarLibrosDestacados();
-        this.renderizarAutoresDestacados();
-    }
-
-    renderizarCategorias() {
-        const contenedor = document.getElementById('categorias-destacadas');
-        if (!contenedor) return;
-
-        if (this.categoriasDestacadas.length === 0) {
-            contenedor.innerHTML = '<p class="texto-centro">No hay categorías disponibles</p>';
-            return;
-        }
-
-        const categoriasHTML = this.categoriasDestacadas.map(categoria => `
-            <div class="categoria-card" onclick="irACategoria('${categoria.id}')">
-                <div class="categoria-icono">${categoria.icono}</div>
-                <h3>${categoria.nombre}</h3>
-                <p>${categoria.descripcion}</p>
-                <span class="categoria-contador">${categoria.totalLibros} libros</span>
-            </div>
-        `).join('');
-
-        contenedor.innerHTML = categoriasHTML;
-    }
-
-    renderizarLibrosDestacados() {
-        const contenedor = document.getElementById('libros-vendidos');
-        if (!contenedor) return;
-
-        if (this.librosDestacados.length === 0) {
-            contenedor.innerHTML = '<p class="texto-centro">No hay libros destacados disponibles</p>';
-            return;
-        }
-
-        const librosHTML = this.librosDestacados.map(libro => `
-            <div class="libro-card">
-                ${libro.descuento ? `<span class="libro-descuento">-${libro.descuento}%</span>` : ''}
-                <img src="${libro.imagen}" alt="${libro.titulo}" class="libro-imagen" 
-                     onerror="this.src='https://via.placeholder.com/140x200/d7ccc8/5d4037?text=Libro'">
-                <h4 class="libro-titulo">${libro.titulo}</h4>
-                <p class="libro-autor">${libro.autor}</p>
-                <div class="libro-precio">
-                    ${libro.precioOriginal ? `<span class="libro-precio-original">$${libro.precioOriginal}</span>` : ''}
-                    $${libro.precio}
-                </div>
-                <div class="libro-acciones">
-                    <button class="btn-primario btn-comprar-global" data-libro-id="${libro.id}">Comprar</button>
-                    <button class="btn-outline" onclick="toggleFavoritoLibro(${libro.id})">❤️</button>
-                </div>
-            </div>
-        `).join('');
-
-        contenedor.innerHTML = librosHTML;
-    }
-
-    renderizarAutoresDestacados() {
-        const contenedor = document.getElementById('autores-destacados');
-        if (!contenedor) return;
-
-        if (this.autoresDestacados.length === 0) {
-            contenedor.innerHTML = '<p class="texto-centro">No hay autores destacados disponibles</p>';
-            return;
-        }
-
-        const autoresHTML = this.autoresDestacados.map(autor => `
-            <div class="autor-card" onclick="verAutor('${autor.id}')">
-                <img src="${autor.foto}" alt="${autor.nombre}" class="autor-foto"
-                     onerror="this.src='https://via.placeholder.com/100x100/d7ccc8/5d4037?text=Autor'">
-                <h3 class="autor-nombre">${autor.nombre}</h3>
-                <p class="autor-biografia">${autor.biografia.substring(0, 100)}...</p>
-                <span class="autor-contador">${autor.totalLibros} libros</span>
-            </div>
-        `).join('');
-
-        contenedor.innerHTML = autoresHTML;
-    }
-
-    configurarEventListenersEspecificos() {
-        // Búsqueda en el hero
-        const buscadorHero = document.getElementById('buscador-hero');
-        if (buscadorHero) {
-            buscadorHero.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    buscarDesdeHero();
-                }
-            });
-        }
-
-        // Newsletter específico del home
-        const newsletterHome = document.querySelector('.newsletter-home .newsletter-form');
-        if (newsletterHome) {
-            newsletterHome.addEventListener('submit', (e) => {
-                e.preventDefault();
-                this.manejarNewsletterHome(e.target);
-            });
-        }
-    }
-
-    async manejarNewsletterHome(formulario) {
-        const emailInput = formulario.querySelector('input[type="email"]');
-        const email = emailInput.value.trim();
-        
-        if (!validarEmail(email)) {
-            mostrarNotificacion('Por favor, ingresa un email válido', 'advertencia');
-            emailInput.focus();
-            return;
-        }
-        
-        try {
-            // Simular envío específico para home
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            
-            mostrarNotificacion('¡Bienvenido a Leep Books! Recibirás nuestras mejores ofertas.', 'exito');
-            formulario.reset();
-            
-        } catch (error) {
-            console.error('Error en suscripción home:', error);
-            mostrarNotificacion('Error al procesar la suscripción', 'error');
-        }
+        });
     }
 }
 
-// Funciones globales específicas del home
-function verAutor(autorId) {
-    window.location.href = `page/autores.html?autor=${encodeURIComponent(autorId)}`;
+// ===================================
+// LÓGICA DEL CARRITO (CARRITO.HTML)
+// ===================================
+
+/** Agrega un libro al array del carrito y muestra una alerta. */
+function agregarAlCarrito(libroId) {
+    const libroSeleccionado = libros.find(libro => libro.id === libroId);
+    if (libroSeleccionado) {
+        // Usamos una copia del objeto para no modificar el original si fuera necesario
+        carrito.push({...libroSeleccionado}); 
+        alert(`¡"${libroSeleccionado.titulo}" agregado a tu carrito!`);
+        
+        // Si el usuario está en la página del carrito, actualizamos la vista
+        actualizarCarritoVisual(); 
+    }
 }
 
-function suscribirNewsletter(event) {
-    event.preventDefault();
-    const formulario = event.target;
-    const email = formulario.querySelector('input[type="email"]').value;
+/** Elimina un libro del carrito por su índice. */
+function eliminarDelCarrito(index) {
+    if (confirm(`¿Estás seguro de que quieres eliminar "${carrito[index].titulo}" del carrito?`)) {
+        carrito.splice(index, 1);
+        actualizarCarritoVisual();
+    }
+}
+
+/** Renderiza la tabla de productos y actualiza los totales en carrito.html. */
+function actualizarCarritoVisual() {
+    const contenedor = document.getElementById("items-carrito");
+    const subtotalValor = document.getElementById("subtotal-valor");
+    const totalValor = document.getElementById("total-valor");
     
-    if (validarEmail(email)) {
-        mostrarNotificacion('¡Gracias por suscribirte!', 'exito');
-        formulario.reset();
+    if (!contenedor || !totalValor) return; // Solo se ejecuta en carrito.html
+
+    let total = 0;
+
+    if (carrito.length === 0) {
+        contenedor.innerHTML = '<p class="carrito-vacio-mensaje">Tu carrito está vacío. ¡Añade algunos libros!</p>';
     } else {
-        mostrarNotificacion('Por favor, ingresa un email válido', 'advertencia');
+        let htmlTabla = `
+            <table class="tabla-carrito">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+        `;
+        
+        carrito.forEach((libro, index) => {
+            total += libro.precio;
+            
+            htmlTabla += `
+                <tr>
+                    <td>
+                        <img src="${libro.imagen}" class="carrito-portada" alt="Portada">
+                        ${libro.titulo}
+                    </td>
+                    <td>$${libro.precio.toFixed(2)}</td>
+                    <td><button onclick="eliminarDelCarrito(${index})" class="boton-eliminar">Eliminar</button></td>
+                </tr>
+            `;
+        });
+        
+        htmlTabla += '</tbody></table>';
+        contenedor.innerHTML = htmlTabla;
     }
+    
+    // Actualizar totales
+    if (subtotalValor) subtotalValor.textContent = `$${total.toFixed(2)}`;
+    if (totalValor) totalValor.textContent = `$${total.toFixed(2)}`;
 }
 
-// Inicializar HomeManager cuando se cargue el script
-const homeManager = new HomeManager();
+/** Lógica para el botón de compra final. */
+function finalizarCompra() {
+    if (carrito.length === 0) {
+        alert("El carrito está vacío. No puedes finalizar la compra.");
+        return;
+    }
+    
+    const total = carrito.reduce((sum, item) => sum + item.precio, 0);
+    alert(`¡Compra finalizada con éxito! Gracias por elegir Leep Books. Total: $${total.toFixed(2)}`);
+    
+    carrito = []; // Vacía el carrito
+    actualizarCarritoVisual();
+}
+
+
+// ===========================
+// INICIALIZACIÓN DE LA PÁGINA
+// ===========================
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Cargar componentes modulares
+    cargarMenu();
+    cargarFooter();
+    
+    // 2. Ejecutar lógica específica por página
+    
+    // Si estamos en la página del Catálogo
+    if (document.getElementById("catalogo-libros")) {
+        mostrarCatalogo(); 
+        configurarFiltroCatalogo();
+    }
+    
+    // Si estamos en la página del Carrito
+    if (document.getElementById("items-carrito")) {
+        actualizarCarritoVisual(); 
+    }
+});
+
+// Nota: Las funciones 'agregarAlCarrito', 'eliminarDelCarrito' y 'finalizarCompra'
+// deben ser globales (definidas sin const/let/var) para ser accesibles desde
+// los atributos 'onclick' del HTML.

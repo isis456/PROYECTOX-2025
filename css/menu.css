@@ -1,490 +1,75 @@
 /* ===========================
-   MENÚ VERTICAL LEEP BOOKS
-   Estilo Beige - Navegación Lateral
-=========================== */
-
-/* ===========================
-   CONTENEDOR PRINCIPAL DEL MENÚ
-=========================== */
-.menu-vertical {
-    width: 280px;
-    background: linear-gradient(180deg, #efebe9 0%, #d7ccc8 100%);
-    height: 100vh;
-    position: fixed;
-    left: 0;
-    top: 0;
+   MENÚ SUPERIOR (TOP BAR)
+   =========================== */
+.menu-principal {
+    background: #ffffff; 
+    padding: 15px 50px;
     display: flex;
-    flex-direction: column;
-    border-right: 3px solid #bcaaa4;
-    box-shadow: 5px 0 25px rgba(0,0,0,0.08);
-    z-index: 1000;
-}
-
-/* ===========================
-   LOGO Y CABECERA
-=========================== */
-.menu-header {
-    padding: 30px 25px 20px;
-    border-bottom: 2px solid #d7ccc8;
-    background: rgba(255, 255, 255, 0.3);
-}
-
-.menu-logo {
-    display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 15px;
-    text-decoration: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); 
 }
 
-.menu-logo-img {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #8d6e63, #6d4c41);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: bold;
-    font-size: 1.2em;
-    box-shadow: 0 4px 12px rgba(141, 110, 99, 0.3);
-}
-
-.menu-logo-texto {
-    color: #3e2723;
-    font-size: 1.4em;
-    font-weight: bold;
-    margin: 0;
-}
-
-.menu-subtitulo {
-    color: #8d6e63;
-    font-size: 0.85em;
-    margin: 5px 0 0 60px;
-    font-style: italic;
-}
-
-/* ===========================
-   LISTA DE NAVEGACIÓN PRINCIPAL
-=========================== */
-.menu-nav {
-    flex: 1;
-    padding: 20px 0;
-    overflow-y: auto;
-}
-
-.menu-lista {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.menu-item {
-    margin: 5px 15px;
-}
-
-.menu-link {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 16px 20px;
-    color: #5d4037;
-    text-decoration: none;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    position: relative;
-    font-weight: 500;
-    font-size: 1.05em;
-}
-
-.menu-link:hover {
-    background: rgba(141, 110, 99, 0.1);
-    color: #3e2723;
-    transform: translateX(5px);
-}
-
-.menu-link.activo {
-    background: linear-gradient(135deg, #8d6e63, #6d4c41);
-    color: white;
-    box-shadow: 0 4px 15px rgba(141, 110, 99, 0.4);
-}
-
-.menu-link.activo::before {
-    content: '';
-    position: absolute;
-    left: -15px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 4px;
-    height: 70%;
-    background: #ffd54f;
-    border-radius: 0 4px 4px 0;
-}
-
-/* Iconos del menú */
-.menu-icono {
-    width: 22px;
-    height: 22px;
-    opacity: 0.8;
-    transition: opacity 0.3s;
-}
-
-.menu-link:hover .menu-icono,
-.menu-link.activo .menu-icono {
-    opacity: 1;
-}
-
-.menu-texto {
-    flex: 1;
-}
-
-/* Indicador de notificaciones */
-.menu-notificacion {
-    background: #e53935;
-    color: white;
-    border-radius: 10px;
-    padding: 2px 8px;
-    font-size: 0.75em;
-    font-weight: bold;
-    min-width: 20px;
-    text-align: center;
-}
-
-/* ===========================
-   GRUPOS DE MENÚ
-=========================== */
-.menu-grupo {
-    margin: 25px 0 15px;
-    padding: 0 25px;
-}
-
-.menu-grupo-titulo {
-    color: #8d6e63;
-    font-size: 0.8em;
-    font-weight: bold;
-    text-transform: uppercase;
+.menu-principal .logo {
+    font-family: Georgia, serif; 
+    font-size: 28px;
+    font-weight: 700;
+    color: #7b5e4a; 
     letter-spacing: 1px;
-    margin: 0 0 10px 0;
 }
 
-/* Separador */
-.menu-separador {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, #d7ccc8, transparent);
-    margin: 20px 25px;
-}
-
-/* ===========================
-   MENÚ INFERIOR (SALIDA Y CONFIGURACIÓN)
-=========================== */
-.menu-footer {
-    margin-top: auto;
-    padding: 20px 15px;
-    border-top: 2px solid #d7ccc8;
-    background: rgba(255, 255, 255, 0.4);
-}
-
-.menu-footer .menu-item {
-    margin: 8px 0;
-}
-
-.menu-link.salida {
-    color: #d32f2f;
-    background: rgba(211, 47, 47, 0.1);
-    border: 1px solid rgba(211, 47, 47, 0.2);
-}
-
-.menu-link.salida:hover {
-    background: rgba(211, 47, 47, 0.15);
-    color: #b71c1c;
-}
-
-.menu-link.salida .menu-icono {
-    opacity: 0.9;
-}
-
-/* ===========================
-   SUBMENÚS DESPLEGABLES
-=========================== */
-.menu-submenu {
+.menu-principal ul {
     list-style: none;
     margin: 0;
     padding: 0;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease;
+    display: flex;
+    gap: 40px;
 }
 
-.menu-item.has-submenu.abierto .menu-submenu {
-    max-height: 300px;
+.menu-principal a {
+    color: #5a4b39; 
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 5px 0;
+    transition: color 0.3s;
 }
 
-.menu-subitem {
-    margin: 2px 0;
+.menu-principal a:hover {
+    color: #a8947f;
 }
 
-.menu-sublink {
+.buscador {
     display: flex;
     align-items: center;
-    gap: 15px;
-    padding: 12px 20px 12px 55px;
-    color: #8d6e63;
-    text-decoration: none;
-    border-radius: 8px;
-    transition: all 0.3s;
-    font-size: 0.95em;
+    border: 1px solid #e0d8c7;
+    border-radius: 20px; 
+    overflow: hidden;
+    transition: box-shadow 0.3s;
 }
 
-.menu-sublink:hover {
-    background: rgba(141, 110, 99, 0.08);
-    color: #5d4037;
-    padding-left: 60px;
+.buscador:focus-within {
+    box-shadow: 0 0 0 2px #e0d8c7;
 }
 
-.menu-sublink.activo {
-    background: rgba(141, 110, 99, 0.12);
-    color: #3e2723;
-    font-weight: 500;
-}
-
-/* Flecha para submenús */
-.menu-flecha {
-    margin-left: auto;
-    transition: transform 0.3s ease;
-    opacity: 0.6;
-}
-
-.menu-item.has-submenu.abierto .menu-flecha {
-    transform: rotate(180deg);
-}
-
-/* ===========================
-   BADGES Y ESTADOS
-=========================== */
-.menu-badge {
-    background: #4caf50;
-    color: white;
-    border-radius: 8px;
-    padding: 2px 6px;
-    font-size: 0.7em;
-    font-weight: bold;
-    margin-left: auto;
-}
-
-.menu-badge.nuevo {
-    background: #2196f3;
-}
-
-.menu-badge.oferta {
-    background: #ff9800;
-}
-
-.menu-badge.popular {
-    background: #9c27b0;
-}
-
-/* ===========================
-   MENÚ MÓVIL (HAMBURGUESA)
-=========================== */
-.menu-movil-boton {
-    display: none;
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 1001;
-    background: linear-gradient(135deg, #8d6e63, #6d4c41);
+.buscador input {
+    padding: 8px 15px;
     border: none;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    color: white;
-    font-size: 1.2em;
+    outline: none;
+    font-size: 14px;
+    width: 200px;
+    background: transparent;
+}
+.buscador button {
+    /* Reutilizamos el estilo de botón pero solo para el icono de buscar */
+    padding: 8px 12px;
+    background: #e0d8c7; 
+    border: none;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    transition: all 0.3s ease;
 }
-
-.menu-movil-boton:hover {
-    transform: scale(1.1);
+.buscador img {
+    width: 18px;
+    height: 18px;
+    /* Filtro para que el icono sea oscuro sobre el fondo beige */
+    filter: invert(30%) sepia(10%) saturate(1000%) hue-rotate(30deg); 
 }
-
-.menu-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.5);
-    z-index: 999;
-}
-
-/* ===========================
-   ANIMACIONES
-=========================== */
-@keyframes slideInLeft {
-    from {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-@keyframes slideOutLeft {
-    from {
-        transform: translateX(0);
-        opacity: 1;
-    }
-    to {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
-}
-
-.menu-vertical.animar-entrada {
-    animation: slideInLeft 0.3s ease;
-}
-
-.menu-vertical.animar-salida {
-    animation: slideOutLeft 0.3s ease;
-}
-
-/* Efecto de onda al hacer clic */
-.menu-link::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(141, 110, 99, 0.2);
-    transform: translate(-50%, -50%);
-    transition: width 0.3s, height 0.3s;
-}
-
-.menu-link:active::after {
-    width: 100px;
-    height: 100px;
-}
-
-/* ===========================
-   RESPONSIVE DESIGN
-=========================== */
-@media (max-width: 1024px) {
-    .menu-vertical {
-        width: 250px;
-    }
-    
-    .menu-link {
-        padding: 14px 18px;
-        font-size: 1em;
-    }
-}
-
-@media (max-width: 768px) {
-    .menu-movil-boton {
-        display: block;
-    }
-    
-    .menu-vertical {
-        transform: translateX(-100%);
-        transition: transform 0.3s ease;
-    }
-    
-    .menu-vertical.movil-abierto {
-        transform: translateX(0);
-    }
-    
-    .menu-overlay.mostrar {
-        display: block;
-    }
-    
-    .menu-header {
-        padding: 25px 20px 15px;
-    }
-    
-    .menu-logo-texto {
-        font-size: 1.2em;
-    }
-}
-
-@media (max-width: 480px) {
-    .menu-vertical {
-        width: 100%;
-    }
-    
-    .menu-link {
-        padding: 16px 25px;
-        font-size: 1.1em;
-    }
-    
-    .menu-sublink {
-        padding: 14px 25px 14px 65px;
-    }
-}
-
-/* ===========================
-   SCROLLBAR PERSONALIZADO
-=========================== */
-.menu-nav::-webkit-scrollbar {
-    width: 6px;
-}
-
-.menu-nav::-webkit-scrollbar-track {
-    background: rgba(141, 110, 99, 0.1);
-    border-radius: 3px;
-}
-
-.menu-nav::-webkit-scrollbar-thumb {
-    background: rgba(141, 110, 99, 0.3);
-    border-radius: 3px;
-}
-
-.menu-nav::-webkit-scrollbar-thumb:hover {
-    background: rgba(141, 110, 99, 0.5);
-}
-
-/* ===========================
-   ESTADOS ESPECIALES
-=========================== */
-.menu-link:focus {
-    outline: 2px solid #8d6e63;
-    outline-offset: 2px;
-}
-
-.menu-item:has(.menu-link.activo) {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 12px;
-    margin: 5px 10px;
-}
-
-/* Efecto de carga progresiva */
-.menu-item {
-    opacity: 0;
-    animation: fadeInUp 0.5s ease forwards;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Retraso escalonado para animación */
-.menu-item:nth-child(1) { animation-delay: 0.1s; }
-.menu-item:nth-child(2) { animation-delay: 0.2s; }
-.menu-item:nth-child(3) { animation-delay: 0.3s; }
-.menu-item:nth-child(4) { animation-delay: 0.4s; }
-.menu-item:nth-child(5) { animation-delay: 0.5s; }
-.menu-item:nth-child(6) { animation-delay: 0.6s; }
-.menu-item:nth-child(7) { animation-delay: 0.7s; }
-.menu-item:nth-child(8) { animation-delay: 0.8s; }

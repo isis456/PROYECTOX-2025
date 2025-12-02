@@ -3,117 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrito de Compras - Leep Books</title>
+    <title>Carrito de Compras | Leep Books</title>
     <link rel="stylesheet" href="../css/estilos.css">
-    <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/menu.css"> 
+    <link rel="shortcut icon" href="../img/iconos/favicon.png" type="image/x-icon">
 </head>
 <body class="layout">
-
     <header>
         <div id="menu-container"></div>
     </header>
-
-    <main class="contenido-principal">
-        <!-- Header -->
-        <section class="carrito-header">
-            <div class="contenedor">
-                <h1>Carrito de Compras</h1>
-                <nav class="breadcrumb">
-                    <a href="../index.html">Inicio</a>
-                    <span class="breadcrumb-separador">/</span>
-                    <span class="breadcrumb-activo">Carrito</span>
-                </nav>
+    <main>
+        <section class="contenedor">
+            <h2>Tu Carrito de Compras</h2>
+            
+            <div id="items-carrito">
+                <p class="carrito-vacio-mensaje">Tu carrito está vacío. ¡Añade algunos libros!</p>
             </div>
-        </section>
 
-        <!-- Contenido del Carrito -->
-        <section class="carrito-contenido">
-            <div class="contenedor">
-                <div class="carrito-layout">
-                    <!-- Items del Carrito -->
-                    <div class="carrito-items">
-                        <div class="carrito-vacio" id="carrito-vacio">
-                            <div class="carrito-vacio-icono">🛒</div>
-                            <h3>Tu carrito está vacío</h3>
-                            <p>Descubre libros increíbles y agrégalos a tu carrito</p>
-                            <a href="catalogo.html" class="btn-primario">Explorar Catálogo</a>
-                        </div>
-
-                        <div class="carrito-lista" id="carrito-lista" style="display: none;">
-                            <div class="carrito-encabezado">
-                                <h2>Productos en el carrito</h2>
-                                <button onclick="vaciarCarrito()" class="btn-vaciar">Vaciar Carrito</button>
-                            </div>
-                            
-                            <div class="items-lista" id="items-lista">
-                                <!-- Items dinámicos -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Resumen del Pedido -->
-                    <div class="carrito-resumen">
-                        <div class="resumen-card">
-                            <h3>Resumen del Pedido</h3>
-                            
-                            <div class="resumen-detalles">
-                                <div class="resumen-linea">
-                                    <span>Subtotal</span>
-                                    <span id="subtotal">$0.00</span>
-                                </div>
-                                <div class="resumen-linea">
-                                    <span>Envío</span>
-                                    <span id="envio">$0.00</span>
-                                </div>
-                                <div class="resumen-linea">
-                                    <span>Descuentos</span>
-                                    <span id="descuentos" class="texto-exito">-$0.00</span>
-                                </div>
-                                <div class="resumen-separador"></div>
-                                <div class="resumen-linea resumen-total">
-                                    <span>Total</span>
-                                    <span id="total">$0.00</span>
-                                </div>
-                            </div>
-
-                            <button class="btn-primario btn-comprar" id="btn-comprar" disabled>
-                                Proceder al Pago
-                            </button>
-
-                            <div class="resumen-beneficios">
-                                <div class="beneficio">
-                                    <img src="../img/iconos/envio.png" alt="Envío gratis">
-                                    <span>Envío gratis en compras mayores a $500</span>
-                                </div>
-                                <div class="beneficio">
-                                    <img src="../img/iconos/seguro.png" alt="Compra segura">
-                                    <span>Compra 100% segura</span>
-                                </div>
-                                <div class="beneficio">
-                                    <img src="../img/iconos/devolucion.png" alt="Devoluciones">
-                                    <span>30 días para devoluciones</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div id="resumen-carrito" class="resumen-carrito-vacio">
+                <div class="total-linea">
+                    <h3>SUBTOTAL:</h3>
+                    <h3 id="subtotal-valor">$0.00</h3>
                 </div>
-
-                <!-- Libros Recomendados -->
-                <section class="carrito-recomendados">
-                    <h2>También te puede interesar</h2>
-                    <div class="grid-libros" id="libros-recomendados">
-                        <!-- Libros recomendados dinámicos -->
-                    </div>
-                </section>
+                <div class="total-linea">
+                    <h3>TOTAL:</h3>
+                    <h3 id="total-valor">$0.00</h3>
+                </div>
+                
+                <button class="boton-comprar" onclick="finalizarCompra()">Finalizar Compra</button>
             </div>
+
         </section>
     </main>
-
     <footer>
         <div id="footer-container"></div>
     </footer>
-
     <script src="../js/main.js"></script>
-    <script src="../js/modulos/carrito.js"></script>
 </body>
 </html>
