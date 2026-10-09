@@ -1,12 +1,14 @@
 <nav class="menu-principal">
-    <div class="logo">LEEP BOOKS</div>
+    <a href="index.html" class="logo">SLEEPBOOK</a>
     <ul>
-        <li><a href="/index.html">INICIO</a></li>
-        <li><a href="/page/catalogo.html">CATÁLOGO</a></li>
-        <li><a href="/page/carrito.html">COMPRAS</a></li>
+        <li><a href="index.html">INICIO</a></li>
+        <li><a href="page/catalogo.html">CATÁLOGO</a></li>
+        <li><a href="page/carrito.html">COMPRAS <span id="carrito-contador" class="badge-carrito">0</span></a></li>
     </ul>
     <div class="buscador">
-        <input type="text" placeholder="Buscar libros..." aria-label="Buscar libros">
-        <button><img src="img/iconos/buscar.png" alt="Buscar"></button>
+        <input type="text" placeholder="Buscar por título o autor..." aria-label="Buscar libros">
+        <button type="button" aria-label="Buscar">
+            <img src="img/iconos/buscar.png" alt="Buscar">
+        </button>
     </div>
 </nav>

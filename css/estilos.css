@@ -1,16 +1,7 @@
-/*
- * LEEP BOOKS - ESTILOS PRINCIPALES (Globales, Index, Catálogo, Carrito, Footer)
- * Paleta de Colores:
- * Fondo Principal: #f8f5ee (Beige Claro)
- * Títulos/Textos Oscuros: #4a3f35 (Marrón Oscuro)
- * Botones/Resalte: #7b5e4a (Marrón Medio Cálido)
- * Resalte Sutil/Divisor: #e0d8c7 (Taupe Claro)
- * Precio: #a83232 (Rojo Suave)
- */
+/* ===================================================
+   SLEEPBOOK - ESTILOS PRINCIPALES
+   =================================================== */
 
-/* ===========================
-   CONFIGURACIÓN GLOBAL Y RESET
-   =========================== */
 *, *::before, *::after {
     box-sizing: border-box;
 }
@@ -27,33 +18,34 @@ body.layout {
     min-height: 100vh;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
     background: #f8f5ee; 
-    color: #333;
+    color: #4a3f35;
+    line-height: 1.5;
 }
 
 main {
     flex: 1;
-    padding: 0; /* Quitamos padding aquí, se maneja en las secciones */
+    padding: 0;
 }
 
-/* Contenedor central (usado en Carrito, y como contenido central en Index) */
+/* Contenedor central */
 .contenedor {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 30px auto;
     padding: 30px;
-    background: white; 
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03); 
+    background: #ffffff; 
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04); 
+    border: 1px solid #e0d8c7;
 }
 
-/* ===========================
-   TIPOGRAFÍA Y BOTONES
-   =========================== */
+/* Tipografía y Botones */
 h1 {
-    font-size: 3em;
+    font-size: 2.8em;
     color: #4a3f35;
     font-weight: 700;
     margin-bottom: 20px;
 }
+
 h2 {
     font-size: 2em;
     color: #5a4b39;
@@ -61,17 +53,16 @@ h2 {
     margin-bottom: 20px;
 }
 
-/* Estilo para todos los botones de acción principal */
 button, .boton-comprar, .boton-catalogo {
-    padding: 10px 25px;
+    padding: 12px 28px;
     background: #7b5e4a; 
-    color: white;
+    color: #ffffff;
     border: none;
-    border-radius: 5px; 
+    border-radius: 6px; 
     cursor: pointer;
     text-decoration: none;
     display: inline-block;
-    transition: background 0.3s, transform 0.1s;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -80,16 +71,17 @@ button, .boton-comprar, .boton-catalogo {
 button:hover, .boton-comprar:hover, .boton-catalogo:hover {
     background: #4a3f35;
     transform: translateY(-2px); 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
 }
 
+button:active, .boton-comprar:active, .boton-catalogo:active {
+    transform: translateY(0);
+}
 
-/* ===========================
-   INDEX (PÁGINA PRINCIPAL)
-   =========================== */
+/* Index / Hero */
 .hero-section {
     background-color: #f0ebe1; 
-    padding: 100px 20px; 
+    padding: 80px 20px; 
     text-align: center;
     margin-bottom: 40px;
 }
@@ -97,35 +89,37 @@ button:hover, .boton-comprar:hover, .boton-catalogo:hover {
 .hero-contenido {
     max-width: 900px;
     margin: 0 auto;
-    background: white; 
-    padding: 50px;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    background: #ffffff; 
+    padding: 50px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e0d8c7;
 }
 
 .hero-contenido h1 {
-    font-size: 3.5em;
+    font-size: 3em;
     margin-top: 0;
 }
 
 .hero-contenido p {
     font-size: 1.2em;
     color: #5a4b39;
-    margin: 20px auto 40px;
+    margin: 20px auto 35px;
     line-height: 1.6;
 }
 
 .boton-catalogo {
-    font-size: 1.2em;
-    padding: 15px 40px;
+    font-size: 1.1em;
+    padding: 14px 36px;
     border-radius: 30px;
-    background: #a8947f; /* Tono más suave en el Index */
+    background: #a8947f;
 }
+
 .boton-catalogo:hover {
     background: #7b5e4a;
 }
 
-/* Tarjetas de Categorías en el Index */
+/* Tarjetas Categorías Destacadas */
 .destacados-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -137,27 +131,29 @@ button:hover, .boton-comprar:hover, .boton-catalogo:hover {
 .destacado-item {
     background: #ffffff;
     border: 1px solid #e0d8c7;
-    border-radius: 8px;
-    padding: 20px;
+    border-radius: 10px;
+    padding: 25px 20px;
     text-align: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .destacado-item:hover {
     transform: translateY(-5px); 
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
 }
 
 .destacado-item img {
-    width: 50px;
-    height: 50px;
-    margin-bottom: 10px;
+    width: 55px;
+    height: 55px;
+    margin-bottom: 12px;
+    object-fit: contain;
 }
 
 .destacado-item h3 {
-    margin: 0 0 5px;
+    margin: 0 0 8px;
     color: #4a3f35;
-    font-size: 1.2em;
+    font-size: 1.25em;
 }
 
 .destacado-item p {
@@ -166,103 +162,102 @@ button:hover, .boton-comprar:hover, .boton-catalogo:hover {
     margin: 0;
 }
 
-
-/* ===========================
-   CATÁLOGO (LAYOUT, MENÚ LATERAL Y TARJETAS)
-   =========================== */
+/* Catálogo y Tarjetas */
 .catalogo-layout {
     display: flex;
-    max-width: 1400px; /* Contenedor más amplio */
+    max-width: 1400px;
     margin: 0 auto;
-    gap: 50px; /* Mayor espaciado entre sidebar y productos */
+    gap: 40px;
     padding: 40px 20px; 
 }
 
-/* MENÚ LATERAL (Estilo Elegante y Funcional) */
 .menu-lateral {
-    width: 280px; /* Ligeramente más ancho */
+    width: 260px;
     padding: 20px 0; 
     background: #ffffff;
-    border-radius: 15px; /* Bordes más redondeados */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); /* Sombra muy sutil */
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
     flex-shrink: 0; 
     height: fit-content; 
-    border: 1px solid #e0d8c7; /* Borde sutil del color beige */
+    border: 1px solid #e0d8c7;
 }
 
 .menu-lateral h2 {
-    padding: 0 30px 10px;
-    margin-bottom: 20px;
-    border-bottom: 3px solid #7b5e4a; /* Línea de color de marca */
-    font-size: 1.6em;
+    padding: 0 25px 10px;
+    margin-bottom: 15px;
+    border-bottom: 3px solid #7b5e4a;
+    font-size: 1.5em;
     color: #4a3f35;
 }
 
 .menu-lateral ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .menu-lateral a {
     display: flex;
     align-items: center;
-    padding: 15px 30px; /* Mayor padding para un mejor tacto */
+    padding: 12px 25px;
     text-decoration: none;
     color: #333;
     font-weight: 500;
-    transition: all 0.3s;
-    font-size: 1.1em;
+    transition: background 0.2s ease, color 0.2s ease;
+    font-size: 1.05em;
 }
 
-/* Estado activo/hover (Cambio de color de fondo completo) */
 .menu-lateral a:hover,
 .menu-lateral a.active {
-    background: #e0d8c7; /* Tono Taupe claro para resaltar */
+    background: #e0d8c7;
     color: #4a3f35;
     font-weight: 600;
 }
 
-/* TARJETAS DE LIBROS (Visuales, Flotantes y con Énfasis en Precio) */
 .productos {
     flex-grow: 1;
 }
 
 .productos h2 {
-    border-bottom: 2px solid #e0d8c7; /* Título de la sección de libros */
+    border-bottom: 2px solid #e0d8c7;
     padding-bottom: 10px;
 }
 
 .grid-catalogo {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Min-width un poco mayor */
-    gap: 35px;
-    margin-top: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 30px;
+    margin-top: 25px;
 }
 
 .tarjeta-libro {
-    background: #fff;
-    border: none; 
+    background: #ffffff;
     border-radius: 12px;
     padding: 0; 
     text-align: center;
-    /* Sombra fuerte para dar sensación de 'flotar' */
-    box-shadow: 0 15px 40px rgba(0,0,0,0.1); 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06); 
     overflow: hidden; 
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex; 
-    flex-direction: column; /* Apila el contenido verticalmente */
+    flex-direction: column;
+    border: 1px solid #e0d8c7;
 }
 
 .tarjeta-libro:hover {
-    transform: translateY(-10px); /* Efecto de elevación más dramático */
-    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
 }
 
 .tarjeta-libro img.portada {
     width: 100%;
-    height: 320px; /* Imagen más alta para impacto visual */
+    height: 310px;
     object-fit: cover;
     display: block;
+    transition: transform 0.3s ease;
+}
+
+.tarjeta-libro:hover img.portada {
+    transform: scale(1.02);
 }
 
 .tarjeta-libro .info {
@@ -273,78 +268,76 @@ button:hover, .boton-comprar:hover, .boton-catalogo:hover {
 }
 
 .tarjeta-libro h3 {
-    margin: 10px 0 5px;
-    font-size: 1.3em;
+    margin: 8px 0 4px;
+    font-size: 1.2em;
     color: #4a3f35;
     line-height: 1.3;
 }
 
 .tarjeta-libro .autor {
     color: #8c8c8c;
-    font-size: 0.95em;
+    font-size: 0.9em;
     margin-bottom: 10px;
 }
 
 .tarjeta-libro .precio {
-    font-size: 1.8em; 
+    font-size: 1.6em; 
     font-weight: 800;
     color: #a83232; 
-    margin: 10px auto 20px;
-    padding: 5px;
-    background: #fdf2f2; /* Fondo de color para destacar el precio */
-    border-radius: 4px;
-    align-self: center; /* Asegura que el precio esté centrado horizontalmente */
+    margin: 8px auto 18px;
+    padding: 4px 12px;
+    background: #fdf2f2;
+    border-radius: 6px;
+    align-self: center;
 }
 
-/* Botón de la tarjeta pegado al fondo */
 .tarjeta-libro button {
     width: 100%; 
     padding: 12px;
-    font-size: 1em;
-    border-radius: 0; /* Botón sin bordes redondeados al final */
+    font-size: 0.95em;
+    border-radius: 0;
     background: #5a4b39; 
-    margin-top: auto; /* Empuja el botón al fondo de la tarjeta */
+    margin-top: auto;
 }
+
 .tarjeta-libro button:hover {
-    transform: none; /* Eliminamos el efecto de levantamiento en el botón para que se sienta firme */
+    background: #4a3f35;
+    transform: none;
 }
 
-
-/* ===========================
-   CARRITO DE COMPRAS
-   =========================== */
+/* Carrito */
 .carrito-vacio-mensaje {
     text-align: center;
-    padding: 50px 0;
-    font-size: 1.2em;
+    padding: 40px 20px;
+    font-size: 1.1em;
     color: #8c8c8c;
-    border: 1px dashed #e0d8c7;
-    border-radius: 5px;
+    border: 2px dashed #e0d8c7;
+    border-radius: 8px;
     margin-bottom: 30px;
 }
 
 .tabla-carrito {
     width: 100%;
-    border-collapse: separate; /* Usamos separate para bordes redondeados en la tabla */
+    border-collapse: separate;
     border-spacing: 0;
     margin-bottom: 30px;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
 }
 
 .tabla-carrito th, .tabla-carrito td {
-    padding: 15px;
+    padding: 14px 16px;
     text-align: left;
     border-bottom: 1px solid #f0f0f0;
 }
 
 .tabla-carrito th {
-    background-color: #e0d8c7; /* Color Taupe claro para encabezados */
+    background-color: #e0d8c7;
     color: #4a3f35;
     font-weight: 600;
     text-transform: uppercase;
-    font-size: 0.9em;
+    font-size: 0.85em;
 }
 
 .tabla-carrito tr:last-child td {
@@ -355,25 +348,25 @@ button:hover, .boton-comprar:hover, .boton-catalogo:hover {
     width: 50px;
     height: 75px;
     object-fit: cover;
-    border-radius: 3px;
+    border-radius: 4px;
     vertical-align: middle;
-    margin-right: 15px;
+    margin-right: 12px;
 }
 
-/* Sección de Resumen (Total) */
 #resumen-carrito {
-    border: 2px solid #e0d8c7; /* Borde más prominente */
+    border: 1px solid #e0d8c7;
     background: #fdfdfd;
     padding: 25px;
-    border-radius: 8px;
+    border-radius: 10px;
     max-width: 400px;
     margin-left: auto;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
 }
 
 .total-linea {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-bottom: 12px;
 }
 
@@ -385,25 +378,144 @@ button:hover, .boton-comprar:hover, .boton-catalogo:hover {
 
 #total-valor {
     color: #a83232; 
-    font-weight: bold;
+    font-weight: 800;
     font-size: 1.5em;
 }
 
 #resumen-carrito .boton-comprar {
     width: 100%;
     padding: 12px;
-    margin-top: 20px;
-    font-size: 1em;
+    margin-top: 15px;
 }
 
-/* ===========================
-   FOOTER
-   =========================== */
+.badge-carrito {
+    background-color: #a83232;
+    color: #ffffff;
+    font-size: 0.75em;
+    padding: 2px 7px;
+    border-radius: 10px;
+    margin-left: 5px;
+}
+
+/* Footer */
 .footer {
     text-align: center;
     padding: 20px;
     background: #4a3f35; 
     color: #e0d8c7; 
     font-size: 14px;
-    margin-top: auto; /* Para asegurar que el footer se pega al final */
+    margin-top: auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .catalogo-layout {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px 15px;
+    }
+
+    .menu-lateral {
+        width: 100%;
+    }
+
+    .hero-contenido {
+        padding: 30px 20px;
+    }
+
+    .hero-contenido h1 {
+        font-size: 2.2em;
+    }
+
+    .tabla-carrito {
+        display: block;
+        overflow-x: auto;
+    }
+}
+/* ===================================================
+   NOTIFICACIONES Y MODAL PERSONALIZADOS
+   =================================================== */
+
+/* Toast Flotante */
+.toast-notificacion {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #5a4b39;
+    color: #ffffff;
+    padding: 14px 24px;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    border-left: 5px solid #7b5e4a;
+    font-size: 0.95em;
+    z-index: 10000;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.toast-notificacion.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Modal Emergente */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-contenido {
+    background: #ffffff;
+    border: 1px solid #e0d8c7;
+    padding: 35px 30px;
+    border-radius: 12px;
+    max-width: 420px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-contenido {
+    transform: scale(1);
+}
+
+.modal-contenido h3 {
+    margin-top: 0;
+    color: #4a3f35;
+    font-size: 1.6em;
+}
+
+.modal-contenido p {
+    color: #5a4b39;
+    font-size: 1.05em;
+    margin: 15px 0 25px;
+    line-height: 1.5;
+}
+
+.modal-contenido button {
+    width: 100%;
+    background: #7b5e4a;
+}
+
+.modal-contenido button:hover {
+    background: #4a3f35;
 }
