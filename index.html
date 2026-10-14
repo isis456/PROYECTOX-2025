@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sleepbook - Inicio</title>
+    <title>Sleepbook - Tu Librería Preferida</title>
     
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="css/menu.css"> 
@@ -16,43 +16,50 @@
     </header>
     
     <main>
+        <!-- Banner Principal Hero Original -->
         <section class="hero-section">
-            <div class="contenedor hero-contenido">
-                <h1>Bienvenido al Mundo de Sleepbook</h1>
-                <p>Descubre tu próxima gran aventura. Te ofrecemos una curada colección de libros de Terror, Acción, Fantasía y Romance con un diseño moderno y cálido.</p>
-                <a href="page/catalogo.html" class="boton-catalogo">Explorar Catálogo Ahora</a>
+            <div class="contenedor">
+                <h1>Historias que te Acompañan</h1>
+                <p>Sumérgete en universos fascinantes sin salir de casa.</p>
+                <a href="page/catalogo.html" class="boton-catalogo">Explorar Catálogo</a>
             </div>
         </section>
         
+        <!-- Categorías Destacadas -->
         <section class="contenedor">
-            <h2>Nuestras Categorías Destacadas</h2>
+            <h2>Explora por Categoría</h2>
+            
             <div class="destacados-grid">
-                
-                <a href="page/catalogo.html" class="destacado-item terror" style="text-decoration: none; color: inherit;">
+                <a href="page/catalogo.html?cat=terror" class="destacado-item terror">
                     <img src="img/iconos/icono_terror.png" alt="Icono Terror">
                     <h3>Terror</h3>
-                    <p>Historias que te mantendrán despierto.</p>
+                    <p>Historias misteriosas que te mantendrán despierto toda la noche.</p>
                 </a>
                 
-                <a href="page/catalogo.html" class="destacado-item accion" style="text-decoration: none; color: inherit;">
+                <a href="page/catalogo.html?cat=accion" class="destacado-item accion">
                     <img src="img/iconos/icono_accion.png" alt="Icono Acción">
                     <h3>Acción</h3>
-                    <p>Emociones fuertes en cada página.</p>
+                    <p>Tramas trepidantes llenas de adrenalina, peligro y suspenso.</p>
                 </a>
                 
-                <a href="page/catalogo.html" class="destacado-item fantasia" style="text-decoration: none; color: inherit;">
+                <a href="page/catalogo.html?cat=fantasia" class="destacado-item fantasia">
                     <img src="img/iconos/icono_fantasia.png" alt="Icono Fantasía">
                     <h3>Fantasía</h3>
-                    <p>Viaja a reinos inexplorados.</p>
+                    <p>Viaja a mundos mágicos, criaturas míticas y reinos lejanos.</p>
                 </a>
                 
-                <a href="page/catalogo.html" class="destacado-item romance" style="text-decoration: none; color: inherit;">
+                <a href="page/catalogo.html?cat=romance" class="destacado-item romance">
                     <img src="img/iconos/icono_romance.png" alt="Icono Romance">
                     <h3>Romance</h3>
-                    <p>Encuentra tu historia perfecta.</p>
+                    <p>Encuentra historias de amor inolvidables que cautivan el corazón.</p>
                 </a>
-
             </div>
+        </section>
+
+        <!-- Destacados -->
+        <section class="contenedor">
+            <h2>Libros Recomendados</h2>
+            <div id="catalogo-libros" class="grid-catalogo"></div>
         </section>
     </main>
     

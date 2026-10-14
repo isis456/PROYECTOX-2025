@@ -1,5 +1,5 @@
 /* ===================================================
-   SLEEPBOOK - LÓGICA PRINCIPAL
+   SLEEPBOOK - LÓGICA PRINCIPAL UNIFICADA
    =================================================== */
 
 // Base de datos de libros
@@ -32,7 +32,62 @@ function guardarCarrito() {
   localStorage.setItem("carrito_sleepbook", JSON.stringify(carrito));
 }
 
-// Carga Modular de Menú y Footer
+// ---------------------------------------------------
+// NOTIFICACIONES Y MODALES PERSONALIZADOS
+// ---------------------------------------------------
+
+function mostrarToast(mensaje) {
+  let toast = document.getElementById("toast-sleepbook");
+  if (!toast) {
+    toast = document.createElement("div");
+    toast.id = "toast-sleepbook";
+    toast.className = "toast-notificacion";
+    document.body.appendChild(toast);
+  }
+  
+  toast.textContent = mensaje;
+  toast.classList.add("show");
+  
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 3000);
+}
+
+function mostrarModalCompra(total) {
+  let modal = document.getElementById("modal-compra-sleepbook");
+  if (!modal) {
+    modal = document.createElement("div");
+    modal.id = "modal-compra-sleepbook";
+    modal.className = "modal-overlay";
+    modal.innerHTML = `
+      <div class="modal-contenido">
+        <h3>¡Gracias por tu compra!</h3>
+        <p id="modal-mensaje-texto"></p>
+        <button onclick="cerrarModalCompra()">Aceptar</button>
+      </div>
+    `;
+    document.body.appendChild(modal);
+  }
+
+  const textoEl = document.getElementById("modal-mensaje-texto");
+  if (textoEl) {
+    textoEl.innerHTML = `Tu pedido fue procesado con éxito en <strong>Sleepbook</strong>.<br>Total pagado: <strong style="color: #a83232;">$${total.toFixed(2)}</strong>`;
+  }
+
+  modal.classList.add("active");
+}
+
+function cerrarModalCompra() {
+  const modal = document.getElementById("modal-compra-sleepbook");
+  if (modal) {
+    modal.classList.remove("active");
+  }
+}
+
+// ---------------------------------------------------
+// CARGA MODULAR DE COMPONENTES (MENÚ Y FOOTER)
+// ---------------------------------------------------
+
 async function cargarComponente(id, nombreArchivo) {
   const contenedor = document.getElementById(id);
   if (!contenedor) return;
@@ -46,7 +101,6 @@ async function cargarComponente(id, nombreArchivo) {
     
     let htmlContent = await respuesta.text();
 
-    // Si la vista está en /page/, ajustamos las rutas del menú dinámicamente
     if (estaEnPage && nombreArchivo === 'menu') {
       htmlContent = htmlContent
         .replace(/href="index\.html"/g, 'href="../index.html"')
@@ -69,23 +123,32 @@ function cargarFooter() { return cargarComponente("footer-container", "footer");
 function actualizarBadgeMenu() {
   const contadorEl = document.getElementById("carrito-contador");
   if (contadorEl) {
-    contadorEl.textContent = carrito.length;
+    const cantidad = carrito.length;
+    contadorEl.textContent = cantidad;
+    
+    // Solo mostrar el badge rojo si hay productos en el carrito (>0)
+    if (cantidad === 0) {
+      contadorEl.style.display = "none";
+    } else {
+      contadorEl.style.display = "inline-block";
+    }
   }
 }
 
-// Renderizado del Catálogo
+// ---------------------------------------------------
+// RENDERIZADO DEL CATÁLOGO Y FILTROS
+// ---------------------------------------------------
+
 function mostrarCatalogo(filtroCategoria = 'todos', terminoBusqueda = '') {
   const contenedor = document.getElementById("catalogo-libros");
   if (!contenedor) return;
 
   let resultado = libros;
 
-  // Filtrar por categoría
   if (filtroCategoria !== 'todos') {
     resultado = resultado.filter(l => l.categoria === filtroCategoria);
   }
 
-  // Filtrar por término de búsqueda
   if (terminoBusqueda.trim() !== '') {
     const query = terminoBusqueda.toLowerCase();
     resultado = resultado.filter(l => l.titulo.toLowerCase().includes(query) || l.autor.toLowerCase().includes(query));
@@ -137,7 +200,6 @@ function configurarFiltroCatalogo() {
   }
 }
 
-// Buscador en tiempo real
 function activarBuscador() {
   const inputBuscar = document.querySelector('.buscador input');
   if (inputBuscar) {
@@ -151,14 +213,18 @@ function activarBuscador() {
   }
 }
 
-// Lógica del Carrito de Compras
+// ---------------------------------------------------
+// LÓGICA DEL CARRITO DE COMPRAS
+// ---------------------------------------------------
+
 function agregarAlCarrito(libroId) {
   const libroSeleccionado = libros.find(l => l.id === libroId);
   if (libroSeleccionado) {
     carrito.push({ ...libroSeleccionado });
     guardarCarrito();
     actualizarBadgeMenu();
-    alert(`¡"${libroSeleccionado.titulo}" fue añadido al carrito!`);
+    
+    mostrarToast(`¡"${libroSeleccionado.titulo}" fue añadido al carrito!`);
     
     if (document.getElementById("items-carrito")) {
       actualizarCarritoVisual();
@@ -179,6 +245,7 @@ function actualizarCarritoVisual() {
   const contenedor = document.getElementById("items-carrito");
   const subtotalValor = document.getElementById("subtotal-valor");
   const totalValor = document.getElementById("total-valor");
+  const resumenBox = document.getElementById("resumen-carrito");
   
   if (!contenedor || !totalValor) return;
 
@@ -186,8 +253,19 @@ function actualizarCarritoVisual() {
   const estaEnPage = window.location.pathname.includes("/page/");
 
   if (carrito.length === 0) {
-    contenedor.innerHTML = '<p class="carrito-vacio-mensaje">Tu carrito está vacío. ¡Explora nuestro catálogo!</p>';
+    contenedor.innerHTML = `
+      <div class="carrito-vacio-card">
+        <div class="icono-vacio">🛒</div>
+        <h3>Tu carrito está vacío</h3>
+        <p>Parece que aún no has añadido ningún libro a tu lista.</p>
+        <a href="${estaEnPage ? 'catalogo.html' : 'page/catalogo.html'}" class="boton-comprar" style="margin-top: 15px; text-decoration: none; display: inline-block;">
+          Explorar Catálogo
+        </a>
+      </div>
+    `;
+    if (resumenBox) resumenBox.style.display = "none";
   } else {
+    if (resumenBox) resumenBox.style.display = "block";
     let htmlTabla = `
       <table class="tabla-carrito">
         <thead>
@@ -207,11 +285,17 @@ function actualizarCarritoVisual() {
       htmlTabla += `
         <tr>
           <td>
-            <img src="${rutaImg}" class="carrito-portada" alt="Portada">
-            ${libro.titulo}
+            <div class="prod-info-carrito">
+              <img src="${rutaImg}" class="carrito-portada" alt="Portada">
+              <span>${libro.titulo}</span>
+            </div>
           </td>
-          <td>$${libro.precio.toFixed(2)}</td>
-          <td><button onclick="eliminarDelCarrito(${index})" style="background: #a83232; padding: 6px 12px;">Eliminar</button></td>
+          <td class="precio-col">$${libro.precio.toFixed(2)}</td>
+          <td>
+            <button onclick="eliminarDelCarrito(${index})" class="btn-eliminar">
+              Eliminar
+            </button>
+          </td>
         </tr>
       `;
     });
@@ -226,109 +310,12 @@ function actualizarCarritoVisual() {
 
 function finalizarCompra() {
   if (carrito.length === 0) {
-    alert("El carrito está vacío.");
-    return;
-  }
-  
-  const total = carrito.reduce((sum, item) => sum + item.precio, 0);
-  alert(`¡Gracias por tu compra en Sleepbook!\nTu pedido fue procesado con éxito. Total: $${total.toFixed(2)}`);
-  
-  carrito = [];
-  guardarCarrito();
-  actualizarBadgeMenu();
-  actualizarCarritoVisual();
-}
-
-// Inicialización general al cargar el DOM
-document.addEventListener('DOMContentLoaded', () => {
-  cargarMenu();
-  cargarFooter();
-  
-  if (document.getElementById("catalogo-libros")) {
-    mostrarCatalogo(); 
-    configurarFiltroCatalogo();
-  }
-  
-  if (document.getElementById("items-carrito")) {
-    actualizarCarritoVisual(); 
-  }
-});
-// Notificación Toast Flotante
-function mostrarToast(mensaje) {
-  let toast = document.getElementById("toast-sleepbook");
-  if (!toast) {
-    toast = document.createElement("div");
-    toast.id = "toast-sleepbook";
-    toast.className = "toast-notificacion";
-    document.body.appendChild(toast);
-  }
-  
-  toast.textContent = mensaje;
-  toast.classList.add("show");
-  
-  setTimeout(() => {
-    toast.classList.remove("show");
-  }, 3000);
-}
-
-// Modal Personalizado de Confirmación de Compra
-function mostrarModalCompra(total) {
-  let modal = document.getElementById("modal-compra-sleepbook");
-  if (!modal) {
-    modal = document.createElement("div");
-    modal.id = "modal-compra-sleepbook";
-    modal.className = "modal-overlay";
-    modal.innerHTML = `
-      <div class="modal-contenido">
-        <h3>¡Gracias por tu compra!</h3>
-        <p id="modal-mensaje-texto"></p>
-        <button onclick="cerrarModalCompra()">Aceptar</button>
-      </div>
-    `;
-    document.body.appendChild(modal);
-  }
-
-  const textoEl = document.getElementById("modal-mensaje-texto");
-  if (textoEl) {
-    textoEl.innerHTML = `Tu pedido fue procesado con éxito en <strong>Sleepbook</strong>.<br>Total pagado: <strong style="color: #a83232;">$${total.toFixed(2)}</strong>`;
-  }
-
-  modal.classList.add("active");
-}
-
-function cerrarModalCompra() {
-  const modal = document.getElementById("modal-compra-sleepbook");
-  if (modal) {
-    modal.classList.remove("active");
-  }
-}
-
-// Lógica del Carrito con Notificaciones Elegantes
-function agregarAlCarrito(libroId) {
-  const libroSeleccionado = libros.find(l => l.id === libroId);
-  if (libroSeleccionado) {
-    carrito.push({ ...libroSeleccionado });
-    guardarCarrito();
-    actualizarBadgeMenu();
-    
-    // Reemplaza el alert nativo por el Toast
-    mostrarToast(`¡"${libroSeleccionado.titulo}" fue añadido al carrito!`);
-    
-    if (document.getElementById("items-carrito")) {
-      actualizarCarritoVisual();
-    }
-  }
-}
-
-function finalizarCompra() {
-  if (carrito.length === 0) {
     mostrarToast("Tu carrito está vacío.");
     return;
   }
   
   const total = carrito.reduce((sum, item) => sum + item.precio, 0);
   
-  // Reemplaza el alert por el modal estilizado
   mostrarModalCompra(total);
   
   carrito = [];
@@ -336,3 +323,31 @@ function finalizarCompra() {
   actualizarBadgeMenu();
   actualizarCarritoVisual();
 }
+
+// ---------------------------------------------------
+// INICIALIZACIÓN
+// ---------------------------------------------------
+
+document.addEventListener('DOMContentLoaded', () => {
+  cargarMenu();
+  cargarFooter();
+  
+  if (document.getElementById("catalogo-libros")) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const categoriaURL = urlParams.get('cat') || 'todos';
+
+    const enlaceCategoria = document.querySelector(`.menu-lateral a[data-categoria="${categoriaURL}"]`);
+    
+    if (enlaceCategoria) {
+      document.querySelectorAll('.menu-lateral a').forEach(a => a.classList.remove('active'));
+      enlaceCategoria.classList.add('active');
+    }
+
+    mostrarCatalogo(categoriaURL); 
+    configurarFiltroCatalogo();
+  }
+  
+  if (document.getElementById("items-carrito")) {
+    actualizarCarritoVisual(); 
+  }
+});

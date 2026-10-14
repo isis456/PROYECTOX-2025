@@ -3,46 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo de Libros | LEEP BOOKS</title>
-    <link rel="stylesheet" href="../css/estilos.css"> 
-    <link rel="stylesheet" href="../css/menu.css"> 
-    <link rel="shortcut icon" href="../img/iconos/favicon.png" type="image/x-icon">
+    <title>Sleepbook - Catálogo Completo</title>
+    
+    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="../css/menu.css">
+    <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon">
 </head>
 <body class="layout">
+
     <header>
         <div id="menu-container"></div>
     </header>
-    
-    <main>
-        <section class="catalogo-layout">
-            
-            <aside class="menu-lateral">
-                <h2>Categorías</h2>
-                <nav>
-                    <ul>
-                        <li><a href="#" data-categoria="todos" class="active">INICIO</a></li>
-                        <li><a href="#" data-categoria="accion">ACCIÓN</a></li>
-                        <li><a href="#" data-categoria="fantasia">FANTASÍA</a></li>
-                        <li><a href="#" data-categoria="terror">TERROR</a></li>
-                        <li><a href="#" data-categoria="romance">ROMANCE</a></li>
-                    </ul>
-                </nav>
-            </aside>
-            
-            <section class="productos">
-                <h2>Nuestros Libros</h2>
-                
-                <div id="catalogo-libros" class="grid-catalogo">
-                    </div>
-            </section>
-            
+
+    <main class="contenedor seccion-catalogo">
+        <!-- Menú Lateral -->
+        <aside class="menu-lateral">
+            <h2>Categorías</h2>
+            <ul>
+                <li><a href="#" data-categoria="todos" class="active">TODOS</a></li>
+                <li><a href="#" data-categoria="accion">ACCIÓN</a></li>
+                <li><a href="#" data-categoria="fantasia">FANTASÍA</a></li>
+                <li><a href="#" data-categoria="terror">TERROR</a></li>
+                <li><a href="#" data-categoria="romance">ROMANCE</a></li>
+            </ul>
+        </aside>
+
+        <!-- Contenido de Libros -->
+        <section class="contenido-principal">
+            <h1 class="titulo-pagina">Nuestros Libros</h1>
+            <div id="catalogo-libros" class="grid-catalogo"></div>
         </section>
     </main>
-    
+
     <footer>
         <div id="footer-container"></div>
     </footer>
-    
+
     <script src="../js/main.js"></script>
 </body>
 </html>

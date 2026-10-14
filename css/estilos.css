@@ -519,3 +519,358 @@ button:active, .boton-comprar:active, .boton-catalogo:active {
 .modal-contenido button:hover {
     background: #4a3f35;
 }
+/* ===================================================
+   MEJORAS DISEÑO DE INICIO (SLEEPBOOK)
+   =================================================== */
+
+.seccion-titulo {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.seccion-titulo h2 {
+    font-size: 2.2em;
+    margin-bottom: 8px;
+    position: relative;
+    display: inline-block;
+}
+
+.seccion-titulo p {
+    color: #7b5e4a;
+    font-size: 1.05em;
+    margin: 0;
+}
+
+/* Badges y botones Hero */
+.badge-hero {
+    display: inline-block;
+    background: #e0d8c7;
+    color: #5a4b39;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+}
+
+.hero-botones {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.boton-secundario {
+    padding: 14px 32px;
+    background: transparent;
+    color: #5a4b39;
+    border: 2px solid #a8947f;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.boton-secundario:hover {
+    background: #a8947f;
+    color: #ffffff;
+}
+
+/* Stats Hero */
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    padding-top: 25px;
+    border-top: 1px solid #e0d8c7;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-item strong {
+    font-size: 1.6em;
+    color: #4a3f35;
+}
+
+.stat-item span {
+    font-size: 0.85em;
+    color: #7b5e4a;
+}
+
+.stat-divider {
+    width: 1px;
+    height: 30px;
+    background: #e0d8c7;
+}
+
+/* Tarjetas Categorías Mejoradas */
+.destacado-item {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.icono-wrapper {
+    width: 70px;
+    height: 70px;
+    background: #f8f5ee;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.destacado-item:hover .icono-wrapper {
+    transform: scale(1.1);
+}
+
+.link-flecha {
+    margin-top: 15px;
+    font-size: 0.9em;
+    font-weight: 700;
+    color: #7b5e4a;
+    transition: color 0.2s ease;
+}
+
+.destacado-item:hover .link-flecha {
+    color: #4a3f35;
+}
+
+/* Sección Beneficios */
+.beneficios-section {
+    background: #f0ebe1;
+    padding: 50px 20px;
+    margin-top: 50px;
+    border-top: 1px solid #e0d8c7;
+}
+
+.beneficios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+}
+
+.beneficio-card {
+    background: #ffffff;
+    padding: 30px 20px;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid #e0d8c7;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.beneficio-icono {
+    font-size: 2.5em;
+    margin-bottom: 12px;
+}
+
+.beneficio-card h3 {
+    margin: 0 0 10px;
+    color: #4a3f35;
+    font-size: 1.2em;
+}
+
+.beneficio-card p {
+    margin: 0;
+    color: #6c757d;
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+/* ===================================================
+   DISEÑO MEJORADO CARRITO DE COMPRAS
+   =================================================== */
+
+/* Ocultar badge de carrito por defecto */
+.badge-carrito {
+    display: none;
+}
+
+/* Tarjeta vacía estilizada */
+.carrito-vacio-card {
+    text-align: center;
+    padding: 50px 20px;
+    background: #fcfbfa;
+    border: 2px dashed #e0d8c7;
+    border-radius: 12px;
+    margin: 20px 0;
+}
+
+.carrito-vacio-card .icono-vacio {
+    font-size: 3.5em;
+    margin-bottom: 10px;
+}
+
+.carrito-vacio-card h3 {
+    margin: 10px 0 5px;
+    color: #4a3f35;
+    font-size: 1.5em;
+}
+
+.carrito-vacio-card p {
+    color: #7b5e4a;
+    font-size: 1em;
+    margin-bottom: 20px;
+}
+
+/* Alineación de la tabla de compras */
+.prod-info-carrito {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: 600;
+    color: #4a3f35;
+}
+
+.precio-col {
+    font-weight: 700;
+    color: #5a4b39;
+    font-size: 1.1em;
+}
+
+.btn-eliminar {
+    background: #a83232 !important;
+    padding: 8px 16px !important;
+    border-radius: 6px !important;
+    font-size: 0.85em !important;
+}
+
+.btn-eliminar:hover {
+    background: #822424 !important;
+}
+
+/* Ajuste del botón del buscador en el menú */
+.buscador button {
+    background: #7b5e4a;
+    color: #ffffff;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    border: none;
+    cursor: pointer;
+}
+/* Layout del Catálogo en 2 columnas */
+.seccion-catalogo {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.menu-lateral {
+    width: 220px;
+    flex-shrink: 0;
+}
+
+.contenido-principal {
+    flex-grow: 1;
+}
+/* ===================================================
+   LAYOUT CATÁLOGO HORIZONTAL MULTICOLUMNA
+   =================================================== */
+
+/* Disposición general: Menú a la izquierda, catálogo a la derecha ocupando todo el ancho */
+.seccion-catalogo {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1200px;
+    margin: 30px auto 50px auto;
+}
+
+.menu-lateral {
+    width: 200px;
+    flex-shrink: 0;
+}
+
+.contenido-principal {
+    flex-grow: 1;
+    width: calc(100% - 230px);
+}
+
+/* Cuadrícula para mostrar varios libros de lado a lado en horizontal */
+.grid-catalogo {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
+    gap: 25px !important;
+    width: 100% !important;
+}
+
+/* Ajuste de las tarjetas individuales */
+.tarjeta-libro {
+    background: #ffffff;
+    border: 1px solid #e0d8c7;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tarjeta-libro:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+}
+
+.tarjeta-libro .portada {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 12px;
+}
+/* Estilo limpio para el buscador */
+.buscador {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #e0d8c7;
+    border-radius: 25px;
+    padding: 3px 6px 3px 15px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.buscador input {
+    border: none;
+    outline: none;
+    font-size: 0.9em;
+    color: #5a4b39;
+    background: transparent;
+    width: 180px;
+}
+
+.buscador button {
+    background: #7b5e4a;
+    color: #ffffff;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.buscador button:hover {
+    background: #4a3f35;
+}
