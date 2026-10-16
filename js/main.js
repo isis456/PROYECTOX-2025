@@ -1,28 +1,40 @@
 /* ===================================================
-   SLEEPBOOK - LÓGICA PRINCIPAL UNIFICADA
+   SLEEPBOOK - LÓGICA PRINCIPAL (24 LIBROS EN TOTAL)
    =================================================== */
 
-// Base de datos de libros
+// Base de datos completa con los libros antiguos + los libros nuevos (6 por categoría)
 const libros = [
-  // TERROR (3)
+  // TERROR (6)
   { id: 1, titulo: "Pesadillas en la Oscuridad", autor: "H. Lovecraft", precio: 22.00, categoria: "terror", imagen: "../img/portadas/terror1.png" },
   { id: 2, titulo: "La Sombra del Miedo", autor: "S. King", precio: 28.50, categoria: "terror", imagen: "../img/portadas/terror2.png" },
   { id: 3, titulo: "El Ritual Prohibido", autor: "E. Allan Poe", precio: 19.00, categoria: "terror", imagen: "../img/portadas/terror3.png" },
-  
-  // ACCIÓN (3)
-  { id: 4, titulo: "Misión: Rescate", autor: "J. Clancy", precio: 24.00, categoria: "accion", imagen: "../img/portadas/accion1.png" },
-  { id: 5, titulo: "Fuego Cruzado", autor: "L. Child", precio: 31.00, categoria: "accion", imagen: "../img/portadas/accion2.png" },
-  { id: 6, titulo: "Código Omega", autor: "R. Ludlum", precio: 26.50, categoria: "accion", imagen: "../img/portadas/accion3.png" },
-  
-  // FANTASÍA (3)
-  { id: 7, titulo: "El Reino de Cristal", autor: "J.R.R. Tolkien", precio: 35.00, categoria: "fantasia", imagen: "../img/portadas/fantasia1.png" },
-  { id: 8, titulo: "Magia y Leyendas", autor: "G. Martin", precio: 38.00, categoria: "fantasia", imagen: "../img/portadas/fantasia2.png" },
-  { id: 9, titulo: "Los Dragones Dormidos", autor: "U. Le Guin", precio: 30.00, categoria: "fantasia", imagen: "../img/portadas/fantasia3.png" },
-  
-  // ROMANCE (3)
-  { id: 10, titulo: "Bajo el Cielo de París", autor: "J. Austen", precio: 18.00, categoria: "romance", imagen: "../img/portadas/romance1.png" },
-  { id: 11, titulo: "Un Amor de Verano", autor: "N. Sparks", precio: 21.00, categoria: "romance", imagen: "../img/portadas/romance2.png" },
-  { id: 12, titulo: "Eternamente Tuya", autor: "C. Bronte", precio: 23.50, categoria: "romance", imagen: "../img/portadas/romance3.png" }
+  { id: 4, titulo: "Drácula", autor: "Bram Stoker", precio: 22.00, categoria: "terror", imagen: "../img/portadas/terror4.png" },
+  { id: 5, titulo: "Coraline", autor: "Neil Gaiman", precio: 18.50, categoria: "terror", imagen: "../img/portadas/terror5.png" },
+  { id: 6, titulo: "Cadáver exquisito", autor: "Agustina Bazterrica", precio: 21.00, categoria: "terror", imagen: "../img/portadas/terror6.png" },
+
+  // ACCIÓN (6)
+  { id: 7, titulo: "Misión: Rescate", autor: "J. Clancy", precio: 24.00, categoria: "accion", imagen: "../img/portadas/accion1.png" },
+  { id: 8, titulo: "Fuego Cruzado", autor: "L. Child", precio: 31.00, categoria: "accion", imagen: "../img/portadas/accion2.png" },
+  { id: 9, titulo: "Código Omega", autor: "R. Ludlum", precio: 26.50, categoria: "accion", imagen: "../img/portadas/accion3.png" },
+  { id: 10, titulo: "El código Da Vinci", autor: "Dan Brown", precio: 26.00, categoria: "accion", imagen: "../img/portadas/accion4.png" },
+  { id: 11, titulo: "Cicatriz", autor: "Juan Gómez-Jurado", precio: 24.50, categoria: "accion", imagen: "../img/portadas/accion5.png" },
+  { id: 12, titulo: "La caza del Octubre Rojo", autor: "Tom Clancy", precio: 28.00, categoria: "accion", imagen: "../img/portadas/accion6.png" },
+
+  // FANTASÍA (6)
+  { id: 13, titulo: "El Reino de Cristal", autor: "J.R.R. Tolkien", precio: 35.00, categoria: "fantasia", imagen: "../img/portadas/fantasia1.png" },
+  { id: 14, titulo: "Magia y Leyendas", autor: "G. Martin", precio: 38.00, categoria: "fantasia", imagen: "../img/portadas/fantasia2.png" },
+  { id: 15, titulo: "Los Dragones Dormidos", autor: "U. Le Guin", precio: 30.00, categoria: "fantasia", imagen: "../img/portadas/fantasia3.png" },
+  { id: 16, titulo: "El Señor de los Anillos", autor: "J.R.R. Tolkien", precio: 35.00, categoria: "fantasia", imagen: "../img/portadas/fantasia4.png" },
+  { id: 17, titulo: "Juego de Tronos", autor: "George R.R. Martin", precio: 32.00, categoria: "fantasia", imagen: "../img/portadas/fantasia5.png" },
+  { id: 18, titulo: "Harry Potter", autor: "J.K. Rowling", precio: 29.50, categoria: "fantasia", imagen: "../img/portadas/fantasia6.png" },
+
+  // ROMANCE (6)
+  { id: 19, titulo: "Bajo el Cielo de París", autor: "J. Austen", precio: 18.00, categoria: "romance", imagen: "../img/portadas/romance1.png" },
+  { id: 20, titulo: "Un Amor de Verano", autor: "N. Sparks", precio: 21.00, categoria: "romance", imagen: "../img/portadas/romance2.png" },
+  { id: 21, titulo: "Eternamente Tuya", autor: "C. Bronte", precio: 23.50, categoria: "romance", imagen: "../img/portadas/romance3.png" },
+  { id: 22, titulo: "Orgullo y prejuicio", autor: "Jane Austen", precio: 19.00, categoria: "romance", imagen: "../img/portadas/romance4.png" },
+  { id: 23, titulo: "Cumbres borrascosas", autor: "Emily Brontë", precio: 20.50, categoria: "romance", imagen: "../img/portadas/romance5.png" },
+  { id: 24, titulo: "Alas de sangre", autor: "Rebecca Yarros", precio: 30.00, categoria: "romance", imagen: "../img/portadas/romance6.png" }
 ];
 
 // Persistencia del Carrito en localStorage
@@ -126,7 +138,6 @@ function actualizarBadgeMenu() {
     const cantidad = carrito.length;
     contadorEl.textContent = cantidad;
     
-    // Solo mostrar el badge rojo si hay productos en el carrito (>0)
     if (cantidad === 0) {
       contadorEl.style.display = "none";
     } else {
@@ -315,7 +326,6 @@ function finalizarCompra() {
   }
   
   const total = carrito.reduce((sum, item) => sum + item.precio, 0);
-  
   mostrarModalCompra(total);
   
   carrito = [];
@@ -325,7 +335,7 @@ function finalizarCompra() {
 }
 
 // ---------------------------------------------------
-// INICIALIZACIÓN
+// INICIALIZACIÓN DE LA APLICACIÓN
 // ---------------------------------------------------
 
 document.addEventListener('DOMContentLoaded', () => {
